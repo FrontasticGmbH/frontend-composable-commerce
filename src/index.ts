@@ -1,3 +1,3 @@
-import { CommercetoolsExtension } from "./library/Extension";
+import { ComposableCommerce } from "./library/Extension";
 
-export { CommercetoolsExtension };
+export { ComposableCommerce };

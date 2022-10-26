@@ -86,7 +86,7 @@ import {
 	UpdateWishlistItemPayload
 } from "./payloads/WishlistPayloads";
 
-class CommercetoolsExtension extends Extension {
+class ComposableCommerce extends Extension {
 	constructor(sdk: SDK) {
 		super(sdk);
 	}
@@ -296,4 +296,4 @@ class CommercetoolsExtension extends Extension {
 	};
 }
 
-export { CommercetoolsExtension };
+export { ComposableCommerce };
