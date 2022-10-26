@@ -1,0 +1,20 @@
+{
+    "name": "@commercetools/composable-commerce",
+    "version": "0.0.1",
+    "license": "MIT",
+    "main": "lib/index.js",
+    "scripts": {
+        "build": "esbuild --outdir=lib --bundle --format=cjs src/index.ts && yarn build:types",
+        "dev": "concurrently -n ESBUILD,TSC -c magenta,cyan \"esbuild --outdir=lib --bundle --format=cjs --watch src/index.ts\" \"yarn build:types --watch\"",
+        "release": "esbuild --outdir=release --bundle --format=cjs --minify src/index.ts && yarn build:types",
+        "build:types": "tsc --emitDeclarationOnly --outDir lib"
+    },
+    "dependencies": {
+        "typescript": "4.8.3"
+    },
+    "devDependencies": {
+        "@types/core-js": "2.5.5",
+        "concurrently": "^7.4.0",
+        "esbuild": "0.15.8"
+    }
+}
