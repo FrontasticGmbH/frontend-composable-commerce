@@ -16,10 +16,10 @@
                 "../../core/lib"
             ],
             "@commercetools/domain-types/*": [
-                "../../domain-types/lib/*"
+                "../../domain-types/src/*"
             ],
             "@commercetools/domain-types": [
-                "../../domain-types/lib"
+                "../../domain-types/src"
             ]
         }
     },
