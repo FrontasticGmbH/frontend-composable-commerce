@@ -171,27 +171,25 @@ class ComposableCommerce extends Extension {
 		return this.sdk.callAction("cart/getOrders", {});
 	};
 
-	getWishlist: GetWishlistAction = (wishlistId?: string) => {
-		return this.sdk.callAction("wishlist/getWishlist", {}, wishlistId ? { id: wishlistId } : undefined);
+	getWishlist: GetWishlistAction = () => {
+		return this.sdk.callAction("wishlist/getWishlist", {});
 	};
 
-	addToWishlist: AddToWishlistAction = (payload: AddToWishlistPayload, wishlistId?: string) => {
-		return this.sdk.callAction("wishlist/addToWishlist", payload, wishlistId ? { id: wishlistId } : undefined);
+	addToWishlist: AddToWishlistAction = (payload: AddToWishlistPayload) => {
+		return this.sdk.callAction("wishlist/addToWishlist", payload);
 	};
 
 	removeFromWishlist: RemoveFromWishlistAction = (
-		payload: RemoveFromWishlistPayload,
-		wishlistId?: string
+		payload: RemoveFromWishlistPayload
 	) => {
-		return this.sdk.callAction("wishlist/removeLineItem", payload, wishlistId ? { id: wishlistId } : undefined);
+		return this.sdk.callAction("wishlist/removeLineItem", payload);
 	};
 
 	// TODO: check below is actually necessary...
 	updateWishlistItem: UpdateWishlistItemAction = (
-		payload: UpdateWishlistItemPayload,
-		wishlistId?: string
+		payload: UpdateWishlistItemPayload
 	) => {
-		return this.sdk.callAction("wishlist/updateLineItemCount", payload, wishlistId ? { id: wishlistId } : undefined);
+		return this.sdk.callAction("wishlist/updateLineItemCount", payload);
 	};
 
 	getAccount: GetAccountAction = async () => {
