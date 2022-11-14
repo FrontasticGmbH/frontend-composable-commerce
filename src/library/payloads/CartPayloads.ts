@@ -28,6 +28,12 @@ type UpdateCartPayload = {
 	billing?: Address;
 };
 
+type GetCartShippingMethodsPayload = {
+	query: {
+		onlyMatching: boolean
+	}
+}
+
 type SetCartShippingMethodPayload = {
 	shippingMethod: {
 		id: string;
@@ -47,6 +53,7 @@ export {
 	RemoveCartItemPayload,
 	UpdateCartItemPayload,
 	UpdateCartPayload,
+	GetCartShippingMethodsPayload,
 	SetCartShippingMethodPayload,
 	RedeemDiscountCodePayload,
 	RemoveDiscountCodePayload
