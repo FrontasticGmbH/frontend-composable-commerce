@@ -108,7 +108,7 @@ class ComposableCommerce extends Extension {
 	queryProductCategories: QueryProductCategoriesAction = (
 		payload: QueryProductCategoriesPayload,
 	) => {
-		return this.sdk.callAction("product/queryCategories", payload);
+		return this.sdk.callAction("product/queryCategories", {}, payload.query);
 	};
 
 	getSearchableProductAttributes: GetSearchableProductAttributesAction = () => {
