@@ -6,6 +6,7 @@ import {
 	RemoveCartItemPayload,
 	UpdateCartItemPayload,
 	UpdateCartPayload,
+	GetCartShippingMethodsPayload,
 	SetCartShippingMethodPayload,
 	RedeemDiscountCodePayload,
 	RemoveDiscountCodePayload
@@ -21,7 +22,7 @@ type UpdateCartItemAction = (payload: UpdateCartItemPayload) => Promise<Cart>;
 
 type UpdateCartAction = (payload: UpdateCartPayload) => Promise<Cart>;
 
-type GetCartShippingMethodsAction = () => Promise<ShippingMethod[]>;
+type GetCartShippingMethodsAction = (payload: GetCartShippingMethodsPayload) => Promise<ShippingMethod[]>;
 
 type GetAvailableCartShippingMethodsAction = () => Promise<ShippingMethod[]>;
 
