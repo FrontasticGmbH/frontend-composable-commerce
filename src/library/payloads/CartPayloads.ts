@@ -2,7 +2,7 @@ import { Address } from "@commercetools/domain-types/account/Address";
 
 type AddCartItemPayload = {
 	variant: {
-		sku: number;
+		sku: string;
 		count: number;
 	};
 };
