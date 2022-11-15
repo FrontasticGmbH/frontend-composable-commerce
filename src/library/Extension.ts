@@ -71,7 +71,8 @@ import {
 	RemoveDiscountCodePayload,
 	SetCartShippingMethodPayload,
 	UpdateCartItemPayload,
-	UpdateCartPayload
+	UpdateCartPayload,
+	GetCartShippingMethodsPayload
 } from "./payloads/CartPayloads";
 
 import {
@@ -98,7 +99,7 @@ class ComposableCommerce extends Extension {
 	};
 
 	getProduct: GetProductAction = (payload: GetProductPayload) => {
-		return this.sdk.callAction("product/getProduct", payload);
+		return this.sdk.callAction("product/getProduct", {}, payload.query);
 	};
 
 	productQuery: ProductQueryAction = (payload: ProductQueryPayload) => {
@@ -135,8 +136,8 @@ class ComposableCommerce extends Extension {
 		return this.sdk.callAction("cart/updateCart", payload);
 	};
 
-	getShippingMethods: GetCartShippingMethodsAction = () => {
-		return this.sdk.callAction("cart/getShippingMethods", {});
+	getShippingMethods: GetCartShippingMethodsAction = (payload?: GetCartShippingMethodsPayload) => {
+		return this.sdk.callAction("cart/getShippingMethods", {}, payload?.query ?? undefined);
 	};
 
 	getAvailableShippingMethods: GetAvailableCartShippingMethodsAction = () => {
@@ -170,25 +171,27 @@ class ComposableCommerce extends Extension {
 		return this.sdk.callAction("cart/getOrders", {});
 	};
 
-	getWishlist: GetWishlistAction = () => {
-		return this.sdk.callAction("wishlist/getWishlist", {});
+	getWishlist: GetWishlistAction = (wishlistId?: string) => {
+		return this.sdk.callAction("wishlist/getWishlist", {}, wishlistId ? { id: wishlistId } : undefined);
 	};
 
-	addToWishlist: AddToWishlistAction = (payload: AddToWishlistPayload) => {
-		return this.sdk.callAction("wishlist/addToWishlist", payload);
+	addToWishlist: AddToWishlistAction = (payload: AddToWishlistPayload, wishlistId?: string) => {
+		return this.sdk.callAction("wishlist/addToWishlist", payload, wishlistId ? { id: wishlistId } : undefined);
 	};
 
 	removeFromWishlist: RemoveFromWishlistAction = (
 		payload: RemoveFromWishlistPayload,
+		wishlistId?: string
 	) => {
-		return this.sdk.callAction("wishlist/removeLineItem", payload);
+		return this.sdk.callAction("wishlist/removeLineItem", payload, wishlistId ? { id: wishlistId } : undefined);
 	};
 
 	// TODO: check below is actually necessary...
 	updateWishlistItem: UpdateWishlistItemAction = (
 		payload: UpdateWishlistItemPayload,
+		wishlistId?: string
 	) => {
-		return this.sdk.callAction("wishlist/updateLineItemCount", payload);
+		return this.sdk.callAction("wishlist/updateLineItemCount", payload, wishlistId ? { id: wishlistId } : undefined);
 	};
 
 	getAccount: GetAccountAction = async () => {
