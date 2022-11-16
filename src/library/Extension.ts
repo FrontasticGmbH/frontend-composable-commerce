@@ -213,7 +213,7 @@ class ComposableCommerce extends Extension {
 		const result: any = this.sdk.callAction("account/login", payload);
 
 		if (remember) {
-			rememberMeCookie.set();
+			rememberMeCookie.set(true);
 		}
 
 		return result;
