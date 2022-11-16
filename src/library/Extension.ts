@@ -1,5 +1,4 @@
-import { SDK, Extension } from "@commercetools/sdk";
-import { REMEMBER_ME } from "@commercetools/sdk";
+import { SDK, Extension, rememberMeCookie } from "@commercetools/sdk";
 
 import {
 	AddAccountAddressAction,
@@ -214,7 +213,7 @@ class ComposableCommerce extends Extension {
 		const result: any = this.sdk.callAction("account/login", payload);
 
 		if (remember) {
-			window.localStorage.setItem(REMEMBER_ME, "1");
+			rememberMeCookie.set();
 		}
 
 		return result;
@@ -222,7 +221,7 @@ class ComposableCommerce extends Extension {
 
 	logout: LogoutAccountAction = async () => {
 		await this.sdk.callAction("account/logout", {});
-		window.localStorage.removeItem(REMEMBER_ME);
+		rememberMeCookie.remove();
 	};
 
 	registerAccount: RegisterAccountAction = (
