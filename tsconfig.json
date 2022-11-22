@@ -9,16 +9,16 @@
         "moduleResolution": "node",
         "baseUrl": ".",
         "paths": {
-            "@commercetools/sdk/*": [
+            "@commercetools-frontend/sdk/*": [
                 "../../core/lib/*"
             ],
-            "@commercetools/sdk": [
+            "@commercetools-frontend/sdk": [
                 "../../core/lib"
             ],
-            "@commercetools/domain-types/*": [
+            "@commercetools-frontend/domain-types/*": [
                 "src/domain-types/src/*"
             ],
-            "@commercetools/domain-types": [
+            "@commercetools-frontend/domain-types": [
                 "src/domain-types/src"
             ]
         }

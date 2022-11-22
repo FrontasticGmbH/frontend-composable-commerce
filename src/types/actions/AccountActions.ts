@@ -1,4 +1,4 @@
-import { Account } from "@commercetools/domain-types/account/Account";
+import { Account } from "@commercetools-frontend/domain-types/account/Account";
 import {
 	LoginAccountPayload,
 	RegisterAccountPayload,

@@ -1,4 +1,4 @@
-import { SDK } from "@commercetools/sdk";
+import { SDK } from "@commercetools-frontend/sdk";
 import { GetProjectSettingsAction } from "../../types/actions/ProjectActions";
 
 export type ProjectActions = {

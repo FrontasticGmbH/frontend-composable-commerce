@@ -1,6 +1,6 @@
-import { Cart } from "@commercetools/domain-types/cart/Cart";
-import { Order } from "@commercetools/domain-types/cart/Order";
-import { ShippingMethod } from "@commercetools/domain-types/cart/ShippingMethod";
+import { Cart } from "@commercetools-frontend/domain-types/cart/Cart";
+import { Order } from "@commercetools-frontend/domain-types/cart/Order";
+import { ShippingMethod } from "@commercetools-frontend/domain-types/cart/ShippingMethod";
 import {
 	AddCartItemPayload,
 	RemoveCartItemPayload,

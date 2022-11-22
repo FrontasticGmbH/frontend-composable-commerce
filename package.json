@@ -1,5 +1,5 @@
 {
-    "name": "@commercetools/composable-commerce",
+    "name": "@commercetools-frontend/composable-commerce",
     "version": "0.0.1",
     "license": "MIT",
     "main": "lib/index.js",
