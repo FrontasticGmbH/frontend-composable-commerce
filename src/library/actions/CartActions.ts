@@ -1,58 +1,83 @@
-import { Cart } from "@commercetools/domain-types/cart/Cart";
-import { Order } from "@commercetools/domain-types/cart/Order";
-import { ShippingMethod } from "@commercetools/domain-types/cart/ShippingMethod";
+import { SDK } from "@commercetools/sdk";
 import {
 	AddCartItemPayload,
-	RemoveCartItemPayload,
-	UpdateCartItemPayload,
-	UpdateCartPayload,
 	GetCartShippingMethodsPayload,
-	SetCartShippingMethodPayload,
 	RedeemDiscountCodePayload,
-	RemoveDiscountCodePayload
-} from "../payloads/CartPayloads";
-
-type GetCartAction = () => Promise<Cart>;
-
-type AddCartItemAction = (payload: AddCartItemPayload) => Promise<Cart>;
-
-type RemoveCartItemAction = (payload: RemoveCartItemPayload) => Promise<Cart>;
-
-type UpdateCartItemAction = (payload: UpdateCartItemPayload) => Promise<Cart>;
-
-type UpdateCartAction = (payload: UpdateCartPayload) => Promise<Cart>;
-
-type GetCartShippingMethodsAction = (payload: GetCartShippingMethodsPayload) => Promise<ShippingMethod[]>;
-
-type GetAvailableCartShippingMethodsAction = () => Promise<ShippingMethod[]>;
-
-type SetCartShippingMethodAction = (
-	payload: SetCartShippingMethodPayload,
-) => Promise<Cart>;
-
-type RedeemDiscountCodeAction = (
-	payload: RedeemDiscountCodePayload,
-) => Promise<Cart | string>;
-
-type RemoveDiscountCodeAction = (
-	payload: RemoveDiscountCodePayload,
-) => Promise<Cart>;
-
-type CheckoutCartAction = () => Promise<Cart>;
-
-type GetOrderHistoryAction = () => Promise<Order[]>;
-
-export {
-	GetCartAction,
+	RemoveCartItemPayload,
+	RemoveDiscountCodePayload,
+	SetCartShippingMethodPayload,
+	UpdateCartItemPayload,
+	UpdateCartPayload
+} from "../../types/payloads/CartPayloads";
+import {
 	AddCartItemAction,
-	RemoveCartItemAction,
-	UpdateCartItemAction,
-	UpdateCartAction,
-	GetCartShippingMethodsAction,
-	GetAvailableCartShippingMethodsAction,
-	SetCartShippingMethodAction,
-	RedeemDiscountCodeAction,
-	RemoveDiscountCodeAction,
 	CheckoutCartAction,
-	GetOrderHistoryAction
-};
+	GetAvailableCartShippingMethodsAction,
+	GetCartAction,
+	GetCartShippingMethodsAction,
+	GetOrderHistoryAction,
+	RedeemDiscountCodeAction,
+	RemoveCartItemAction,
+	RemoveDiscountCodeAction,
+	SetCartShippingMethodAction,
+	UpdateCartAction,
+	UpdateCartItemAction
+} from "../../types/actions/CartActions";
+
+
+export type CartActions = {
+	getCart: GetCartAction,
+	addItem: AddCartItemAction,
+	removeItem: RemoveCartItemAction,
+	updateItem: UpdateCartItemAction,
+	updateCart: UpdateCartAction,
+	getShippingMethods: GetCartShippingMethodsAction,
+	getAvailableShippingMethods: GetAvailableCartShippingMethodsAction,
+	setShippingMethod: SetCartShippingMethodAction,
+	redeemDiscountCode: RedeemDiscountCodeAction,
+	removeDiscountCode: RemoveDiscountCodeAction,
+	checkout: CheckoutCartAction,
+	getOrderHistory: GetOrderHistoryAction
+}
+
+export const getCartActions: (sdk: SDK) =>
+	CartActions = (sdk: SDK) => {
+		return {
+			getCart: () => {
+				return sdk.callAction("cart/getCart", {});
+			},
+			addItem: (payload: AddCartItemPayload) => {
+				return sdk.callAction("cart/addToCart", payload);
+			},
+			removeItem: (payload: RemoveCartItemPayload) => {
+				return sdk.callAction("cart/removeLineItem", payload);
+			},
+			updateItem: (payload: UpdateCartItemPayload) => {
+				return sdk.callAction("cart/updateLineItem", payload);
+			},
+			updateCart: (payload: UpdateCartPayload) => {
+				return sdk.callAction("cart/updateCart", payload);
+			},
+			getShippingMethods: (payload?: GetCartShippingMethodsPayload) => {
+				return sdk.callAction("cart/getShippingMethods", {}, payload?.query ?? undefined);
+			},
+			getAvailableShippingMethods: () => {
+				return sdk.callAction("cart/getAvailableShippingMethods", {});
+			},
+			setShippingMethod: (payload: SetCartShippingMethodPayload) => {
+				return sdk.callAction("cart/setShippingMethod", payload);
+			},
+			redeemDiscountCode: (payload: RedeemDiscountCodePayload,) => {
+				return sdk.callAction("cart/redeemDiscount", payload);
+			},
+			removeDiscountCode: (payload: RemoveDiscountCodePayload) => {
+				return sdk.callAction("cart/removeDiscount", payload);
+			},
+			checkout: () => {
+				return sdk.callAction("cart/checkout", {});
+			},
+			getOrderHistory: () => {
+				return sdk.callAction("cart/getOrders", {});
+			}
+		}
+	};

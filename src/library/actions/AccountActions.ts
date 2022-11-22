@@ -1,90 +1,124 @@
-import { Account } from "@commercetools/domain-types/account/Account";
+import { rememberMeCookie, SDK } from "@commercetools/sdk";
 import {
+	AddAccountAddressPayload,
+	ChangeAccountPasswordPayload,
+	ConfirmAccountPayload,
 	LoginAccountPayload,
 	RegisterAccountPayload,
-	ConfirmAccountPayload,
+	RemoveAccountAddressPayload,
 	RequestAccountConfirmationEmailPayload,
-	ChangeAccountPasswordPayload,
 	RequestAccountPasswordResetPayload,
 	ResetAccountPasswordPayload,
-	UpdateAccountPayload,
-	AddAccountAddressPayload,
-	UpdateAccountAddressPayload,
-	RemoveAccountAddressPayload,
 	SetDefaultAccountBillingAddressPayload,
 	SetDefaultAccountShippingAddressPayload,
-} from "../payloads/AccountPayloads";
-
-type GetAccountAction = () => Promise<{
-	loggedIn: boolean;
-	account?: Account;
-	error?: Error;
-}>;
-
-type LoginAccountAction = (payload: LoginAccountPayload) => Promise<Account>;
-
-type LogoutAccountAction = () => Promise<void>;
-
-type RegisterAccountAction = (
-	payload: RegisterAccountPayload,
-) => Promise<Account>;
-
-type ConfirmAccountAction = (
-	payload: ConfirmAccountPayload,
-) => Promise<Account>;
-
-type RequestAccountConfirmationEmailAction = (
-	payload: RequestAccountConfirmationEmailPayload,
-) => Promise<void>;
-
-type ChangeAccountPasswordAction = (
-	payload: ChangeAccountPasswordPayload,
-) => Promise<Account>;
-
-type RequestAccountPasswordResetAction = (
-	payload: RequestAccountPasswordResetPayload,
-) => Promise<void>;
-
-type ResetAccountPasswordAction = (
-	payload: ResetAccountPasswordPayload,
-) => Promise<Account>;
-
-type UpdateAccountAction = (payload: UpdateAccountPayload) => Promise<Account>;
-
-type AddAccountAddressAction = (
-	payload: AddAccountAddressPayload,
-) => Promise<Account>;
-
-type UpdateAccountAddressAction = (
-	payload: UpdateAccountAddressPayload,
-) => Promise<Account>;
-
-type RemoveAccountAddressAction = (
-	payload: RemoveAccountAddressPayload,
-) => Promise<Account>;
-
-type SetDefaultAccountBillingAddressAction = (
-	payload: SetDefaultAccountBillingAddressPayload,
-) => Promise<Account>;
-
-type SetDefaultAccountShippingAddressAction = (
-	payload: SetDefaultAccountShippingAddressPayload,
-) => Promise<Account>;
-
-export {
+	UpdateAccountAddressPayload,
+	UpdateAccountPayload
+} from "../../types/payloads/AccountPayloads";
+import {
+	AddAccountAddressAction,
+	ChangeAccountPasswordAction,
+	ConfirmAccountAction,
 	GetAccountAction,
 	LoginAccountAction,
 	LogoutAccountAction,
 	RegisterAccountAction,
-	ConfirmAccountAction,
+	RemoveAccountAddressAction,
 	RequestAccountConfirmationEmailAction,
-	ChangeAccountPasswordAction,
 	RequestAccountPasswordResetAction,
 	ResetAccountPasswordAction,
-	UpdateAccountAction,
-	AddAccountAddressAction,
-	UpdateAccountAddressAction,
-	RemoveAccountAddressAction,
 	SetDefaultAccountBillingAddressAction,
-	SetDefaultAccountShippingAddressAction
-};
+	SetDefaultAccountShippingAddressAction,
+	UpdateAccountAction,
+	UpdateAccountAddressAction
+} from "../../types/actions/AccountActions";
+
+
+export type AccountActions = {
+	getAccount: GetAccountAction,
+	login: LoginAccountAction,
+	logout: LogoutAccountAction,
+	register: RegisterAccountAction,
+	confirm: ConfirmAccountAction,
+	requestConfirmationEmail: RequestAccountConfirmationEmailAction,
+	changePassword: ChangeAccountPasswordAction,
+	requestResetPassword: RequestAccountPasswordResetAction,
+	resetPassword: ResetAccountPasswordAction,
+	updateAccount: UpdateAccountAction,
+	addAddress: AddAccountAddressAction,
+	updateAddress: UpdateAccountAddressAction,
+	removeAddress: RemoveAccountAddressAction,
+	setDefaultBillingAddress: SetDefaultAccountBillingAddressAction,
+	setDefaultShippingAddress: SetDefaultAccountShippingAddressAction,
+}
+
+export const getAccountActions: (sdk: SDK) =>
+	AccountActions = (sdk: SDK) => {
+		return {
+			getAccount: async () => {
+				const result = await sdk.callAction("account/getAccount", {});
+				const account = (result as any)?.data?.account || (result as any)?.data;
+
+				if (account?.accountId && account?.confirmed) {
+					return { account, loggedIn: true };
+				}
+
+				return {
+					loggedIn: false,
+					account: undefined,
+					error: (result as any).error,
+				};
+			},
+			login: async (payload: LoginAccountPayload) => {
+				const remember = payload.remember;
+				payload.remember = undefined;
+
+				const result: any = sdk.callAction("account/login", payload);
+
+				if (remember) {
+					rememberMeCookie.set(true);
+				}
+
+				return result;
+			},
+			logout: async () => {
+				await sdk.callAction("account/logout", {});
+				rememberMeCookie.remove();
+			},
+			register: (payload: RegisterAccountPayload) => {
+				return sdk.callAction("account/register", payload);
+			},
+			confirm: (payload: ConfirmAccountPayload) => {
+				return sdk.callAction("account/confirm", payload);
+			},
+			requestConfirmationEmail: (payload: RequestAccountConfirmationEmailPayload) => {
+				return sdk.callAction("account/requestConfirmationEmail", payload);
+			},
+			changePassword: (payload: ChangeAccountPasswordPayload) => {
+				return sdk.callAction("account/password", payload);
+			},
+			requestResetPassword: (payload: RequestAccountPasswordResetPayload) => {
+				return sdk.callAction("account/requestReset", payload);
+			},
+			resetPassword: (payload: ResetAccountPasswordPayload) => {
+				return sdk.callAction("account/reset", payload);
+			},
+			updateAccount: (payload: UpdateAccountPayload) => {
+				return sdk.callAction("account/update", payload);
+			},
+			addAddress: (payload: AddAccountAddressPayload) => {
+				return sdk.callAction("account/addAddress", payload);
+			},
+			updateAddress: (payload: UpdateAccountAddressPayload) => {
+				return sdk.callAction("account/updateAddress", payload);
+			},
+			removeAddress: (payload: RemoveAccountAddressPayload) => {
+				return sdk.callAction("account/removeAddress", payload);
+			},
+			setDefaultBillingAddress: (payload: SetDefaultAccountBillingAddressPayload) => {
+				return sdk.callAction("account/setDefaultBillingAddress", payload);
+			},
+			setDefaultShippingAddress: (payload: SetDefaultAccountShippingAddressPayload) => {
+				return sdk.callAction("account/setDefaultShippingAddress", payload);
+			}
+		}
+	}

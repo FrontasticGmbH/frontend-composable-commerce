@@ -1,5 +1,15 @@
-import { ProjectSettings } from "@commercetools/domain-types/ProjectSettings";
+import { SDK } from "@commercetools/sdk";
+import { GetProjectSettingsAction } from "../../types/actions/ProjectActions";
 
-type GetProjectSettingsAction = () => Promise<ProjectSettings>;
+export type ProjectActions = {
+    getSettings: GetProjectSettingsAction
+}
 
-export { GetProjectSettingsAction };
+export const getProjectActions: (sdk: SDK) =>
+    ProjectActions = (sdk: SDK) => {
+        return {
+            getSettings: () => {
+                return sdk.callAction("project/getProjectSettings", {});
+            }
+        }
+    };

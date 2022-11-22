@@ -1,25 +1,38 @@
-import { Wishlist } from "@commercetools/domain-types/wishlist/Wishlist";
+import { SDK } from "@commercetools/sdk";
 import {
 	AddToWishlistPayload,
 	RemoveFromWishlistPayload,
-	UpdateWishlistItemPayload,
-} from "../payloads/WishlistPayloads";
-
-type GetWishlistAction = () => Promise<Wishlist>;
-
-type AddToWishlistAction = (payload: AddToWishlistPayload) => Promise<Wishlist>;
-
-type RemoveFromWishlistAction = (
-	payload: RemoveFromWishlistPayload,
-) => Promise<Wishlist>;
-
-type UpdateWishlistItemAction = (
-	payload: UpdateWishlistItemPayload,
-) => Promise<Wishlist>;
-
-export {
-	GetWishlistAction,
+	UpdateWishlistItemPayload
+} from "../../types/payloads/WishlistPayloads";
+import {
 	AddToWishlistAction,
+	GetWishlistAction,
 	RemoveFromWishlistAction,
-	UpdateWishlistItemAction,
-};
+	UpdateWishlistItemAction
+} from "../../types/actions/WishlistActions";
+
+
+export type WishlistActions = {
+	getWishlist: GetWishlistAction,
+	addItem: AddToWishlistAction,
+	removeItem: RemoveFromWishlistAction,
+	updateItem: UpdateWishlistItemAction
+}
+
+export const getWishlistActions: (sdk: SDK) =>
+	WishlistActions = (sdk: SDK) => {
+		return {
+			getWishlist: () => {
+				return sdk.callAction("wishlist/getWishlist", {});
+			},
+			addItem: (payload: AddToWishlistPayload) => {
+				return sdk.callAction("wishlist/addToWishlist", payload);
+			},
+			removeItem: (payload: RemoveFromWishlistPayload) => {
+				return sdk.callAction("wishlist/removeLineItem", payload);
+			},
+			updateItem: (payload: UpdateWishlistItemPayload) => {
+				return sdk.callAction("wishlist/updateLineItemCount", payload);
+			}
+		}
+	}

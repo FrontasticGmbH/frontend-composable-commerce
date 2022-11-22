@@ -1,25 +1,40 @@
+import { SDK } from "@commercetools/sdk";
 import {
 	GetProductPayload,
 	ProductQueryPayload,
 	QueryProductCategoriesPayload
-} from "../payloads/ProductPayloads";
-import { FilterField } from "@commercetools/domain-types/product/FilterField";
-import { Product } from "@commercetools/domain-types/product/Product";
-import { Result } from "@commercetools/domain-types/product/Result";
-
-type GetProductAction = (payload: GetProductPayload) => Promise<Product>;
-
-type ProductQueryAction = (payload: ProductQueryPayload) => Promise<Result>;
-
-type QueryProductCategoriesAction = (
-	payload: QueryProductCategoriesPayload,
-) => Promise<Result>;
-
-type GetSearchableProductAttributesAction = () => Promise<FilterField[]>;
-
-export {
+} from "../../types/payloads/ProductPayloads";
+import {
 	GetProductAction,
-	ProductQueryAction,
-	QueryProductCategoriesAction,
 	GetSearchableProductAttributesAction,
-};
+	ProductQueryAction,
+	QueryProductCategoriesAction
+} from "../../types/actions/ProductActions";
+
+
+export type ProductActions = {
+	getProduct: GetProductAction,
+	query: ProductQueryAction,
+	queryCategories: QueryProductCategoriesAction,
+	getSearchableAttributes: GetSearchableProductAttributesAction
+}
+
+export const getProductActions: (sdk: SDK) =>
+	ProductActions = (sdk: SDK) => {
+		return {
+			getProduct: (payload: GetProductPayload) => {
+				return sdk.callAction("product/getProduct", {}, payload.query);
+			},
+			query: (payload: ProductQueryPayload) => {
+				return sdk.callAction("product/query", payload);
+			},
+			queryCategories: (
+				payload: QueryProductCategoriesPayload,
+			) => {
+				return sdk.callAction("product/queryCategories", {}, payload.query);
+			},
+			getSearchableAttributes: () => {
+				return sdk.callAction("product/searchableAttributes", {});
+			}
+		}
+	};
