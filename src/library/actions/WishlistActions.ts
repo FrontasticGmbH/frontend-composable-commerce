@@ -19,20 +19,19 @@ export type WishlistActions = {
 	updateItem: UpdateWishlistItemAction
 }
 
-export const getWishlistActions: (sdk: SDK) =>
-	WishlistActions = (sdk: SDK) => {
-		return {
-			getWishlist: () => {
-				return sdk.callAction("wishlist/getWishlist", {});
-			},
-			addItem: (payload: AddToWishlistPayload) => {
-				return sdk.callAction("wishlist/addToWishlist", payload);
-			},
-			removeItem: (payload: RemoveFromWishlistPayload) => {
-				return sdk.callAction("wishlist/removeLineItem", payload);
-			},
-			updateItem: (payload: UpdateWishlistItemPayload) => {
-				return sdk.callAction("wishlist/updateLineItemCount", payload);
-			}
+export const getWishlistActions = (sdk: SDK): WishlistActions => {
+	return {
+		getWishlist: () => {
+			return sdk.callAction("wishlist/getWishlist", {});
+		},
+		addItem: (payload: AddToWishlistPayload) => {
+			return sdk.callAction("wishlist/addToWishlist", payload);
+		},
+		removeItem: (payload: RemoveFromWishlistPayload) => {
+			return sdk.callAction("wishlist/removeLineItem", payload);
+		},
+		updateItem: (payload: UpdateWishlistItemPayload) => {
+			return sdk.callAction("wishlist/updateLineItemCount", payload);
 		}
 	}
+}

@@ -9,11 +9,11 @@ class ComposableCommerce extends Extension {
 	constructor(sdk: SDK) {
 		super(sdk);
 
-		this.project = getProjectActions(this.sdk);
-		this.product = getProductActions(this.sdk);
-		this.cart = getCartActions(this.sdk);
-		this.wishlist = getWishlistActions(this.sdk);
-		this.account = getAccountActions(this.sdk);
+		this.project = getProjectActions(sdk)
+		this.product = getProductActions(sdk);
+		this.cart = getCartActions(sdk);
+		this.wishlist = getWishlistActions(sdk);
+		this.account = getAccountActions(sdk);
 	}
 
 	unregisterExtension(): void { }
