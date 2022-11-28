@@ -1,5 +1,5 @@
 {
-    "name": "@commercetools-frontend/composable-commerce",
+    "name": "@commercetools/frontend-composable-commerce",
     "version": "1.0.0-alpha.0",
     "license": "UNLICENSED",
     "main": "lib/index.js",
