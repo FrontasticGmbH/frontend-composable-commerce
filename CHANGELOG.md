@@ -1,4 +1,8 @@
 
+## Version 1.0.2-alpha.0 (2022-11-29)
+
+Initial release
+
 ## Version 1.0.1-alpha.0 (2022-11-29)
 
 Initial release
