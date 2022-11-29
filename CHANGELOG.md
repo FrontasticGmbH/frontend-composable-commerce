@@ -1,4 +1,11 @@
 
+## Version 1.0.5-alpha.0 (2022-11-29)
+
+
+
+
+* (fix): moved @commercetools/frontend-domain-types to dependencies from peerDependencies
+
 ## Version 1.0.4-alpha.0 (2022-11-29)
 
 Initial release
