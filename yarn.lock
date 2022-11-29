@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@commercetools/frontend-domain-types@^1.0.2-alpha.0":
+  version "1.0.2-alpha.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/frontend-domain-types/-/frontend-domain-types-1.0.2-alpha.0.tgz#5e431a0380e14815276b51799e184c8105e07823"
+  integrity sha512-vECwdo/vswCh0sKhRoyAGKzN0aZzBr7Xz6DgkTBIkFwCpDd5EEgm7yAIjmkzESId8ggARFhlQkB8APW7+DQJSg==
+  dependencies:
+    typescript "4.8.3"
+
 "@esbuild/android-arm@0.15.8":
   version "0.15.8"
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm/-/android-arm-0.15.8.tgz#52b094c98e415ec72fab39827c12f2051ac9c550"

@@ -16,5 +16,8 @@
         "@types/core-js": "2.5.5",
         "concurrently": "^7.4.0",
         "esbuild": "0.15.8"
+    },
+    "peerDependencies": {
+        "@commercetools/frontend-domain-types": "^1.0.2-alpha.0"
     }
 }

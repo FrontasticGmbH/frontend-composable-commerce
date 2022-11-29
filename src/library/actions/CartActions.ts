@@ -23,7 +23,7 @@ import {
 	UpdateCartAction,
 	UpdateCartItemAction
 } from "../../types/actions/CartActions";
-import { Cart } from "@commercetools-frontend/domain-types/cart/Cart";
+import { Cart } from "@commercetools/frontend-domain-types/src/cart/Cart";
 
 
 export type CartActions = {
