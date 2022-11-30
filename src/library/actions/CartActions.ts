@@ -48,7 +48,7 @@ export const getCartActions = (sdk: SDK): CartActions => {
 		},
 		addItem: (payload: AddCartItemPayload) => {
 			return sdk.callAction<Cart>("cart/addToCart", payload).then(cart => {
-				sdk.triggerHandlers(new Event({
+				sdk.trigger(new Event({
 					eventName: "productAddedToCart",
 					data: {
 						product: payload.variant,

@@ -10,7 +10,7 @@ export const getProjectActions = (sdk: SDK): ProjectActions => {
     return {
         getSettings: async () => {
             const settings = await sdk.callAction<ProjectSettings>("project/getProjectSettings", {});
-            sdk.triggerHandlers(new Event({
+            sdk.trigger(new Event({
                 eventName: "projectSettingsReturned",
                 data: {
                     settings
