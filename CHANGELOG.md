@@ -1,4 +1,12 @@
 
+## Version 1.0.6-alpha.0 (2022-11-30)
+
+
+
+* Updated package version
+* Update domain types package
+* Added README.md
+
 ## Version 1.0.5-alpha.0 (2022-11-29)
 
 
