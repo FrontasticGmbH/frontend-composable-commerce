@@ -1,4 +1,4 @@
-import { Wishlist } from "@commercetools/frontend-domain-types/src/wishlist/Wishlist";
+import { Wishlist } from "@commercetools/frontend-domain-types/wishlist/Wishlist";
 import {
 	AddToWishlistPayload,
 	RemoveFromWishlistPayload,

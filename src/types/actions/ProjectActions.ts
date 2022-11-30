@@ -1,4 +1,4 @@
-import { ProjectSettings } from "@commercetools/frontend-domain-types/src/ProjectSettings";
+import { ProjectSettings } from "@commercetools/frontend-domain-types/ProjectSettings";
 
 type GetProjectSettingsAction = () => Promise<ProjectSettings>;
 

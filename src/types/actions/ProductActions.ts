@@ -3,9 +3,9 @@ import {
 	ProductQueryPayload,
 	QueryProductCategoriesPayload
 } from "../payloads/ProductPayloads";
-import { FilterField } from "@commercetools/frontend-domain-types/src/product/FilterField";
-import { Product } from "@commercetools/frontend-domain-types/src/product/Product";
-import { Result } from "@commercetools/frontend-domain-types/src/product/Result";
+import { FilterField } from "@commercetools/frontend-domain-types/product/FilterField";
+import { Product } from "@commercetools/frontend-domain-types/product/Product";
+import { Result } from "@commercetools/frontend-domain-types/product/Result";
 
 type GetProductAction = (payload: GetProductPayload) => Promise<Product>;
 

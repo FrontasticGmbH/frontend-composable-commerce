@@ -1,4 +1,4 @@
-import { ProductQuery } from "@commercetools/frontend-domain-types/src/query/ProductQuery";
+import { ProductQuery } from "@commercetools/frontend-domain-types/query/ProductQuery";
 
 type GetProductPayload = {
 	query: {

@@ -1,4 +1,4 @@
-import { ProjectSettings } from "@commercetools/frontend-domain-types/src/ProjectSettings";
+import { ProjectSettings } from "@commercetools/frontend-domain-types/ProjectSettings";
 import { SDK, Event } from "@commercetools-frontend/sdk";
 import { GetProjectSettingsAction } from "../../types/actions/ProjectActions";
 

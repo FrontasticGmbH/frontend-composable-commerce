@@ -1,4 +1,4 @@
-import { Address } from "@commercetools/frontend-domain-types/src/account/Address";
+import { Address } from "@commercetools/frontend-domain-types/account/Address";
 
 type AddCartItemPayload = {
 	variant: {

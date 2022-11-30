@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@commercetools/frontend-domain-types@^1.0.2-alpha.0":
-  version "1.0.2-alpha.0"
-  resolved "https://registry.yarnpkg.com/@commercetools/frontend-domain-types/-/frontend-domain-types-1.0.2-alpha.0.tgz#5e431a0380e14815276b51799e184c8105e07823"
-  integrity sha512-vECwdo/vswCh0sKhRoyAGKzN0aZzBr7Xz6DgkTBIkFwCpDd5EEgm7yAIjmkzESId8ggARFhlQkB8APW7+DQJSg==
+"@commercetools/frontend-domain-types@^1.0.3-alpha.0":
+  version "1.0.3-alpha.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/frontend-domain-types/-/frontend-domain-types-1.0.3-alpha.0.tgz#f8cd5d722211c1b19089ed4220f806a233061150"
+  integrity sha512-QQDSWraFHLI4BO23//MzhQvrmqvaVmP+8gjyZA1wT3pB6VDrWtKwskmSthRHL+5xcfWbmGp4BLIDa7gkJZLWwA==
   dependencies:
     typescript "4.8.3"
 
