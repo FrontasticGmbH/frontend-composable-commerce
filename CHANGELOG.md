@@ -1,4 +1,12 @@
 
+## Version 1.0.7-alpha.0 (2022-11-30)
+
+
+
+
+
+* Updated to reflect changes to core SDK event engine
+
 ## Version 1.0.6-alpha.0 (2022-11-30)
 
 
