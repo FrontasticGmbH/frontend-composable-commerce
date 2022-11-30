@@ -1,4 +1,12 @@
 
+## Version 1.0.9-alpha.0 (2022-11-30)
+
+
+
+
+
+* Changed sdk core package name
+
 ## Version 1.0.8-alpha.0 (2022-11-30)
 
 
