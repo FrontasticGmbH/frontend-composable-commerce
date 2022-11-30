@@ -1,4 +1,4 @@
-import { SDK, Event } from "@commercetools-frontend/sdk";
+import { SDK, Event } from "@commercetools/frontend-sdk";
 import {
 	AddCartItemPayload,
 	GetCartShippingMethodsPayload,

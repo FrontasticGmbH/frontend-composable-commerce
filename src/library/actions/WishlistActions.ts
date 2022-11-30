@@ -1,4 +1,4 @@
-import { SDK } from "@commercetools-frontend/sdk";
+import { SDK } from "@commercetools/frontend-sdk";
 import {
 	AddToWishlistPayload,
 	RemoveFromWishlistPayload,

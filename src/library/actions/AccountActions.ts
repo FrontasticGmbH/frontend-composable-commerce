@@ -1,4 +1,4 @@
-import { rememberMeCookie, SDK } from "@commercetools-frontend/sdk";
+import { rememberMeCookie, SDK } from "@commercetools/frontend-sdk";
 import {
 	AddAccountAddressPayload,
 	ChangeAccountPasswordPayload,

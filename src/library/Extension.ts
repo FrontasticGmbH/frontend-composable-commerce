@@ -1,4 +1,4 @@
-import { SDK, Extension } from "@commercetools-frontend/sdk";
+import { SDK, Extension } from "@commercetools/frontend-sdk";
 import { getProjectActions, ProjectActions } from "./actions/ProjectActions";
 import { getProductActions, ProductActions } from "./actions/ProductActions";
 import { getCartActions, CartActions } from "./actions/CartActions";
