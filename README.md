@@ -4,4 +4,4 @@
 
 Composable commerce is an extension to the commercetools frontend SDK,
 integrating with commercetools backend services. Currently only within
-the alpha release stage, documentation is currently unavilable.
+the alpha release stage, documentation is currently unavailable.
