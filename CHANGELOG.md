@@ -1,4 +1,11 @@
 
+## Version 1.0.10-alpha.0 (2022-12-05)
+
+
+
+
+* Update getAccount to return backend result directly
+
 ## Version 1.0.9-alpha.0 (2022-11-30)
 
 
