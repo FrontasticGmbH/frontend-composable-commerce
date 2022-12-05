@@ -1,4 +1,14 @@
 
+## Version 1.1.0-alpha.0 (2022-12-05)
+
+
+
+
+* Updated actions to reflect possibility of error return
+
+
+* Update getAccount to return backend result directly
+
 ## Version 1.0.10-alpha.0 (2022-12-05)
 
 
