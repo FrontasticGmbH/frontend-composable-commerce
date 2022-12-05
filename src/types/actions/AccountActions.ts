@@ -18,7 +18,6 @@ import {
 type GetAccountAction = () => Promise<{
 	loggedIn: boolean;
 	account?: Account;
-	error?: Error;
 }>;
 
 type LoginAccountAction = (payload: LoginAccountPayload) => Promise<Account>;

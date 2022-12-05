@@ -31,6 +31,7 @@ import {
 	UpdateAccountAction,
 	UpdateAccountAddressAction
 } from "../../types/actions/AccountActions";
+import { Account } from "@commercetools/frontend-domain-types/account/Account";
 
 
 export type AccountActions = {
@@ -53,25 +54,14 @@ export type AccountActions = {
 
 export const getAccountActions = (sdk: SDK): AccountActions => {
 	return {
-		getAccount: async () => {
-			const result = await sdk.callAction("account/getAccount", {});
-			const account = (result as any)?.data?.account || (result as any)?.data;
-
-			if (account?.accountId && account?.confirmed) {
-				return { account, loggedIn: true };
-			}
-
-			return {
-				loggedIn: false,
-				account: undefined,
-				error: (result as any).error,
-			};
+		getAccount: () => {
+			return sdk.callAction("account/getAccount", {});
 		},
 		login: async (payload: LoginAccountPayload) => {
 			const remember = payload.remember;
 			payload.remember = undefined;
 
-			const result: any = sdk.callAction("account/login", payload);
+			const result: Account = sdk.callAction("account/login", payload) as any;
 
 			if (remember) {
 				rememberMeCookie.set(true);
