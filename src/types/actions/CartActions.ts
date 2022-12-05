@@ -12,35 +12,35 @@ import {
 	RemoveDiscountCodePayload
 } from "../payloads/CartPayloads";
 
-type GetCartAction = () => Promise<Cart>;
+type GetCartAction = () => Promise<Cart | Error>;
 
-type AddCartItemAction = (payload: AddCartItemPayload) => Promise<Cart>;
+type AddCartItemAction = (payload: AddCartItemPayload) => Promise<Cart | Error>;
 
-type RemoveCartItemAction = (payload: RemoveCartItemPayload) => Promise<Cart>;
+type RemoveCartItemAction = (payload: RemoveCartItemPayload) => Promise<Cart | Error>;
 
-type UpdateCartItemAction = (payload: UpdateCartItemPayload) => Promise<Cart>;
+type UpdateCartItemAction = (payload: UpdateCartItemPayload) => Promise<Cart | Error>;
 
-type UpdateCartAction = (payload: UpdateCartPayload) => Promise<Cart>;
+type UpdateCartAction = (payload: UpdateCartPayload) => Promise<Cart | Error>;
 
-type GetCartShippingMethodsAction = (payload: GetCartShippingMethodsPayload) => Promise<ShippingMethod[]>;
+type GetCartShippingMethodsAction = (payload: GetCartShippingMethodsPayload) => Promise<ShippingMethod[] | Error>;
 
-type GetAvailableCartShippingMethodsAction = () => Promise<ShippingMethod[]>;
+type GetAvailableCartShippingMethodsAction = () => Promise<ShippingMethod[] | Error>;
 
 type SetCartShippingMethodAction = (
 	payload: SetCartShippingMethodPayload,
-) => Promise<Cart>;
+) => Promise<Cart | Error>;
 
 type RedeemDiscountCodeAction = (
 	payload: RedeemDiscountCodePayload,
-) => Promise<Cart | string>;
+) => Promise<Cart | string | Error>;
 
 type RemoveDiscountCodeAction = (
 	payload: RemoveDiscountCodePayload,
-) => Promise<Cart>;
+) => Promise<Cart | Error>;
 
-type CheckoutCartAction = () => Promise<Cart>;
+type CheckoutCartAction = () => Promise<Cart | Error>;
 
-type GetOrderHistoryAction = () => Promise<Order[]>;
+type GetOrderHistoryAction = () => Promise<Order[] | Error>;
 
 export {
 	GetCartAction,

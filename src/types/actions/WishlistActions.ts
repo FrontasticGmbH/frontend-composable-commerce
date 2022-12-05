@@ -5,17 +5,13 @@ import {
 	UpdateWishlistItemPayload,
 } from "../payloads/WishlistPayloads";
 
-type GetWishlistAction = () => Promise<Wishlist>;
+type GetWishlistAction = () => Promise<Wishlist | Error>;
 
-type AddToWishlistAction = (payload: AddToWishlistPayload) => Promise<Wishlist>;
+type AddToWishlistAction = (payload: AddToWishlistPayload) => Promise<Wishlist | Error>;
 
-type RemoveFromWishlistAction = (
-	payload: RemoveFromWishlistPayload,
-) => Promise<Wishlist>;
+type RemoveFromWishlistAction = (payload: RemoveFromWishlistPayload) => Promise<Wishlist | Error>;
 
-type UpdateWishlistItemAction = (
-	payload: UpdateWishlistItemPayload,
-) => Promise<Wishlist>;
+type UpdateWishlistItemAction = (payload: UpdateWishlistItemPayload) => Promise<Wishlist | Error>;
 
 export {
 	GetWishlistAction,
