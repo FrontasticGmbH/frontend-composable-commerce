@@ -2,11 +2,19 @@
 # yarn lockfile v1
 
 
-"@commercetools/frontend-domain-types@^1.0.3-alpha.0":
-  version "1.0.3-alpha.0"
-  resolved "https://registry.yarnpkg.com/@commercetools/frontend-domain-types/-/frontend-domain-types-1.0.3-alpha.0.tgz#f8cd5d722211c1b19089ed4220f806a233061150"
-  integrity sha512-QQDSWraFHLI4BO23//MzhQvrmqvaVmP+8gjyZA1wT3pB6VDrWtKwskmSthRHL+5xcfWbmGp4BLIDa7gkJZLWwA==
+"@commercetools/frontend-domain-types@^1.0.4-alpha.0":
+  version "1.0.4-alpha.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/frontend-domain-types/-/frontend-domain-types-1.0.4-alpha.0.tgz#eda29819c407b1b229ab54253d4f19c0d4dcad19"
+  integrity sha512-1iBJe4bwjjgUsnETdDsj2csFTuf9wuptP3Y9I/DyeBFdX7G5tBZjGlsKK5j+d9G7Ivt1o3DLd1GVWQWpIinm3g==
   dependencies:
+    typescript "4.8.3"
+
+"@commercetools/frontend-sdk@^1.1.0-alpha.0":
+  version "1.1.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/frontend-sdk/-/frontend-sdk-1.1.0-alpha.0.tgz#ff8a5971175fed3e8e00810d5b53de46215492d4"
+  integrity sha512-KHDikKqRzxUoW12wVcNNJEa1P0VqV8Pgh015+U2ZKSMM13mjPQcUxl5Q3qgv9+RyB1wMqAGMzcKiqXzpz0kvIw==
+  dependencies:
+    js-cookie "3.0.1"
     typescript "4.8.3"
 
 "@esbuild/android-arm@0.15.8":
@@ -246,6 +254,11 @@ is-fullwidth-code-point@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz#f116f8064fe90b3f7844a38997c0b75051269f1d"
   integrity sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==
+
+js-cookie@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-3.0.1.tgz#9e39b4c6c2f56563708d7d31f6f5f21873a92414"
+  integrity sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==
 
 lodash@^4.17.21:
   version "4.17.21"

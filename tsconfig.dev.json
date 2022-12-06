@@ -7,7 +7,15 @@
         "types": [],
         "declaration": true,
         "moduleResolution": "node",
-        "baseUrl": "."
+        "baseUrl": ".",
+        "paths": {
+            "@commercetools/frontend-sdk/*": [
+                "../../core/lib/*"
+            ],
+            "@commercetools/frontend-sdk": [
+                "../../core/lib"
+            ]
+        }
     },
     "exclude": [
         "node_modules",
