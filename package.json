@@ -13,17 +13,17 @@
         "build:types": "tsc --emitDeclarationOnly --outDir lib",
         "release:types": "tsc --emitDeclarationOnly --outDir lib"
     },
-    "dependencies": {
-        "typescript": "4.8.3"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@commercetools/frontend-domain-types": "^1.0.4-alpha.0",
-        "@commercetools/frontend-sdk": "^1.1.3-alpha.0",
+        "@commercetools/frontend-sdk": "^2.0.0-alpha.0",
         "@types/core-js": "2.5.5",
         "concurrently": "^7.4.0",
-        "esbuild": "0.15.8"
+        "esbuild": "0.15.8",
+        "typescript": "^4.9.3"
     },
     "peerDependencies": {
-        "@commercetools/frontend-domain-types": "^1.0.4-alpha.0"
+        "@commercetools/frontend-domain-types": "^1.0.4-alpha.0",
+        "@commercetools/frontend-sdk": "^2.0.0-alpha.0"
     }
 }
