@@ -44,7 +44,15 @@ export type CartActions = {
 export const getCartActions = (sdk: SDK): CartActions => {
 	return {
 		getCart: () => {
-			return sdk.callAction("cart/getCart", {});
+			return sdk.callAction<Cart>("cart/getCart", {}).then(cart => {
+				sdk.trigger(new Event({
+					eventName: "cartFetched",
+					data: {
+						cart: cart
+					}
+				}));
+				return cart;
+			});
 		},
 		addItem: (payload: AddCartItemPayload) => {
 			return sdk.callAction<Cart>("cart/addToCart", payload).then(cart => {
@@ -59,13 +67,35 @@ export const getCartActions = (sdk: SDK): CartActions => {
 			});
 		},
 		removeItem: (payload: RemoveCartItemPayload) => {
-			return sdk.callAction("cart/removeLineItem", payload);
+			return sdk.callAction<Cart>("cart/removeLineItem", payload).then(cart => {
+				sdk.trigger(new Event({
+					eventName: "productRemovedFromCart",
+					data: {
+						product: payload.lineItem,
+						quantity: 1
+					}
+				}));
+				return cart;
+			});
 		},
 		updateItem: (payload: UpdateCartItemPayload) => {
-			return sdk.callAction("cart/updateLineItem", payload);
+			return sdk.callAction<Cart>("cart/updateLineItem", payload).then(cart => {
+				if (!cart.isError) {
+					sdk.trigger(new Event({
+						eventName: "productUpdatedInCart",
+						data: {
+							product: {
+								id: payload.lineItem.id
+							},
+							newQuantity: payload.lineItem.count
+						}
+					}));
+				}
+				return cart;
+			});
 		},
 		updateCart: (payload: UpdateCartPayload) => {
-			return sdk.callAction("cart/updateCart", payload);
+			return sdk.callAction<Cart>("cart/updateCart", payload);
 		},
 		getShippingMethods: (payload?: GetCartShippingMethodsPayload) => {
 			return sdk.callAction("cart/getShippingMethods", {}, payload?.query ?? undefined);

@@ -52,6 +52,10 @@ export type AccountActions = {
 	setDefaultShippingAddress: SetDefaultAccountShippingAddressAction,
 }
 
+function isVoid(option: void | {}): option is void {
+	return !!!option;
+}
+
 export const getAccountActions = (sdk: SDK): AccountActions => {
 	return {
 		getAccount: () => {
@@ -70,8 +74,12 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return result;
 		},
 		logout: async () => {
-			await sdk.callAction("account/logout", {});
-			rememberMeCookie.remove();
+			const response = await sdk.callAction<void>("account/logout", {});
+			if (isVoid(response as any)) {
+				rememberMeCookie.remove();
+				return {};
+			}
+			return response;
 		},
 		register: (payload: RegisterAccountPayload) => {
 			return sdk.callAction("account/register", payload);
@@ -79,14 +87,22 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 		confirm: (payload: ConfirmAccountPayload) => {
 			return sdk.callAction("account/confirm", payload);
 		},
-		requestConfirmationEmail: (payload: RequestAccountConfirmationEmailPayload) => {
-			return sdk.callAction("account/requestConfirmationEmail", payload);
+		requestConfirmationEmail: async (payload: RequestAccountConfirmationEmailPayload) => {
+			const response = await sdk.callAction<void>("account/requestConfirmationEmail", payload);
+			if (isVoid(response as any)) {
+				return {};
+			}
+			return response;
 		},
 		changePassword: (payload: ChangeAccountPasswordPayload) => {
 			return sdk.callAction("account/password", payload);
 		},
-		requestResetPassword: (payload: RequestAccountPasswordResetPayload) => {
-			return sdk.callAction("account/requestReset", payload);
+		requestResetPassword: async (payload: RequestAccountPasswordResetPayload) => {
+			const response = await sdk.callAction<void>("account/requestReset", payload);
+			if (isVoid(response as any)) {
+				return {};
+			}
+			return response;
 		},
 		resetPassword: (payload: ResetAccountPasswordPayload) => {
 			return sdk.callAction("account/reset", payload);

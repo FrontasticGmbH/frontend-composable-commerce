@@ -6,16 +6,17 @@ import {
 import { FilterField } from "@commercetools/frontend-domain-types/product/FilterField";
 import { Product } from "@commercetools/frontend-domain-types/product/Product";
 import { Result } from "@commercetools/frontend-domain-types/product/Result";
+import { sdk } from "@commercetools/frontend-sdk";
 
-type GetProductAction = (payload: GetProductPayload) => Promise<Product | Error>;
+type GetProductAction = (payload: GetProductPayload) => ReturnType<typeof sdk.callAction<Product>>;
 
-type ProductQueryAction = (payload: ProductQueryPayload) => Promise<Result | Error>;
+type ProductQueryAction = (payload: ProductQueryPayload) => ReturnType<typeof sdk.callAction<Result>>;
 
 type QueryProductCategoriesAction = (
 	payload: QueryProductCategoriesPayload,
-) => Promise<Result | Error>;
+) => ReturnType<typeof sdk.callAction<Result>>;
 
-type GetSearchableProductAttributesAction = () => Promise<FilterField[] | Error>;
+type GetSearchableProductAttributesAction = () => ReturnType<typeof sdk.callAction<FilterField[]>>;
 
 export {
 	GetProductAction,

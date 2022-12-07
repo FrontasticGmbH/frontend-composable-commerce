@@ -1,6 +1,7 @@
 import { Cart } from "@commercetools/frontend-domain-types/cart/Cart";
 import { Order } from "@commercetools/frontend-domain-types/cart/Order";
 import { ShippingMethod } from "@commercetools/frontend-domain-types/cart/ShippingMethod";
+import { sdk } from "@commercetools/frontend-sdk";
 import {
 	AddCartItemPayload,
 	RemoveCartItemPayload,
@@ -12,35 +13,35 @@ import {
 	RemoveDiscountCodePayload
 } from "../payloads/CartPayloads";
 
-type GetCartAction = () => Promise<Cart | Error>;
+type GetCartAction = () => ReturnType<typeof sdk.callAction<Cart>>;
 
-type AddCartItemAction = (payload: AddCartItemPayload) => Promise<Cart | Error>;
+type AddCartItemAction = (payload: AddCartItemPayload) => ReturnType<typeof sdk.callAction<Cart>>;
 
-type RemoveCartItemAction = (payload: RemoveCartItemPayload) => Promise<Cart | Error>;
+type RemoveCartItemAction = (payload: RemoveCartItemPayload) => ReturnType<typeof sdk.callAction<Cart>>;
 
-type UpdateCartItemAction = (payload: UpdateCartItemPayload) => Promise<Cart | Error>;
+type UpdateCartItemAction = (payload: UpdateCartItemPayload) => ReturnType<typeof sdk.callAction<Cart>>;
 
-type UpdateCartAction = (payload: UpdateCartPayload) => Promise<Cart | Error>;
+type UpdateCartAction = (payload: UpdateCartPayload) => ReturnType<typeof sdk.callAction<Cart>>;
 
-type GetCartShippingMethodsAction = (payload: GetCartShippingMethodsPayload) => Promise<ShippingMethod[] | Error>;
+type GetCartShippingMethodsAction = (payload: GetCartShippingMethodsPayload) => ReturnType<typeof sdk.callAction<ShippingMethod[]>>;
 
-type GetAvailableCartShippingMethodsAction = () => Promise<ShippingMethod[] | Error>;
+type GetAvailableCartShippingMethodsAction = () => ReturnType<typeof sdk.callAction<ShippingMethod[]>>;
 
 type SetCartShippingMethodAction = (
 	payload: SetCartShippingMethodPayload,
-) => Promise<Cart | Error>;
+) => ReturnType<typeof sdk.callAction<Cart>>;
 
 type RedeemDiscountCodeAction = (
 	payload: RedeemDiscountCodePayload,
-) => Promise<Cart | string | Error>;
+) => ReturnType<typeof sdk.callAction<Cart | string>>;
 
 type RemoveDiscountCodeAction = (
 	payload: RemoveDiscountCodePayload,
-) => Promise<Cart | Error>;
+) => ReturnType<typeof sdk.callAction<Cart>>;
 
-type CheckoutCartAction = () => Promise<Cart | Error>;
+type CheckoutCartAction = () => ReturnType<typeof sdk.callAction<Cart>>;
 
-type GetOrderHistoryAction = () => Promise<Order[] | Error>;
+type GetOrderHistoryAction = () => ReturnType<typeof sdk.callAction<Order[]>>;
 
 export {
 	GetCartAction,

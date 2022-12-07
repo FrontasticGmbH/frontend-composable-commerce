@@ -1,4 +1,5 @@
 import { Account } from "@commercetools/frontend-domain-types/account/Account";
+import { sdk } from "@commercetools/frontend-sdk";
 import {
 	LoginAccountPayload,
 	RegisterAccountPayload,
@@ -15,60 +16,60 @@ import {
 	SetDefaultAccountShippingAddressPayload,
 } from "../payloads/AccountPayloads";
 
-type GetAccountAction = () => Promise<{
+type GetAccountAction = () => ReturnType<typeof sdk.callAction<{
 	loggedIn: boolean;
 	account?: Account;
-} | Error>;
+}>>;
 
-type LoginAccountAction = (payload: LoginAccountPayload) => Promise<Account | Error>;
+type LoginAccountAction = (payload: LoginAccountPayload) => ReturnType<typeof sdk.callAction<Account>>;
 
-type LogoutAccountAction = () => Promise<void | Error>;
+type LogoutAccountAction = () => ReturnType<typeof sdk.callAction<{}>>;
 
 type RegisterAccountAction = (
 	payload: RegisterAccountPayload,
-) => Promise<Account | Error>;
+) => ReturnType<typeof sdk.callAction<Account>>;
 
 type ConfirmAccountAction = (
 	payload: ConfirmAccountPayload,
-) => Promise<Account | Error>;
+) => ReturnType<typeof sdk.callAction<Account>>;
 
 type RequestAccountConfirmationEmailAction = (
 	payload: RequestAccountConfirmationEmailPayload,
-) => Promise<void | Error>;
+) => ReturnType<typeof sdk.callAction<{}>>;
 
 type ChangeAccountPasswordAction = (
 	payload: ChangeAccountPasswordPayload,
-) => Promise<Account | Error>;
+) => ReturnType<typeof sdk.callAction<Account>>;
 
 type RequestAccountPasswordResetAction = (
 	payload: RequestAccountPasswordResetPayload,
-) => Promise<void | Error>;
+) => ReturnType<typeof sdk.callAction<{}>>;
 
 type ResetAccountPasswordAction = (
 	payload: ResetAccountPasswordPayload,
-) => Promise<Account | Error>;
+) => ReturnType<typeof sdk.callAction<Account>>;
 
 type UpdateAccountAction = (payload: UpdateAccountPayload) => Promise<Account | Error>;
 
 type AddAccountAddressAction = (
 	payload: AddAccountAddressPayload,
-) => Promise<Account | Error>;
+) => ReturnType<typeof sdk.callAction<Account>>;
 
 type UpdateAccountAddressAction = (
 	payload: UpdateAccountAddressPayload,
-) => Promise<Account | Error>;
+) => ReturnType<typeof sdk.callAction<Account>>;
 
 type RemoveAccountAddressAction = (
 	payload: RemoveAccountAddressPayload,
-) => Promise<Account | Error>;
+) => ReturnType<typeof sdk.callAction<Account>>;
 
 type SetDefaultAccountBillingAddressAction = (
 	payload: SetDefaultAccountBillingAddressPayload,
-) => Promise<Account | Error>;
+) => ReturnType<typeof sdk.callAction<Account>>;
 
 type SetDefaultAccountShippingAddressAction = (
 	payload: SetDefaultAccountShippingAddressPayload,
-) => Promise<Account | Error>;
+) => ReturnType<typeof sdk.callAction<Account>>;
 
 export {
 	GetAccountAction,
