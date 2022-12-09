@@ -16,7 +16,7 @@
     "dependencies": {},
     "devDependencies": {
         "@commercetools/frontend-domain-types": "^1.0.4-alpha.0",
-        "@commercetools/frontend-sdk": "^2.1.0-alpha.0",
+        "@commercetools/frontend-sdk": "^2.2.0-alpha.0",
         "@types/core-js": "2.5.5",
         "concurrently": "^7.4.0",
         "esbuild": "0.15.8",
@@ -24,6 +24,6 @@
     },
     "peerDependencies": {
         "@commercetools/frontend-domain-types": "^1.0.4-alpha.0",
-        "@commercetools/frontend-sdk": "^2.1.0-alpha.0"
+        "@commercetools/frontend-sdk": "^2.2.0-alpha.0"
     }
 }
