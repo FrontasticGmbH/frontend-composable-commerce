@@ -22,7 +22,7 @@ export type WishlistActions = {
 export const getWishlistActions = (sdk: SDK): WishlistActions => {
 	return {
 		getWishlist: () => {
-			return sdk.callAction("wishlist/getWishlist", {});
+			return sdk.callAction("wishlist/getWishlist");
 		},
 		addItem: (payload: AddToWishlistPayload) => {
 			return sdk.callAction("wishlist/addToWishlist", payload);

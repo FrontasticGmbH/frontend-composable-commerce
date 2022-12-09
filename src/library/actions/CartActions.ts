@@ -44,7 +44,7 @@ export type CartActions = {
 export const getCartActions = (sdk: SDK): CartActions => {
 	return {
 		getCart: () => {
-			return sdk.callAction<Cart>("cart/getCart", {}).then(cart => {
+			return sdk.callAction<Cart>("cart/getCart").then(cart => {
 				if (!cart.isError) {
 					sdk.trigger(new Event({
 						eventName: "cartFetched",
@@ -107,7 +107,7 @@ export const getCartActions = (sdk: SDK): CartActions => {
 			return sdk.callAction("cart/getShippingMethods", {}, payload?.query ?? undefined);
 		},
 		getAvailableShippingMethods: () => {
-			return sdk.callAction("cart/getAvailableShippingMethods", {});
+			return sdk.callAction("cart/getAvailableShippingMethods");
 		},
 		setShippingMethod: (payload: SetCartShippingMethodPayload) => {
 			return sdk.callAction("cart/setShippingMethod", payload);
@@ -119,10 +119,10 @@ export const getCartActions = (sdk: SDK): CartActions => {
 			return sdk.callAction("cart/removeDiscount", payload);
 		},
 		checkout: () => {
-			return sdk.callAction("cart/checkout", {});
+			return sdk.callAction("cart/checkout");
 		},
 		getOrderHistory: () => {
-			return sdk.callAction("cart/getOrders", {});
+			return sdk.callAction("cart/getOrders");
 		}
 	}
 };

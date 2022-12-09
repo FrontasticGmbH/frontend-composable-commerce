@@ -52,14 +52,10 @@ export type AccountActions = {
 	setDefaultShippingAddress: SetDefaultAccountShippingAddressAction,
 }
 
-function isVoid(option: void | {}): option is void {
-	return !!!option;
-}
-
 export const getAccountActions = (sdk: SDK): AccountActions => {
 	return {
 		getAccount: () => {
-			return sdk.callAction("account/getAccount", {});
+			return sdk.callAction("account/getAccount");
 		},
 		login: async (payload: LoginAccountPayload) => {
 			const remember = payload.remember;
@@ -76,7 +72,7 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return result;
 		},
 		logout: async () => {
-			const response = await sdk.callAction<void>("account/logout", {});
+			const response = await sdk.callAction<void>("account/logout");
 			if (!response.isError) {
 				rememberMeCookie.remove();
 			}

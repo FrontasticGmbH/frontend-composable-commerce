@@ -9,7 +9,7 @@ export type ProjectActions = {
 export const getProjectActions = (sdk: SDK): ProjectActions => {
     return {
         getSettings: async () => {
-            const response = await sdk.callAction<ProjectSettings>("project/getProjectSettings", {});
+            const response = await sdk.callAction<ProjectSettings>("project/getProjectSettings");
             if (!response.isError) {
                 sdk.trigger(new Event({
                     eventName: "projectSettingsReturned",

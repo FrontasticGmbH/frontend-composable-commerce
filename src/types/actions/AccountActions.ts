@@ -21,7 +21,9 @@ type GetAccountAction = () => ReturnType<typeof sdk.callAction<{
 	account?: Account;
 }>>;
 
-type LoginAccountAction = (payload: LoginAccountPayload) => ReturnType<typeof sdk.callAction<Account>>;
+type LoginAccountAction = (
+	payload: LoginAccountPayload
+) => ReturnType<typeof sdk.callAction<Account>>;
 
 type LogoutAccountAction = () => ReturnType<typeof sdk.callAction<void>>;
 
