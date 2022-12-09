@@ -9,13 +9,12 @@
   dependencies:
     typescript "4.8.3"
 
-"@commercetools/frontend-sdk@^2.0.0-alpha.0":
-  version "2.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@commercetools/frontend-sdk/-/frontend-sdk-2.0.0-alpha.0.tgz#eca9f8b1ff444d8a11118647faa5e7f0f564b185"
-  integrity sha512-wZheUFsLPjYYYh+ytl9J3iKPjna9xsemgmm6C4iDsvAyPxPtF8HlOJoG3O3pomgWzBynh66eYDjtGApWsjQMfg==
+"@commercetools/frontend-sdk@^2.1.0-alpha.0":
+  version "2.1.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/frontend-sdk/-/frontend-sdk-2.1.0-alpha.0.tgz#85d87e27c13eaa16f2d64826c6dc592c5769c5e8"
+  integrity sha512-EPLr4AAWSkwdfoAhaB0SgEmg0crhAnXlMB2AXLIvE4hoBtYiXW26KbI6Ko+V2kxxvtPbbFXkEDsCX6KOwcmSyg==
   dependencies:
     js-cookie "3.0.1"
-    typescript "4.8.3"
 
 "@esbuild/android-arm@0.15.8":
   version "0.15.8"
