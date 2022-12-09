@@ -65,19 +65,20 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			const remember = payload.remember;
 			payload.remember = undefined;
 
-			const result: Account = sdk.callAction("account/login", payload) as any;
+			const result = await sdk.callAction<Account>("account/login", payload);
 
-			if (remember) {
-				rememberMeCookie.set(true);
+			if (!result.isError) {
+				if (remember) {
+					rememberMeCookie.set(true);
+				}
 			}
 
 			return result;
 		},
 		logout: async () => {
 			const response = await sdk.callAction<void>("account/logout", {});
-			if (isVoid(response as any)) {
+			if (!response.isError) {
 				rememberMeCookie.remove();
-				return {};
 			}
 			return response;
 		},
@@ -88,21 +89,13 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return sdk.callAction("account/confirm", payload);
 		},
 		requestConfirmationEmail: async (payload: RequestAccountConfirmationEmailPayload) => {
-			const response = await sdk.callAction<void>("account/requestConfirmationEmail", payload);
-			if (isVoid(response as any)) {
-				return {};
-			}
-			return response;
+			return sdk.callAction<void>("account/requestConfirmationEmail", payload);
 		},
 		changePassword: (payload: ChangeAccountPasswordPayload) => {
 			return sdk.callAction("account/password", payload);
 		},
 		requestResetPassword: async (payload: RequestAccountPasswordResetPayload) => {
-			const response = await sdk.callAction<void>("account/requestReset", payload);
-			if (isVoid(response as any)) {
-				return {};
-			}
-			return response;
+			return sdk.callAction<void>("account/requestReset", payload);
 		},
 		resetPassword: (payload: ResetAccountPasswordPayload) => {
 			return sdk.callAction("account/reset", payload);

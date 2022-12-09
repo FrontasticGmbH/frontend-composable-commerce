@@ -23,7 +23,7 @@ type GetAccountAction = () => ReturnType<typeof sdk.callAction<{
 
 type LoginAccountAction = (payload: LoginAccountPayload) => ReturnType<typeof sdk.callAction<Account>>;
 
-type LogoutAccountAction = () => ReturnType<typeof sdk.callAction<{}>>;
+type LogoutAccountAction = () => ReturnType<typeof sdk.callAction<void>>;
 
 type RegisterAccountAction = (
 	payload: RegisterAccountPayload,
@@ -35,7 +35,7 @@ type ConfirmAccountAction = (
 
 type RequestAccountConfirmationEmailAction = (
 	payload: RequestAccountConfirmationEmailPayload,
-) => ReturnType<typeof sdk.callAction<{}>>;
+) => ReturnType<typeof sdk.callAction<void>>;
 
 type ChangeAccountPasswordAction = (
 	payload: ChangeAccountPasswordPayload,
@@ -43,13 +43,15 @@ type ChangeAccountPasswordAction = (
 
 type RequestAccountPasswordResetAction = (
 	payload: RequestAccountPasswordResetPayload,
-) => ReturnType<typeof sdk.callAction<{}>>;
+) => ReturnType<typeof sdk.callAction<void>>;
 
 type ResetAccountPasswordAction = (
 	payload: ResetAccountPasswordPayload,
 ) => ReturnType<typeof sdk.callAction<Account>>;
 
-type UpdateAccountAction = (payload: UpdateAccountPayload) => Promise<Account | Error>;
+type UpdateAccountAction = (
+	payload: UpdateAccountPayload
+) => ReturnType<typeof sdk.callAction<Account>>;
 
 type AddAccountAddressAction = (
 	payload: AddAccountAddressPayload,
