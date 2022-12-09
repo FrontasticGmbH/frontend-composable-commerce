@@ -45,36 +45,42 @@ export const getCartActions = (sdk: SDK): CartActions => {
 	return {
 		getCart: () => {
 			return sdk.callAction<Cart>("cart/getCart", {}).then(cart => {
-				sdk.trigger(new Event({
-					eventName: "cartFetched",
-					data: {
-						cart: cart
-					}
-				}));
+				if (!cart.isError) {
+					sdk.trigger(new Event({
+						eventName: "cartFetched",
+						data: {
+							cart: cart
+						}
+					}));
+				}
 				return cart;
 			});
 		},
 		addItem: (payload: AddCartItemPayload) => {
 			return sdk.callAction<Cart>("cart/addToCart", payload).then(cart => {
-				sdk.trigger(new Event({
-					eventName: "productAddedToCart",
-					data: {
-						product: payload.variant,
-						quantity: payload.variant.count
-					}
-				}));
+				if (!cart.isError) {
+					sdk.trigger(new Event({
+						eventName: "productAddedToCart",
+						data: {
+							product: payload.variant,
+							quantity: payload.variant.count
+						}
+					}));
+				}
 				return cart;
 			});
 		},
 		removeItem: (payload: RemoveCartItemPayload) => {
 			return sdk.callAction<Cart>("cart/removeLineItem", payload).then(cart => {
-				sdk.trigger(new Event({
-					eventName: "productRemovedFromCart",
-					data: {
-						product: payload.lineItem,
-						quantity: 1
-					}
-				}));
+				if (!cart.isError) {
+					sdk.trigger(new Event({
+						eventName: "productRemovedFromCart",
+						data: {
+							product: payload.lineItem,
+							quantity: 1
+						}
+					}));
+				}
 				return cart;
 			});
 		},
