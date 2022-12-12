@@ -18,17 +18,6 @@ export const getProjectActions = (sdk: SDK): ProjectActions => {
                     }
                 }));
             }
-            else {
-                sdk.trigger(new Event({
-                    eventName: "actionError",
-                    data: {
-                        error: new ActionError(
-                            "Composable commerce get project settings error",
-                            response.error
-                        )
-                    }
-                }));
-            }
             return response;
         }
     };
