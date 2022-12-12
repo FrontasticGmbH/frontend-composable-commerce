@@ -24,6 +24,8 @@ import {
 	UpdateCartItemAction
 } from "../../types/actions/CartActions";
 import { Cart } from "@commercetools/frontend-domain-types/cart/Cart";
+import { ShippingMethod } from "@commercetools/frontend-domain-types/cart/ShippingMethod";
+import { Order } from "@commercetools/frontend-domain-types/cart/Order";
 
 
 export type CartActions = {
@@ -43,86 +45,157 @@ export type CartActions = {
 
 export const getCartActions = (sdk: SDK): CartActions => {
 	return {
-		getCart: () => {
-			return sdk.callAction<Cart>("cart/getCart").then(cart => {
-				if (!cart.isError) {
-					sdk.trigger(new Event({
-						eventName: "cartFetched",
-						data: {
-							cart: cart
-						}
-					}));
-				}
-				return cart;
-			});
+		getCart: async () => {
+			const response = await sdk.callAction<Cart>("cart/getCart");
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "cartFetched",
+					data: {
+						cart: response
+					}
+				}));
+			}
+			return response;
 		},
-		addItem: (payload: AddCartItemPayload) => {
-			return sdk.callAction<Cart>("cart/addToCart", payload).then(cart => {
-				if (!cart.isError) {
-					sdk.trigger(new Event({
-						eventName: "productAddedToCart",
-						data: {
-							product: payload.variant,
-							quantity: payload.variant.count
-						}
-					}));
-				}
-				return cart;
-			});
+		addItem: async (payload: AddCartItemPayload) => {
+			const response = await sdk.callAction<Cart>("cart/addToCart", payload);
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "productAddedToCart",
+					data: {
+						product: payload.variant,
+						quantity: payload.variant.count
+					}
+				}));
+			}
+			return response;
 		},
-		removeItem: (payload: RemoveCartItemPayload) => {
-			return sdk.callAction<Cart>("cart/removeLineItem", payload).then(cart => {
-				if (!cart.isError) {
-					sdk.trigger(new Event({
-						eventName: "productRemovedFromCart",
-						data: {
-							product: payload.lineItem,
-							quantity: 1
-						}
-					}));
-				}
-				return cart;
-			});
+		removeItem: async (payload: RemoveCartItemPayload) => {
+			const response = await sdk.callAction<Cart>("cart/removeLineItem", payload);
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "productRemovedFromCart",
+					data: {
+						product: payload.lineItem,
+						quantity: 1
+					}
+				}));
+			}
+			return response;
 		},
-		updateItem: (payload: UpdateCartItemPayload) => {
-			return sdk.callAction<Cart>("cart/updateLineItem", payload).then(cart => {
-				if (!cart.isError) {
-					sdk.trigger(new Event({
-						eventName: "productUpdatedInCart",
-						data: {
-							product: {
-								id: payload.lineItem.id
-							},
-							newQuantity: payload.lineItem.count
-						}
-					}));
-				}
-				return cart;
-			});
+		updateItem: async (payload: UpdateCartItemPayload) => {
+			const response = await sdk.callAction<Cart>("cart/updateLineItem", payload);
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "productUpdatedInCart",
+					data: {
+						product: {
+							id: payload.lineItem.id
+						},
+						newQuantity: payload.lineItem.count
+					}
+				}));
+			}
+			return response;
 		},
-		updateCart: (payload: UpdateCartPayload) => {
-			return sdk.callAction<Cart>("cart/updateCart", payload);
+		updateCart: async (payload: UpdateCartPayload) => {
+			const response = await sdk.callAction<Cart>("cart/updateCart", payload);
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "cartUpdated",
+					data: payload
+				}));
+			}
+			return response;
 		},
-		getShippingMethods: (payload?: GetCartShippingMethodsPayload) => {
-			return sdk.callAction("cart/getShippingMethods", {}, payload?.query ?? undefined);
+		getShippingMethods: async (payload?: GetCartShippingMethodsPayload) => {
+			const response = await sdk.callAction<ShippingMethod[]>(
+				"cart/getShippingMethods",
+				{},
+				payload?.query ?? undefined
+			);
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "shippingMethodsFetched",
+					data: {
+						shippingMethods: response.data
+					}
+				}))
+			}
+			return response;
 		},
-		getAvailableShippingMethods: () => {
-			return sdk.callAction("cart/getAvailableShippingMethods");
+		getAvailableShippingMethods: async () => {
+			const response = await sdk.callAction<ShippingMethod[]>("cart/getAvailableShippingMethods");
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "availableShippingMethodsFetched",
+					data: {
+						shippingMethods: response.data
+					}
+				}));
+			}
+			return response;
 		},
-		setShippingMethod: (payload: SetCartShippingMethodPayload) => {
-			return sdk.callAction("cart/setShippingMethod", payload);
+		setShippingMethod: async (payload: SetCartShippingMethodPayload) => {
+			const response = await sdk.callAction<Cart>("cart/setShippingMethod", payload);
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "shippingMethodUpdated",
+					data: {
+						shippingMethod: response.data.availableShippingMethods?.find(shippingMethod =>
+							shippingMethod.shippingMethodId === payload.shippingMethod.id)
+					}
+				}));
+			}
+			return response;
 		},
-		redeemDiscountCode: (payload: RedeemDiscountCodePayload,) => {
-			return sdk.callAction("cart/redeemDiscount", payload);
+		redeemDiscountCode: async (payload: RedeemDiscountCodePayload) => {
+			const response = await sdk.callAction<Cart | string>("cart/redeemDiscount", payload);
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "discountCodeRedeemed",
+					data: {
+						discountCode: typeof response.data !== "string" ? payload.code : response.data,
+						cart: typeof response.data !== "string" ? response.data : undefined
+					}
+				}));
+			}
+			return response;
 		},
-		removeDiscountCode: (payload: RemoveDiscountCodePayload) => {
-			return sdk.callAction("cart/removeDiscount", payload);
+		removeDiscountCode: async (payload: RemoveDiscountCodePayload) => {
+			const response = await sdk.callAction<Cart>("cart/removeDiscount", payload);
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "discountCodeRemoved",
+					data: {
+						discountCode: payload.discountId,
+						cart: response.data
+					}
+				}));
+			}
+			return response;
 		},
-		checkout: () => {
-			return sdk.callAction("cart/checkout");
+		checkout: async () => {
+			const response = await sdk.callAction<Cart>("cart/checkout");
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "cartCheckedOut",
+					data: {}
+				}));
+			}
+			return response;
 		},
-		getOrderHistory: () => {
-			return sdk.callAction("cart/getOrders");
+		getOrderHistory: async () => {
+			const response = await sdk.callAction<Order[]>("cart/getOrders");
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "orderHistoryFetched",
+					data: {
+						orders: response.data
+					}
+				}));
+			}
+			return response;
 		}
 	}
 };
