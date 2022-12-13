@@ -12,7 +12,7 @@ export const getProjectActions = (sdk: SDK): ProjectActions => {
             const response = await sdk.callAction<ProjectSettings>("project/getProjectSettings");
             if (!response.isError) {
                 sdk.trigger(new Event({
-                    eventName: "projectSettingsReturned",
+                    eventName: "projectSettingsFetched",
                     data: {
                         projectSettings: response.data
                     }

@@ -1,4 +1,4 @@
-import { SDK } from "@commercetools/frontend-sdk";
+import { SDK, Event } from "@commercetools/frontend-sdk";
 import {
 	GetProductPayload,
 	ProductQueryPayload,
@@ -10,6 +10,9 @@ import {
 	ProductQueryAction,
 	QueryProductCategoriesAction
 } from "../../types/actions/ProductActions";
+import { Product } from "@commercetools/frontend-domain-types/product/Product";
+import { Result } from "@commercetools/frontend-domain-types/product/Result";
+import { FilterField } from "@commercetools/frontend-domain-types/product/FilterField";
 
 
 export type ProductActions = {
@@ -21,19 +24,59 @@ export type ProductActions = {
 
 export const getProductActions = (sdk: SDK): ProductActions => {
 	return {
-		getProduct: (payload: GetProductPayload) => {
-			return sdk.callAction("product/getProduct", undefined, payload.query);
+		getProduct: async (payload: GetProductPayload) => {
+			const response = await sdk.callAction<Product>("product/getProduct", undefined, payload.query);
+
+			if (!response.isError && response.data) {
+				sdk.trigger(new Event({
+					eventName: "productFetched",
+					data: {
+						product: response.data
+					}
+				}))
+			}
+			return response;
 		},
-		query: (payload: ProductQueryPayload) => {
-			return sdk.callAction("product/query", payload);
+		query: async (payload: ProductQueryPayload) => {
+			const response = await sdk.callAction<Result>("product/query", payload);
+
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "productsQueried",
+					data: {
+						query: payload.query,
+						result: response.data
+					}
+				}))
+			}
+			return response;
 		},
-		queryCategories: (
-			payload: QueryProductCategoriesPayload,
-		) => {
-			return sdk.callAction("product/queryCategories", undefined, payload.query);
+		queryCategories: async (payload: QueryProductCategoriesPayload) => {
+			const response = await sdk.callAction<Result>("product/queryCategories", undefined, payload.query);
+
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "productCategoriesQueried",
+					data: {
+						query: payload.query,
+						result: response.data
+					}
+				}))
+			}
+			return response;
 		},
-		getSearchableAttributes: () => {
-			return sdk.callAction("product/searchableAttributes");
+		getSearchableAttributes: async () => {
+			const response = await sdk.callAction<FilterField[]>("product/searchableAttributes");
+
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "searchableProductAttributesFetched",
+					data: {
+						filterFields: response.data
+					}
+				}))
+			}
+			return response;
 		}
 	}
 };

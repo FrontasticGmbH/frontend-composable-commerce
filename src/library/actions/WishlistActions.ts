@@ -1,4 +1,4 @@
-import { SDK } from "@commercetools/frontend-sdk";
+import { SDK, Event } from "@commercetools/frontend-sdk";
 import {
 	AddToWishlistPayload,
 	RemoveFromWishlistPayload,
@@ -10,6 +10,7 @@ import {
 	RemoveFromWishlistAction,
 	UpdateWishlistItemAction
 } from "../../types/actions/WishlistActions";
+import { Wishlist } from "@commercetools/frontend-domain-types/wishlist/Wishlist";
 
 
 export type WishlistActions = {
@@ -21,17 +22,63 @@ export type WishlistActions = {
 
 export const getWishlistActions = (sdk: SDK): WishlistActions => {
 	return {
-		getWishlist: () => {
-			return sdk.callAction("wishlist/getWishlist");
+		getWishlist: async () => {
+			const response = await sdk.callAction<Wishlist>("wishlist/getWishlist");
+
+			if (!response.isError) {
+				sdk.trigger(new Event({
+					eventName: "wishlistFetched",
+					data: {
+						wishlist: response.data
+					}
+				}));
+			}
+			return response;
 		},
-		addItem: (payload: AddToWishlistPayload) => {
-			return sdk.callAction("wishlist/addToWishlist", payload);
+		addItem: async (payload: AddToWishlistPayload) => {
+			const response = await sdk.callAction<Wishlist>("wishlist/addToWishlist", payload);
+
+			if (!response.isError) {
+				const lineItem = response.data.lineItems?.find(lineItem => lineItem.variant?.sku === payload.variant.sku);
+				if (lineItem) {
+					sdk.trigger(new Event({
+						eventName: "lineItemAddedToWishlist",
+						data: {
+							lineItem
+						}
+					}));
+				}
+			}
+			return response;
 		},
-		removeItem: (payload: RemoveFromWishlistPayload) => {
-			return sdk.callAction("wishlist/removeLineItem", payload);
+		removeItem: async (payload: RemoveFromWishlistPayload) => {
+			const response = await sdk.callAction<Wishlist>("wishlist/removeLineItem", payload);
+
+			if (!response.isError && !response.data.lineItems?.find(item => item.lineItemId === payload.lineItem.id)) {
+				sdk.trigger(new Event({
+					eventName: "lineItemRemovedFromWishlist",
+					data: {
+						lineItemId: payload.lineItem.id
+					}
+				}));
+			}
+			return response;
 		},
-		updateItem: (payload: UpdateWishlistItemPayload) => {
-			return sdk.callAction("wishlist/updateLineItemCount", payload);
+		updateItem: async (payload: UpdateWishlistItemPayload) => {
+			const response = await sdk.callAction<Wishlist>("wishlist/updateLineItemCount", payload);
+
+			if (!response.isError) {
+				const lineItem = response.data.lineItems?.find(item => item.lineItemId === payload.lineItem.id);
+				if (lineItem?.count === payload.count) {
+					sdk.trigger(new Event({
+						eventName: "wishlistLineItemUpdated",
+						data: {
+							lineItem: lineItem
+						}
+					}));
+				}
+			}
+			return response;
 		}
 	}
 }
