@@ -9,10 +9,10 @@
   dependencies:
     typescript "4.8.3"
 
-"@commercetools/frontend-sdk@^3.0.0-alpha.0":
-  version "3.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@commercetools/frontend-sdk/-/frontend-sdk-3.0.0-alpha.0.tgz#6660fdea5bf07d0f8a1023c60102206b46725f0e"
-  integrity sha512-eAFGExDqhd9H0XJTOZUFlSfZJcFQBk49VXqngqAp7bnN8PGevJUVXtx3TdHvSeY0/X4MxCQ6PVMu4wZ2V6u3Mg==
+"@commercetools/frontend-sdk@^3.1.0-alpha.0":
+  version "3.1.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/frontend-sdk/-/frontend-sdk-3.1.0-alpha.0.tgz#65a1d2f6fed8467b4f90becab11d20e6a70ee6eb"
+  integrity sha512-7yz8CiEvRGwqVhta2a54r7DVCSKAUNY/V5gcb9yFmqqM7YnsjuM3cMCKuLUY0s+2IxwP+wESntvYm1nxCBO+oQ==
   dependencies:
     js-cookie "3.0.1"
 
