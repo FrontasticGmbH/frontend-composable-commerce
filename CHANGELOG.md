@@ -1,4 +1,28 @@
 
+## Version 2.1.0-alpha.0 (2022-12-13)
+
+
+
+* Updated @commercetools/frontend-sdk
+* Fire events for all StandardEvents
+
+
+
+
+
+
+* Updated return type of actions for better error handling
+
+* Updated data type of action error event
+
+
+
+* Check for action errors before firing events
+* Updated return type so cannot be void
+
+
+* Fixed dependency issues
+
 ## Version 2.0.0-alpha.0 (2022-12-06)
 
 * Fixed major NPM deployment issue
