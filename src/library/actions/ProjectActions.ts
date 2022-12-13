@@ -1,5 +1,5 @@
 import { ProjectSettings } from "@commercetools/frontend-domain-types/ProjectSettings";
-import { SDK, Event, FetchError, ActionError } from "@commercetools/frontend-sdk";
+import { SDK, Event } from "@commercetools/frontend-sdk";
 import { GetProjectSettingsAction } from "../../types/actions/ProjectActions";
 
 export type ProjectActions = {
