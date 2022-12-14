@@ -1,8 +1,6 @@
 
 ## Version 3.0.0-alpha.0 (2022-12-14)
 
-
-
 * Updated and integrated with latest major version of @commercetools/frontend-sdk
 
 ## Version 2.1.0-alpha.0 (2022-12-13)
