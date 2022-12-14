@@ -1,4 +1,5 @@
-import { SDK, Event } from "@commercetools/frontend-sdk";
+import { Event } from "@commercetools/frontend-sdk";
+import { SDK } from "@commercetools/frontend-sdk/lib/library/SDK";
 import {
 	AddToWishlistPayload,
 	RemoveFromWishlistPayload,
@@ -23,7 +24,9 @@ export type WishlistActions = {
 export const getWishlistActions = (sdk: SDK): WishlistActions => {
 	return {
 		getWishlist: async () => {
-			const response = await sdk.callAction<Wishlist>("wishlist/getWishlist");
+			const response = await sdk.callAction<Wishlist>({
+				actionName: "wishlist/getWishlist"
+			});
 
 			if (!response.isError) {
 				sdk.trigger(new Event({
@@ -36,7 +39,10 @@ export const getWishlistActions = (sdk: SDK): WishlistActions => {
 			return response;
 		},
 		addItem: async (payload: AddToWishlistPayload) => {
-			const response = await sdk.callAction<Wishlist>("wishlist/addToWishlist", payload);
+			const response = await sdk.callAction<Wishlist>({
+				actionName: "wishlist/addToWishlist",
+				payload
+			});
 
 			if (!response.isError) {
 				const lineItem = response.data.lineItems?.find(lineItem => lineItem.variant?.sku === payload.variant.sku);
@@ -52,7 +58,9 @@ export const getWishlistActions = (sdk: SDK): WishlistActions => {
 			return response;
 		},
 		removeItem: async (payload: RemoveFromWishlistPayload) => {
-			const response = await sdk.callAction<Wishlist>("wishlist/removeLineItem", payload);
+			const response = await sdk.callAction<Wishlist>({
+				actionName: "wishlist/removeLineItem", payload
+			});
 
 			if (!response.isError && !response.data.lineItems?.find(item => item.lineItemId === payload.lineItem.id)) {
 				sdk.trigger(new Event({
@@ -65,7 +73,9 @@ export const getWishlistActions = (sdk: SDK): WishlistActions => {
 			return response;
 		},
 		updateItem: async (payload: UpdateWishlistItemPayload) => {
-			const response = await sdk.callAction<Wishlist>("wishlist/updateLineItemCount", payload);
+			const response = await sdk.callAction<Wishlist>({
+				actionName: "wishlist/updateLineItemCount", payload
+			});
 
 			if (!response.isError) {
 				const lineItem = response.data.lineItems?.find(item => item.lineItemId === payload.lineItem.id);

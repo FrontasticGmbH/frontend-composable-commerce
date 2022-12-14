@@ -1,4 +1,5 @@
-import { SDK, Event } from "@commercetools/frontend-sdk";
+import { Event } from "@commercetools/frontend-sdk";
+import { SDK } from "@commercetools/frontend-sdk/lib/library/SDK";
 import {
 	AddCartItemPayload,
 	GetCartShippingMethodsPayload,
@@ -46,7 +47,10 @@ export type CartActions = {
 export const getCartActions = (sdk: SDK): CartActions => {
 	return {
 		getCart: async () => {
-			const response = await sdk.callAction<Cart>("cart/getCart");
+			const response = await sdk.callAction<Cart>({
+				actionName: "cart/getCart"
+			});
+
 			if (!response.isError) {
 				sdk.trigger(new Event({
 					eventName: "cartFetched",
@@ -58,7 +62,11 @@ export const getCartActions = (sdk: SDK): CartActions => {
 			return response;
 		},
 		addItem: async (payload: AddCartItemPayload) => {
-			const response = await sdk.callAction<Cart>("cart/addToCart", payload);
+			const response = await sdk.callAction<Cart>({
+				actionName: "cart/addToCart",
+				payload
+			});
+
 			if (!response.isError) {
 				sdk.trigger(new Event({
 					eventName: "productAddedToCart",
@@ -71,7 +79,11 @@ export const getCartActions = (sdk: SDK): CartActions => {
 			return response;
 		},
 		removeItem: async (payload: RemoveCartItemPayload) => {
-			const response = await sdk.callAction<Cart>("cart/removeLineItem", payload);
+			const response = await sdk.callAction<Cart>({
+				actionName: "cart/removeLineItem",
+				payload
+			});
+
 			if (!response.isError) {
 				sdk.trigger(new Event({
 					eventName: "productRemovedFromCart",
@@ -84,7 +96,11 @@ export const getCartActions = (sdk: SDK): CartActions => {
 			return response;
 		},
 		updateItem: async (payload: UpdateCartItemPayload) => {
-			const response = await sdk.callAction<Cart>("cart/updateLineItem", payload);
+			const response = await sdk.callAction<Cart>({
+				actionName: "cart/updateLineItem",
+				payload
+			});
+
 			if (!response.isError) {
 				sdk.trigger(new Event({
 					eventName: "productUpdatedInCart",
@@ -99,7 +115,11 @@ export const getCartActions = (sdk: SDK): CartActions => {
 			return response;
 		},
 		updateCart: async (payload: UpdateCartPayload) => {
-			const response = await sdk.callAction<Cart>("cart/updateCart", payload);
+			const response = await sdk.callAction<Cart>({
+				actionName: "cart/updateCart",
+				payload
+			});
+
 			if (!response.isError) {
 				sdk.trigger(new Event({
 					eventName: "cartUpdated",
@@ -109,11 +129,11 @@ export const getCartActions = (sdk: SDK): CartActions => {
 			return response;
 		},
 		getShippingMethods: async (payload?: GetCartShippingMethodsPayload) => {
-			const response = await sdk.callAction<ShippingMethod[]>(
-				"cart/getShippingMethods",
-				{},
-				payload?.query ?? undefined
-			);
+			const response = await sdk.callAction<ShippingMethod[]>({
+				actionName: "cart/getShippingMethods",
+				query: payload?.query ?? undefined
+			});
+
 			if (!response.isError) {
 				sdk.trigger(new Event({
 					eventName: "shippingMethodsFetched",
@@ -125,7 +145,10 @@ export const getCartActions = (sdk: SDK): CartActions => {
 			return response;
 		},
 		getAvailableShippingMethods: async () => {
-			const response = await sdk.callAction<ShippingMethod[]>("cart/getAvailableShippingMethods");
+			const response = await sdk.callAction<ShippingMethod[]>({
+				actionName: "cart/getAvailableShippingMethods"
+			});
+
 			if (!response.isError) {
 				sdk.trigger(new Event({
 					eventName: "availableShippingMethodsFetched",
@@ -137,7 +160,11 @@ export const getCartActions = (sdk: SDK): CartActions => {
 			return response;
 		},
 		setShippingMethod: async (payload: SetCartShippingMethodPayload) => {
-			const response = await sdk.callAction<Cart>("cart/setShippingMethod", payload);
+			const response = await sdk.callAction<Cart>({
+				actionName: "cart/setShippingMethod",
+				payload
+			});
+
 			if (!response.isError) {
 				sdk.trigger(new Event({
 					eventName: "shippingMethodUpdated",
@@ -150,7 +177,11 @@ export const getCartActions = (sdk: SDK): CartActions => {
 			return response;
 		},
 		redeemDiscountCode: async (payload: RedeemDiscountCodePayload) => {
-			const response = await sdk.callAction<Cart | string>("cart/redeemDiscount", payload);
+			const response = await sdk.callAction<Cart | string>({
+				actionName: "cart/redeemDiscount",
+				payload
+			});
+
 			if (!response.isError) {
 				sdk.trigger(new Event({
 					eventName: "discountCodeRedeemed",
@@ -163,7 +194,11 @@ export const getCartActions = (sdk: SDK): CartActions => {
 			return response;
 		},
 		removeDiscountCode: async (payload: RemoveDiscountCodePayload) => {
-			const response = await sdk.callAction<Cart>("cart/removeDiscount", payload);
+			const response = await sdk.callAction<Cart>({
+				actionName: "cart/removeDiscount",
+				payload
+			});
+
 			if (!response.isError) {
 				sdk.trigger(new Event({
 					eventName: "discountCodeRemoved",
@@ -176,7 +211,10 @@ export const getCartActions = (sdk: SDK): CartActions => {
 			return response;
 		},
 		checkout: async () => {
-			const response = await sdk.callAction<Cart>("cart/checkout");
+			const response = await sdk.callAction<Cart>({
+				actionName: "cart/checkout"
+			});
+
 			if (!response.isError) {
 				sdk.trigger(new Event({
 					eventName: "cartCheckedOut",
@@ -186,7 +224,10 @@ export const getCartActions = (sdk: SDK): CartActions => {
 			return response;
 		},
 		getOrderHistory: async () => {
-			const response = await sdk.callAction<Order[]>("cart/getOrders");
+			const response = await sdk.callAction<Order[]>({
+				actionName: "cart/getOrders"
+			});
+
 			if (!response.isError) {
 				sdk.trigger(new Event({
 					eventName: "orderHistoryFetched",

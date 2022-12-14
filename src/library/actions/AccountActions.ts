@@ -1,4 +1,5 @@
-import { rememberMeCookie, SDK, Event } from "@commercetools/frontend-sdk";
+import { rememberMeCookie, Event } from "@commercetools/frontend-sdk";
+import { SDK } from "@commercetools/frontend-sdk/lib/library/SDK";
 import {
 	AddAccountAddressPayload,
 	ChangeAccountPasswordPayload,
@@ -77,7 +78,9 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			const response = await sdk.callAction<{
 				loggedIn: boolean,
 				account?: Account
-			}>("account/getAccount");
+			}>({
+				actionName: "account/getAccount"
+			});
 
 			if (!response.isError && response.data.account) {
 				sdk.trigger(new Event({
@@ -93,7 +96,9 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			const remember = payload.remember;
 			payload.remember = undefined;
 
-			const response = await sdk.callAction<Account>("account/login", payload);
+			const response = await sdk.callAction<Account>({
+				actionName: "account/login", payload
+			});
 
 			if (!response.isError) {
 				if (remember) {
@@ -110,7 +115,9 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return response;
 		},
 		logout: async () => {
-			const response = await sdk.callAction<void>("account/logout");
+			const response = await sdk.callAction<void>({
+				actionName: "account/logout"
+			});
 
 			if (!response.isError) {
 				rememberMeCookie.remove();
@@ -122,7 +129,9 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return response;
 		},
 		register: async (payload: RegisterAccountPayload) => {
-			const response = await sdk.callAction<Account>("account/register", payload);
+			const response = await sdk.callAction<Account>({
+				actionName: "account/register", payload
+			});
 
 			if (!response.isError) {
 				sdk.trigger(new Event({
@@ -135,7 +144,9 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return response;
 		},
 		confirm: async (payload: ConfirmAccountPayload) => {
-			const response = await sdk.callAction<Account>("account/confirm", payload);
+			const response = await sdk.callAction<Account>({
+				actionName: "account/confirm", payload
+			});
 
 			if (!response.isError) {
 				sdk.trigger(new Event({
@@ -148,7 +159,9 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return response;
 		},
 		requestConfirmationEmail: async (payload: RequestAccountConfirmationEmailPayload) => {
-			const response = await sdk.callAction<void>("account/requestConfirmationEmail", payload);
+			const response = await sdk.callAction<void>({
+				actionName: "account/requestConfirmationEmail", payload
+			});
 
 			if (!response.isError) {
 				sdk.trigger(new Event({
@@ -161,7 +174,9 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return response;
 		},
 		changePassword: async (payload: ChangeAccountPasswordPayload) => {
-			const response = await sdk.callAction<Account>("account/password", payload);
+			const response = await sdk.callAction<Account>({
+				actionName: "account/password", payload
+			});
 
 			if (!response.isError) {
 				sdk.trigger(new Event({
@@ -172,7 +187,9 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return response;
 		},
 		requestResetPassword: async (payload: RequestAccountPasswordResetPayload) => {
-			const response = await sdk.callAction<void>("account/requestReset", payload);
+			const response = await sdk.callAction<void>({
+				actionName: "account/requestReset", payload
+			});
 
 			if (!response.isError) {
 				sdk.trigger(new Event({
@@ -183,7 +200,7 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return response;
 		},
 		resetPassword: async (payload: ResetAccountPasswordPayload) => {
-			const response = await sdk.callAction<Account>("account/reset", payload);
+			const response = await sdk.callAction<Account>({ actionName: "account/reset", payload });
 
 			if (!response.isError) {
 				sdk.trigger(new Event({
@@ -194,7 +211,10 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return response;
 		},
 		updateAccount: async (payload: UpdateAccountPayload) => {
-			const response = await sdk.callAction<Account>("account/update", payload);
+			const response = await sdk.callAction<Account>({
+				actionName: "account/update",
+				payload
+			});
 
 			if (!response.isError) {
 				sdk.trigger(new Event({
@@ -207,7 +227,10 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return response;
 		},
 		addAddress: async (payload: AddAccountAddressPayload) => {
-			const response = await sdk.callAction<Account>("account/addAddress", payload);
+			const response = await sdk.callAction<Account>({
+				actionName: "account/addAddress",
+				payload
+			});
 
 			if (!response.isError) {
 				const newAddress = response.data.addresses?.find(address =>
@@ -224,7 +247,10 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return response;
 		},
 		updateAddress: async (payload: UpdateAccountAddressPayload) => {
-			const response = await sdk.callAction<Account>("account/updateAddress", payload);
+			const response = await sdk.callAction<Account>({
+				actionName: "account/updateAddress",
+				payload
+			});
 
 			if (!response.isError) {
 				const newAddress = response.data.addresses?.find(address =>
@@ -241,7 +267,10 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return response;
 		},
 		removeAddress: async (payload: RemoveAccountAddressPayload) => {
-			const response = await sdk.callAction<Account>("account/removeAddress", payload);
+			const response = await sdk.callAction<Account>({
+				actionName: "account/removeAddress",
+				payload
+			});
 
 			if (!response.isError) {
 				if (!response.data.addresses?.find(address => address.addressId === payload.addressId)) {
@@ -256,7 +285,10 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return response;
 		},
 		setDefaultBillingAddress: async (payload: SetDefaultAccountBillingAddressPayload) => {
-			const response = await sdk.callAction<Account>("account/setDefaultBillingAddress", payload);
+			const response = await sdk.callAction<Account>({
+				actionName: "account/setDefaultBillingAddress",
+				payload
+			});
 
 			if (!response.isError) {
 				const address = response.data.addresses?.find(address => address.addressId === payload.addressId)
@@ -272,7 +304,10 @@ export const getAccountActions = (sdk: SDK): AccountActions => {
 			return response;
 		},
 		setDefaultShippingAddress: async (payload: SetDefaultAccountShippingAddressPayload) => {
-			const response = await sdk.callAction<Account>("account/setDefaultShippingAddress", payload);
+			const response = await sdk.callAction<Account>({
+				actionName: "account/setDefaultShippingAddress",
+				payload
+			});
 
 			if (!response.isError) {
 				const address = response.data.addresses?.find(address => address.addressId === payload.addressId)

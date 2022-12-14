@@ -1,4 +1,5 @@
-import { SDK, Event } from "@commercetools/frontend-sdk";
+import { Event } from "@commercetools/frontend-sdk";
+import { SDK } from "@commercetools/frontend-sdk/lib/library/SDK";
 import {
 	GetProductPayload,
 	ProductQueryPayload,
@@ -25,7 +26,10 @@ export type ProductActions = {
 export const getProductActions = (sdk: SDK): ProductActions => {
 	return {
 		getProduct: async (payload: GetProductPayload) => {
-			const response = await sdk.callAction<Product>("product/getProduct", undefined, payload.query);
+			const response = await sdk.callAction<Product>({
+				actionName: "product/getProduct",
+				query: payload.query
+			});
 
 			if (!response.isError && response.data) {
 				sdk.trigger(new Event({
@@ -38,7 +42,9 @@ export const getProductActions = (sdk: SDK): ProductActions => {
 			return response;
 		},
 		query: async (payload: ProductQueryPayload) => {
-			const response = await sdk.callAction<Result>("product/query", payload);
+			const response = await sdk.callAction<Result>({
+				actionName: "product/query", payload
+			});
 
 			if (!response.isError) {
 				sdk.trigger(new Event({
@@ -52,7 +58,9 @@ export const getProductActions = (sdk: SDK): ProductActions => {
 			return response;
 		},
 		queryCategories: async (payload: QueryProductCategoriesPayload) => {
-			const response = await sdk.callAction<Result>("product/queryCategories", undefined, payload.query);
+			const response = await sdk.callAction<Result>({
+				actionName: "product/queryCategories", query: payload.query
+			});
 
 			if (!response.isError) {
 				sdk.trigger(new Event({
@@ -66,7 +74,9 @@ export const getProductActions = (sdk: SDK): ProductActions => {
 			return response;
 		},
 		getSearchableAttributes: async () => {
-			const response = await sdk.callAction<FilterField[]>("product/searchableAttributes");
+			const response = await sdk.callAction<FilterField[]>({
+				actionName: "product/searchableAttributes"
+			});
 
 			if (!response.isError) {
 				sdk.trigger(new Event({
