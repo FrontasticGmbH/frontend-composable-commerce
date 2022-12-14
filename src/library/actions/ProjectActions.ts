@@ -1,6 +1,5 @@
 import { ProjectSettings } from "@commercetools/frontend-domain-types/ProjectSettings";
-import { Event } from "@commercetools/frontend-sdk";
-import { SDK } from "@commercetools/frontend-sdk/lib/library/SDK";
+import { Event, SDK } from "@commercetools/frontend-sdk";
 import { GetProjectSettingsAction } from "../../types/actions/ProjectActions";
 
 export type ProjectActions = {
