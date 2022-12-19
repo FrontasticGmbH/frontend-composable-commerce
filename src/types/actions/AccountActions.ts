@@ -16,10 +16,12 @@ import {
 	SetDefaultAccountShippingAddressPayload,
 } from "../payloads/AccountPayloads";
 
-type GetAccountAction = () => ReturnType<typeof sdk.callAction<{
+type GetAccountActionReturn = {
 	loggedIn: boolean;
 	account?: Account;
-}>>;
+}
+
+type GetAccountAction = () => ReturnType<typeof sdk.callAction<GetAccountActionReturn>>;
 
 type LoginAccountAction = (
 	payload: LoginAccountPayload
@@ -76,6 +78,7 @@ type SetDefaultAccountShippingAddressAction = (
 ) => ReturnType<typeof sdk.callAction<Account>>;
 
 export {
+	GetAccountActionReturn,
 	GetAccountAction,
 	LoginAccountAction,
 	LogoutAccountAction,

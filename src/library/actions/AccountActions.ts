@@ -19,6 +19,7 @@ import {
 	ChangeAccountPasswordAction,
 	ConfirmAccountAction,
 	GetAccountAction,
+	GetAccountActionReturn,
 	LoginAccountAction,
 	LogoutAccountAction,
 	RegisterAccountAction,
@@ -74,10 +75,7 @@ const addressesAreEqual = function (firstAddress: Address, secondAddress: Addres
 export const getAccountActions = (sdk: SDK): AccountActions => {
 	return {
 		getAccount: async () => {
-			const response = await sdk.callAction<{
-				loggedIn: boolean,
-				account?: Account
-			}>({
+			const response = await sdk.callAction<GetAccountActionReturn>({
 				actionName: "account/getAccount"
 			});
 
