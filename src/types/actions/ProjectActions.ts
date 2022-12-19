@@ -1,6 +1,6 @@
 import { ProjectSettings } from "@commercetools/frontend-domain-types/ProjectSettings";
-import { sdk } from "@commercetools/frontend-sdk";
+import { SDKResponse } from "@commercetools/frontend-sdk/lib/library/types";
 
-type GetProjectSettingsAction = () => ReturnType<typeof sdk.callAction<ProjectSettings>>;
+type GetProjectSettingsAction = () => Promise<SDKResponse<ProjectSettings>>;
 
 export { GetProjectSettingsAction };
