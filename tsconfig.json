@@ -6,8 +6,8 @@
         "allowSyntheticDefaultImports": true,
         "types": [],
         "declaration": true,
-        "moduleResolution": "node",
-        "baseUrl": "."
+        "outDir": "lib",
+        "moduleResolution": "node"
     },
     "exclude": [
         "node_modules",

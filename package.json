@@ -4,24 +4,21 @@
     "license": "UNLICENSED",
     "main": "lib/index.js",
     "scripts": {
-        "dev": "concurrently -n ESBUILD,TSC -c magenta,cyan \"yarn dev:esbuild\" \"yarn dev:types --watch\"",
-        "dev:local": "concurrently -n ESBUILD,TSC -c magenta,cyan \"yarn dev:esbuild --tsconfig=tsconfig.dev.json\" \"yarn dev:types -p tsconfig.dev.json --watch\"",
-        "build": "esbuild --outdir=lib --bundle --format=cjs src/index.ts && yarn build:types",
-        "release": "esbuild --outdir=lib --bundle --format=cjs --minify src/index.ts && yarn release:types",
-        "prepublishOnly": "yarn install && rm -rf lib && yarn release",
-        "dev:esbuild": "esbuild --outdir=lib --bundle --format=cjs --watch src/index.ts",
-        "dev:types": "tsc --emitDeclarationOnly --outDir lib",
-        "build:types": "tsc --emitDeclarationOnly --outDir lib",
-        "release:types": "tsc --emitDeclarationOnly --outDir lib"
+        "dev": "webpack --watch --config ./config/webpack/webpack.dev.js",
+        "build": "webpack --config ./config/webpack/webpack.prod.js",
+        "release": "webpack --config ./config/webpack/webpack.prod.js",
+        "prepublishOnly": "yarn install && rm -rf lib && yarn release"
     },
     "dependencies": {},
     "devDependencies": {
         "@commercetools/frontend-domain-types": "^1.0.4-alpha.0",
         "@commercetools/frontend-sdk": "^4.0.1-alpha.0",
         "@types/core-js": "2.5.5",
-        "concurrently": "^7.4.0",
-        "esbuild": "0.15.8",
-        "typescript": "^4.9.3"
+        "ts-loader": "^9.2.6",
+        "typescript": "^4.9.3",
+        "webpack": "^5.75.0",
+        "webpack-cli": "^5.0.1",
+        "webpack-merge": "^5.8.0"
     },
     "peerDependencies": {
         "@commercetools/frontend-domain-types": "^1.0.4-alpha.0",
