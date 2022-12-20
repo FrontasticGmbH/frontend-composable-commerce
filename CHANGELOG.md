@@ -1,4 +1,12 @@
 
+## Version 3.0.3-alpha.0 (2022-12-19)
+
+
+
+* Direct specification of action return types
+
+* Changed esbuild and tsc build to webpack
+
 ## Version 3.0.2-alpha.0 (2022-12-19)
 
 
