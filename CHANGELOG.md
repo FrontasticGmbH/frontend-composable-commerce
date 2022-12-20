@@ -1,4 +1,12 @@
 
+## Version 3.0.4-alpha.0 (2022-12-20)
+
+
+* Updated @commercetools/frontend-sdk version dependency
+
+
+* Replaced webpack build with esbuild and tsc
+
 ## Version 3.0.3-alpha.0 (2022-12-19)
 
 
