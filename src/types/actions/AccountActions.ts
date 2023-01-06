@@ -1,5 +1,5 @@
 import { Account } from "@commercetools/frontend-domain-types/account/Account";
-import { SDKResponse } from "@commercetools/frontend-sdk/lib/library/types";
+import { SDKResponse } from "@commercetools/frontend-sdk";
 import {
 	LoginAccountPayload,
 	RegisterAccountPayload,
