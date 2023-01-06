@@ -4,9 +4,10 @@ import { getProductActions, ProductActions } from "./actions/ProductActions";
 import { getCartActions, CartActions } from "./actions/CartActions";
 import { getWishlistActions, WishlistActions } from "./actions/WishlistActions";
 import { AccountActions, getAccountActions } from "./actions/AccountActions";
+import { ComposableCommerceEvents } from "../types/types";
 
-class ComposableCommerce extends Extension {
-	constructor(sdk: SDK) {
+class ComposableCommerce extends Extension<ComposableCommerceEvents> {
+	constructor(sdk: SDK<ComposableCommerceEvents>) {
 		super(sdk);
 
 		this.project = getProjectActions(sdk)
