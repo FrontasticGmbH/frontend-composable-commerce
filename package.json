@@ -8,7 +8,7 @@
         "dev:local": "concurrently -n ESBUILD,TSC -c magenta,cyan \"yarn dev:esbuild --tsconfig=tsconfig.dev.json\" \"yarn dev:types -p tsconfig.dev.json --watch\"",
         "build": "esbuild --outdir=lib --bundle --format=cjs src/index.ts && yarn build:types",
         "release": "esbuild --outdir=lib --bundle --format=cjs --minify src/index.ts && yarn release:types",
-        "prepublishOnly": "yarn install && rm -rf lib && yarn release",
+        "prepublishOnly": "rm -rf lib && yarn release",
         "dev:esbuild": "esbuild --outdir=lib --bundle --format=cjs --watch src/index.ts",
         "dev:types": "tsc --emitDeclarationOnly --outDir lib",
         "build:types": "tsc --emitDeclarationOnly --outDir lib",
