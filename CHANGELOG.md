@@ -1,4 +1,11 @@
 
+## Version 5.0.2-alpha.0 (2023-01-06)
+
+
+
+
+* Removed yarn install from prepublishOnly
+
 ## Version 5.0.1-alpha.0 (2023-01-06)
 
 
