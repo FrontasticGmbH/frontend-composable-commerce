@@ -1,4 +1,16 @@
 
+## Version 5.0.0-alpha.0 (2023-01-06)
+
+
+* Updated to the latest major version of @commercetools/frontend-sdk
+
+
+
+
+* Added type for ComposableCommerceEvents
+
+* Added tsconfig.dev.json to .npmignore
+
 ## Version 3.0.6-alpha.0 (2023-01-04)
 
 
