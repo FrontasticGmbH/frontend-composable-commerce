@@ -13,6 +13,7 @@ import {
 import { Product } from "@commercetools/frontend-domain-types/product/Product";
 import { Result } from "@commercetools/frontend-domain-types/product/Result";
 import { FilterField } from "@commercetools/frontend-domain-types/product/FilterField";
+import { ComposableCommerceEvents } from "../../types/types";
 
 
 export type ProductActions = {
@@ -22,7 +23,7 @@ export type ProductActions = {
 	getSearchableAttributes: GetSearchableProductAttributesAction
 }
 
-export const getProductActions = (sdk: SDK): ProductActions => {
+export const getProductActions = (sdk: SDK<ComposableCommerceEvents>): ProductActions => {
 	return {
 		getProduct: async (payload: GetProductPayload) => {
 			const response = await sdk.callAction<Product>({
