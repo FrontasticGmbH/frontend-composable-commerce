@@ -11,6 +11,7 @@ import {
 	UpdateWishlistItemAction
 } from "../../types/actions/WishlistActions";
 import { Wishlist } from "@commercetools/frontend-domain-types/wishlist/Wishlist";
+import { ComposableCommerceEvents } from "../../types/types";
 
 
 export type WishlistActions = {
@@ -20,7 +21,7 @@ export type WishlistActions = {
 	updateItem: UpdateWishlistItemAction
 }
 
-export const getWishlistActions = (sdk: SDK): WishlistActions => {
+export const getWishlistActions = (sdk: SDK<ComposableCommerceEvents>): WishlistActions => {
 	return {
 		getWishlist: async () => {
 			const response = await sdk.callAction<Wishlist>({

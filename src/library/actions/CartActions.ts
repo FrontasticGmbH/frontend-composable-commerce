@@ -26,6 +26,7 @@ import {
 import { Cart } from "@commercetools/frontend-domain-types/cart/Cart";
 import { ShippingMethod } from "@commercetools/frontend-domain-types/cart/ShippingMethod";
 import { Order } from "@commercetools/frontend-domain-types/cart/Order";
+import { ComposableCommerceEvents } from "../../types/types";
 
 
 export type CartActions = {
@@ -43,7 +44,7 @@ export type CartActions = {
 	getOrderHistory: GetOrderHistoryAction
 }
 
-export const getCartActions = (sdk: SDK): CartActions => {
+export const getCartActions = (sdk: SDK<ComposableCommerceEvents>): CartActions => {
 	return {
 		getCart: async () => {
 			const response = await sdk.callAction<Cart>({

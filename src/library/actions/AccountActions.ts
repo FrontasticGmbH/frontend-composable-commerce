@@ -34,6 +34,7 @@ import {
 } from "../../types/actions/AccountActions";
 import { Account } from "@commercetools/frontend-domain-types/account/Account";
 import { Address } from "@commercetools/frontend-domain-types/account/Address";
+import { ComposableCommerceEvents } from "../../types/types";
 
 
 export type AccountActions = {
@@ -72,7 +73,7 @@ const addressesAreEqual = function (firstAddress: Address, secondAddress: Addres
 		&& firstAddress.phone === secondAddress.phone;
 }
 
-export const getAccountActions = (sdk: SDK): AccountActions => {
+export const getAccountActions = (sdk: SDK<ComposableCommerceEvents>): AccountActions => {
 	return {
 		getAccount: async () => {
 			const response = await sdk.callAction<GetAccountActionReturn>({

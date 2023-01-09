@@ -6,7 +6,7 @@ import {
 import { FilterField } from "@commercetools/frontend-domain-types/product/FilterField";
 import { Product } from "@commercetools/frontend-domain-types/product/Product";
 import { Result } from "@commercetools/frontend-domain-types/product/Result";
-import { SDKResponse } from "@commercetools/frontend-sdk/lib/library/types";
+import { SDKResponse } from "@commercetools/frontend-sdk";
 
 type GetProductAction = (payload: GetProductPayload) => Promise<SDKResponse<Product>>;
 

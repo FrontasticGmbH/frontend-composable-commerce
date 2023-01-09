@@ -1,5 +1,5 @@
 import { Wishlist } from "@commercetools/frontend-domain-types/wishlist/Wishlist";
-import { SDKResponse } from "@commercetools/frontend-sdk/lib/library/types";
+import { SDKResponse } from "@commercetools/frontend-sdk";
 import {
 	AddToWishlistPayload,
 	RemoveFromWishlistPayload,
