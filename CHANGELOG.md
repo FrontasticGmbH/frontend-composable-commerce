@@ -1,75 +1,45 @@
 
 ## Version 5.0.4-alpha.0 (2023-01-06)
 
-
-
-* Updated Version
+* Updated version
 
 ## Version 5.0.3-alpha.0 (2023-01-06)
 
-
-* Updated Version
+* Updated version
 
 ## Version 5.0.2-alpha.0 (2023-01-06)
-
-
-
 
 * Removed yarn install from prepublishOnly
 
 ## Version 5.0.1-alpha.0 (2023-01-06)
 
-
-
-* Updated vresion
+* Updated version
 
 ## Version 5.0.0-alpha.0 (2023-01-06)
-
-## Version 5.0.0-alpha.0 (2023-01-06)
-
 
 * Updated to the latest major version of @commercetools/frontend-sdk
-
-
-
-
 * Added type for ComposableCommerceEvents
-
 * Added tsconfig.dev.json to .npmignore
 
 ## Version 3.0.6-alpha.0 (2023-01-04)
-
-
-
 
 * Fixed typo in .npmignore
 
 ## Version 3.0.5-alpha.0 (2023-01-04)
 
-
-
-
 * Added .npmignore to optimise package size
 
 ## Version 3.0.4-alpha.0 (2022-12-20)
 
-
 * Updated @commercetools/frontend-sdk version dependency
-
-
 * Replaced webpack build with esbuild and tsc
 
 ## Version 3.0.3-alpha.0 (2022-12-19)
 
-
-
 * Direct specification of action return types
-
 * Changed esbuild and tsc build to webpack
 
 ## Version 3.0.2-alpha.0 (2022-12-19)
-
-
 
 * (fix): created type for GetAccountAction return
 
