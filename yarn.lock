@@ -2,17 +2,17 @@
 # yarn lockfile v1
 
 
-"@commercetools/frontend-domain-types@^1.0.4-alpha.0":
-  version "1.0.4-alpha.0"
-  resolved "https://registry.yarnpkg.com/@commercetools/frontend-domain-types/-/frontend-domain-types-1.0.4-alpha.0.tgz#eda29819c407b1b229ab54253d4f19c0d4dcad19"
-  integrity sha512-1iBJe4bwjjgUsnETdDsj2csFTuf9wuptP3Y9I/DyeBFdX7G5tBZjGlsKK5j+d9G7Ivt1o3DLd1GVWQWpIinm3g==
+"@commercetools/frontend-domain-types@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/frontend-domain-types/-/frontend-domain-types-1.0.0.tgz#05a6bb0ba5cd7a7888f1e774737b15febf052764"
+  integrity sha512-1UuQJOTxj8UNgkmCNHdq/NolQuBcpzalK/JoJoEoBvwxVaL+S7swa4HKbhqFs24eNit3mMpCtML6GwSpbr2ERw==
   dependencies:
     typescript "4.8.3"
 
-"@commercetools/frontend-sdk@^5.0.0-alpha.0":
-  version "5.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@commercetools/frontend-sdk/-/frontend-sdk-5.0.0-alpha.0.tgz#64bb0dbbd954ce16d06ecf9ab412cfb1f8613219"
-  integrity sha512-X0zPB1ia/uYGMuWLb9KyssPxGaw8ekpD7RqPnYNZ2VryglzHS8rPqtkSrVcz8CCTc05s/ZmTxwuerVN4H3MRog==
+"@commercetools/frontend-sdk@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/frontend-sdk/-/frontend-sdk-1.0.0.tgz#85caa762146588828c1eac725b0cf54d18a2de6b"
+  integrity sha512-l0XWtZ2T8I65bqXCCYhKE4rWatd9JVtaBYmTNjF3/Rgm6DPKd4hPP/DImEmGt8rKFScYtLPKXSnJTKFrzgchtg==
   dependencies:
     js-cookie "3.0.1"
 
