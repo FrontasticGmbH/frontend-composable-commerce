@@ -1,60 +1,60 @@
 import { Address } from "@commercetools/frontend-domain-types/account/Address";
 
 type AddCartItemPayload = {
-	variant: {
-		sku: string;
-		count: number;
-	};
+    variant: {
+        sku: string;
+        count: number;
+    };
 };
 
 type RemoveCartItemPayload = {
-	lineItem: {
-		id: string;
-	};
+    lineItem: {
+        id: string;
+    };
 };
 
 type UpdateCartItemPayload = {
-	lineItem: {
-		id: string;
-		count: number;
-	};
+    lineItem: {
+        id: string;
+        count: number;
+    };
 };
 
 type UpdateCartPayload = {
-	account?: {
-		email: string;
-	};
-	shipping?: Address;
-	billing?: Address;
+    account?: {
+        email: string;
+    };
+    shipping?: Address;
+    billing?: Address;
 };
 
 type GetCartShippingMethodsPayload = {
-	query: {
-		onlyMatching: boolean;
-	};
+    query: {
+        onlyMatching: boolean;
+    };
 };
 
 type SetCartShippingMethodPayload = {
-	shippingMethod: {
-		id: string;
-	};
+    shippingMethod: {
+        id: string;
+    };
 };
 
 type RedeemDiscountCodePayload = {
-	code: string;
+    code: string;
 };
 
 type RemoveDiscountCodePayload = {
-	discountId: string;
+    discountId: string;
 };
 
 export {
-	AddCartItemPayload,
-	RemoveCartItemPayload,
-	UpdateCartItemPayload,
-	UpdateCartPayload,
-	GetCartShippingMethodsPayload,
-	SetCartShippingMethodPayload,
-	RedeemDiscountCodePayload,
-	RemoveDiscountCodePayload,
+    AddCartItemPayload,
+    RemoveCartItemPayload,
+    UpdateCartItemPayload,
+    UpdateCartPayload,
+    GetCartShippingMethodsPayload,
+    SetCartShippingMethodPayload,
+    RedeemDiscountCodePayload,
+    RemoveDiscountCodePayload,
 };
