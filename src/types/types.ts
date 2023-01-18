@@ -1,3 +1,1 @@
-export type ComposableCommerceEvents = {
-
-}
+export type ComposableCommerceEvents = {};

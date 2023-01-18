@@ -19,12 +19,12 @@ import {
 type GetAccountActionReturn = {
 	loggedIn: boolean;
 	account?: Account;
-}
+};
 
 type GetAccountAction = () => Promise<SDKResponse<GetAccountActionReturn>>;
 
 type LoginAccountAction = (
-	payload: LoginAccountPayload
+	payload: LoginAccountPayload,
 ) => Promise<SDKResponse<Account>>;
 
 type LogoutAccountAction = () => Promise<SDKResponse<void>>;
@@ -54,7 +54,7 @@ type ResetAccountPasswordAction = (
 ) => Promise<SDKResponse<Account>>;
 
 type UpdateAccountAction = (
-	payload: UpdateAccountPayload
+	payload: UpdateAccountPayload,
 ) => Promise<SDKResponse<Account>>;
 
 type AddAccountAddressAction = (
@@ -93,5 +93,5 @@ export {
 	UpdateAccountAddressAction,
 	RemoveAccountAddressAction,
 	SetDefaultAccountBillingAddressAction,
-	SetDefaultAccountShippingAddressAction
+	SetDefaultAccountShippingAddressAction,
 };

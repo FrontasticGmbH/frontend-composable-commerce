@@ -10,22 +10,34 @@ import {
 	GetCartShippingMethodsPayload,
 	SetCartShippingMethodPayload,
 	RedeemDiscountCodePayload,
-	RemoveDiscountCodePayload
+	RemoveDiscountCodePayload,
 } from "../payloads/CartPayloads";
 
 type GetCartAction = () => Promise<SDKResponse<Cart>>;
 
-type AddCartItemAction = (payload: AddCartItemPayload) => Promise<SDKResponse<Cart>>;
+type AddCartItemAction = (
+	payload: AddCartItemPayload,
+) => Promise<SDKResponse<Cart>>;
 
-type RemoveCartItemAction = (payload: RemoveCartItemPayload) => Promise<SDKResponse<Cart>>;
+type RemoveCartItemAction = (
+	payload: RemoveCartItemPayload,
+) => Promise<SDKResponse<Cart>>;
 
-type UpdateCartItemAction = (payload: UpdateCartItemPayload) => Promise<SDKResponse<Cart>>;
+type UpdateCartItemAction = (
+	payload: UpdateCartItemPayload,
+) => Promise<SDKResponse<Cart>>;
 
-type UpdateCartAction = (payload: UpdateCartPayload) => Promise<SDKResponse<Cart>>;
+type UpdateCartAction = (
+	payload: UpdateCartPayload,
+) => Promise<SDKResponse<Cart>>;
 
-type GetCartShippingMethodsAction = (payload: GetCartShippingMethodsPayload) => Promise<SDKResponse<ShippingMethod[]>>;
+type GetCartShippingMethodsAction = (
+	payload: GetCartShippingMethodsPayload,
+) => Promise<SDKResponse<ShippingMethod[]>>;
 
-type GetAvailableCartShippingMethodsAction = () => Promise<SDKResponse<ShippingMethod[]>>;
+type GetAvailableCartShippingMethodsAction = () => Promise<
+	SDKResponse<ShippingMethod[]>
+>;
 
 type SetCartShippingMethodAction = (
 	payload: SetCartShippingMethodPayload,
@@ -55,5 +67,5 @@ export {
 	RedeemDiscountCodeAction,
 	RemoveDiscountCodeAction,
 	CheckoutCartAction,
-	GetOrderHistoryAction
+	GetOrderHistoryAction,
 };

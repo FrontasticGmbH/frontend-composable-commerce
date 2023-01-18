@@ -2,93 +2,113 @@ import { Event, SDK } from "@commercetools/frontend-sdk";
 import {
 	AddToWishlistPayload,
 	RemoveFromWishlistPayload,
-	UpdateWishlistItemPayload
+	UpdateWishlistItemPayload,
 } from "../../types/payloads/WishlistPayloads";
 import {
 	AddToWishlistAction,
 	GetWishlistAction,
 	RemoveFromWishlistAction,
-	UpdateWishlistItemAction
+	UpdateWishlistItemAction,
 } from "../../types/actions/WishlistActions";
 import { Wishlist } from "@commercetools/frontend-domain-types/wishlist/Wishlist";
 import { ComposableCommerceEvents } from "../../types/types";
 
-
 export type WishlistActions = {
-	getWishlist: GetWishlistAction,
-	addItem: AddToWishlistAction,
-	removeItem: RemoveFromWishlistAction,
-	updateItem: UpdateWishlistItemAction
-}
+	getWishlist: GetWishlistAction;
+	addItem: AddToWishlistAction;
+	removeItem: RemoveFromWishlistAction;
+	updateItem: UpdateWishlistItemAction;
+};
 
-export const getWishlistActions = (sdk: SDK<ComposableCommerceEvents>): WishlistActions => {
+export const getWishlistActions = (
+	sdk: SDK<ComposableCommerceEvents>,
+): WishlistActions => {
 	return {
 		getWishlist: async () => {
 			const response = await sdk.callAction<Wishlist>({
-				actionName: "wishlist/getWishlist"
+				actionName: "wishlist/getWishlist",
 			});
 
 			if (!response.isError) {
-				sdk.trigger(new Event({
-					eventName: "wishlistFetched",
-					data: {
-						wishlist: response.data
-					}
-				}));
+				sdk.trigger(
+					new Event({
+						eventName: "wishlistFetched",
+						data: {
+							wishlist: response.data,
+						},
+					}),
+				);
 			}
 			return response;
 		},
 		addItem: async (payload: AddToWishlistPayload) => {
 			const response = await sdk.callAction<Wishlist>({
 				actionName: "wishlist/addToWishlist",
-				payload
+				payload,
 			});
 
 			if (!response.isError) {
-				const lineItem = response.data.lineItems?.find(lineItem => lineItem.variant?.sku === payload.variant.sku);
+				const lineItem = response.data.lineItems?.find(
+					(lineItem) => lineItem.variant?.sku === payload.variant.sku,
+				);
 				if (lineItem) {
-					sdk.trigger(new Event({
-						eventName: "lineItemAddedToWishlist",
-						data: {
-							lineItem
-						}
-					}));
+					sdk.trigger(
+						new Event({
+							eventName: "lineItemAddedToWishlist",
+							data: {
+								lineItem,
+							},
+						}),
+					);
 				}
 			}
 			return response;
 		},
 		removeItem: async (payload: RemoveFromWishlistPayload) => {
 			const response = await sdk.callAction<Wishlist>({
-				actionName: "wishlist/removeLineItem", payload
+				actionName: "wishlist/removeLineItem",
+				payload,
 			});
 
-			if (!response.isError && !response.data.lineItems?.find(item => item.lineItemId === payload.lineItem.id)) {
-				sdk.trigger(new Event({
-					eventName: "lineItemRemovedFromWishlist",
-					data: {
-						lineItemId: payload.lineItem.id
-					}
-				}));
+			if (
+				!response.isError &&
+				!response.data.lineItems?.find(
+					(item) => item.lineItemId === payload.lineItem.id,
+				)
+			) {
+				sdk.trigger(
+					new Event({
+						eventName: "lineItemRemovedFromWishlist",
+						data: {
+							lineItemId: payload.lineItem.id,
+						},
+					}),
+				);
 			}
 			return response;
 		},
 		updateItem: async (payload: UpdateWishlistItemPayload) => {
 			const response = await sdk.callAction<Wishlist>({
-				actionName: "wishlist/updateLineItemCount", payload
+				actionName: "wishlist/updateLineItemCount",
+				payload,
 			});
 
 			if (!response.isError) {
-				const lineItem = response.data.lineItems?.find(item => item.lineItemId === payload.lineItem.id);
+				const lineItem = response.data.lineItems?.find(
+					(item) => item.lineItemId === payload.lineItem.id,
+				);
 				if (lineItem?.count === payload.count) {
-					sdk.trigger(new Event({
-						eventName: "wishlistLineItemUpdated",
-						data: {
-							lineItem: lineItem
-						}
-					}));
+					sdk.trigger(
+						new Event({
+							eventName: "wishlistLineItemUpdated",
+							data: {
+								lineItem: lineItem,
+							},
+						}),
+					);
 				}
 			}
 			return response;
-		}
-	}
-}
+		},
+	};
+};

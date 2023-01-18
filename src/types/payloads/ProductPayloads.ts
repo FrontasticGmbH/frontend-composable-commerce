@@ -22,5 +22,5 @@ type QueryProductCategoriesPayload = {
 export {
 	GetProductPayload,
 	ProductQueryPayload,
-	QueryProductCategoriesPayload
+	QueryProductCategoriesPayload,
 };

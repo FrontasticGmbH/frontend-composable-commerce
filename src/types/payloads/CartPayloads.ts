@@ -30,9 +30,9 @@ type UpdateCartPayload = {
 
 type GetCartShippingMethodsPayload = {
 	query: {
-		onlyMatching: boolean
-	}
-}
+		onlyMatching: boolean;
+	};
+};
 
 type SetCartShippingMethodPayload = {
 	shippingMethod: {
@@ -56,5 +56,5 @@ export {
 	GetCartShippingMethodsPayload,
 	SetCartShippingMethodPayload,
 	RedeemDiscountCodePayload,
-	RemoveDiscountCodePayload
+	RemoveDiscountCodePayload,
 };

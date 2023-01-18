@@ -21,5 +21,5 @@ type UpdateWishlistItemPayload = {
 export {
 	AddToWishlistPayload,
 	RemoveFromWishlistPayload,
-	UpdateWishlistItemPayload
+	UpdateWishlistItemPayload,
 };

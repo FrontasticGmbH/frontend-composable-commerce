@@ -10,20 +10,20 @@ class ComposableCommerce extends Extension<ComposableCommerceEvents> {
 	constructor(sdk: SDK<ComposableCommerceEvents>) {
 		super(sdk);
 
-		this.project = getProjectActions(sdk)
+		this.project = getProjectActions(sdk);
 		this.product = getProductActions(sdk);
 		this.cart = getCartActions(sdk);
 		this.wishlist = getWishlistActions(sdk);
 		this.account = getAccountActions(sdk);
 	}
 
-	unregisterExtension(): void { }
+	unregisterExtension(): void {}
 
 	project: ProjectActions;
 	product: ProductActions;
 	cart: CartActions;
 	wishlist: WishlistActions;
-	account: AccountActions
+	account: AccountActions;
 }
 
 export { ComposableCommerce };
