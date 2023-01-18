@@ -4,29 +4,29 @@ import { GetProjectSettingsAction } from "../../types/actions/ProjectActions";
 import { ComposableCommerceEvents } from "../../types/types";
 
 export type ProjectActions = {
-    getSettings: GetProjectSettingsAction;
+	getSettings: GetProjectSettingsAction;
 };
 
 export const getProjectActions = (
-    sdk: SDK<ComposableCommerceEvents>,
+	sdk: SDK<ComposableCommerceEvents>,
 ): ProjectActions => {
-    return {
-        getSettings: async () => {
-            const response = await sdk.callAction<ProjectSettings>({
-                actionName: "project/getProjectSettings",
-            });
+	return {
+		getSettings: async () => {
+			const response = await sdk.callAction<ProjectSettings>({
+				actionName: "project/getProjectSettings",
+			});
 
-            if (!response.isError) {
-                sdk.trigger(
-                    new Event({
-                        eventName: "projectSettingsFetched",
-                        data: {
-                            projectSettings: response.data,
-                        },
-                    }),
-                );
-            }
-            return response;
-        },
-    };
+			if (!response.isError) {
+				sdk.trigger(
+					new Event({
+						eventName: "projectSettingsFetched",
+						data: {
+							projectSettings: response.data,
+						},
+					}),
+				);
+			}
+			return response;
+		},
+	};
 };

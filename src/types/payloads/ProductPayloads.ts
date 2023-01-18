@@ -1,26 +1,26 @@
 import { ProductQuery } from "@commercetools/frontend-domain-types/query/ProductQuery";
 
 type GetProductPayload = {
-    query: {
-        id: string;
-        sku: string;
-    };
+	query: {
+		id: string;
+		sku: string;
+	};
 };
 
 type ProductQueryPayload = {
-    query: ProductQuery;
+	query: ProductQuery;
 };
 
 type QueryProductCategoriesPayload = {
-    query: {
-        limit?: number;
-        cursor?: string;
-        slug?: string;
-    };
+	query: {
+		limit?: number;
+		cursor?: string;
+		slug?: string;
+	};
 };
 
 export {
-    GetProductPayload,
-    ProductQueryPayload,
-    QueryProductCategoriesPayload,
+	GetProductPayload,
+	ProductQueryPayload,
+	QueryProductCategoriesPayload,
 };

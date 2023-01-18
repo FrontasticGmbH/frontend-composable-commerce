@@ -1,28 +1,28 @@
 import { Wishlist } from "@commercetools/frontend-domain-types/wishlist/Wishlist";
 import { SDKResponse } from "@commercetools/frontend-sdk";
 import {
-    AddToWishlistPayload,
-    RemoveFromWishlistPayload,
-    UpdateWishlistItemPayload,
+	AddToWishlistPayload,
+	RemoveFromWishlistPayload,
+	UpdateWishlistItemPayload,
 } from "../payloads/WishlistPayloads";
 
 type GetWishlistAction = () => Promise<SDKResponse<Wishlist>>;
 
 type AddToWishlistAction = (
-    payload: AddToWishlistPayload,
+	payload: AddToWishlistPayload,
 ) => Promise<SDKResponse<Wishlist>>;
 
 type RemoveFromWishlistAction = (
-    payload: RemoveFromWishlistPayload,
+	payload: RemoveFromWishlistPayload,
 ) => Promise<SDKResponse<Wishlist>>;
 
 type UpdateWishlistItemAction = (
-    payload: UpdateWishlistItemPayload,
+	payload: UpdateWishlistItemPayload,
 ) => Promise<SDKResponse<Wishlist>>;
 
 export {
-    GetWishlistAction,
-    AddToWishlistAction,
-    RemoveFromWishlistAction,
-    UpdateWishlistItemAction,
+	GetWishlistAction,
+	AddToWishlistAction,
+	RemoveFromWishlistAction,
+	UpdateWishlistItemAction,
 };
