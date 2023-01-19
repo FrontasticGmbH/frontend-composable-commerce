@@ -44,7 +44,7 @@ export type CartActions = {
 };
 
 export const getCartActions = (
-	sdk: SDK<ComposableCommerceEvents>,
+	sdk: SDK<ComposableCommerceEvents>
 ): CartActions => {
 	return {
 		getCart: async () => {
@@ -59,7 +59,7 @@ export const getCartActions = (
 						data: {
 							cart: response,
 						},
-					}),
+					})
 				);
 			}
 			return response;
@@ -78,7 +78,7 @@ export const getCartActions = (
 							product: payload.variant,
 							quantity: payload.variant.count,
 						},
-					}),
+					})
 				);
 			}
 			return response;
@@ -97,7 +97,7 @@ export const getCartActions = (
 							product: payload.lineItem,
 							quantity: 1,
 						},
-					}),
+					})
 				);
 			}
 			return response;
@@ -118,7 +118,7 @@ export const getCartActions = (
 							},
 							newQuantity: payload.lineItem.count,
 						},
-					}),
+					})
 				);
 			}
 			return response;
@@ -134,7 +134,7 @@ export const getCartActions = (
 					new Event({
 						eventName: "cartUpdated",
 						data: payload,
-					}),
+					})
 				);
 			}
 			return response;
@@ -152,7 +152,7 @@ export const getCartActions = (
 						data: {
 							shippingMethods: response.data,
 						},
-					}),
+					})
 				);
 			}
 			return response;
@@ -169,7 +169,7 @@ export const getCartActions = (
 						data: {
 							shippingMethods: response.data,
 						},
-					}),
+					})
 				);
 			}
 			return response;
@@ -189,10 +189,10 @@ export const getCartActions = (
 								response.data.availableShippingMethods?.find(
 									(shippingMethod) =>
 										shippingMethod.shippingMethodId ===
-										payload.shippingMethod.id,
+										payload.shippingMethod.id
 								),
 						},
-					}),
+					})
 				);
 			}
 			return response;
@@ -217,7 +217,7 @@ export const getCartActions = (
 									? response.data
 									: undefined,
 						},
-					}),
+					})
 				);
 			}
 			return response;
@@ -236,7 +236,7 @@ export const getCartActions = (
 							discountCode: payload.discountId,
 							cart: response.data,
 						},
-					}),
+					})
 				);
 			}
 			return response;
@@ -251,7 +251,7 @@ export const getCartActions = (
 					new Event({
 						eventName: "cartCheckedOut",
 						data: {},
-					}),
+					})
 				);
 			}
 			return response;
@@ -268,7 +268,7 @@ export const getCartActions = (
 						data: {
 							orders: response.data,
 						},
-					}),
+					})
 				);
 			}
 			return response;

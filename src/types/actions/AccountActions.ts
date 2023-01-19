@@ -24,57 +24,57 @@ type GetAccountActionReturn = {
 type GetAccountAction = () => Promise<SDKResponse<GetAccountActionReturn>>;
 
 type LoginAccountAction = (
-	payload: LoginAccountPayload,
+	payload: LoginAccountPayload
 ) => Promise<SDKResponse<Account>>;
 
 type LogoutAccountAction = () => Promise<SDKResponse<void>>;
 
 type RegisterAccountAction = (
-	payload: RegisterAccountPayload,
+	payload: RegisterAccountPayload
 ) => Promise<SDKResponse<Account>>;
 
 type ConfirmAccountAction = (
-	payload: ConfirmAccountPayload,
+	payload: ConfirmAccountPayload
 ) => Promise<SDKResponse<Account>>;
 
 type RequestAccountConfirmationEmailAction = (
-	payload: RequestAccountConfirmationEmailPayload,
+	payload: RequestAccountConfirmationEmailPayload
 ) => Promise<SDKResponse<void>>;
 
 type ChangeAccountPasswordAction = (
-	payload: ChangeAccountPasswordPayload,
+	payload: ChangeAccountPasswordPayload
 ) => Promise<SDKResponse<Account>>;
 
 type RequestAccountPasswordResetAction = (
-	payload: RequestAccountPasswordResetPayload,
+	payload: RequestAccountPasswordResetPayload
 ) => Promise<SDKResponse<void>>;
 
 type ResetAccountPasswordAction = (
-	payload: ResetAccountPasswordPayload,
+	payload: ResetAccountPasswordPayload
 ) => Promise<SDKResponse<Account>>;
 
 type UpdateAccountAction = (
-	payload: UpdateAccountPayload,
+	payload: UpdateAccountPayload
 ) => Promise<SDKResponse<Account>>;
 
 type AddAccountAddressAction = (
-	payload: AddAccountAddressPayload,
+	payload: AddAccountAddressPayload
 ) => Promise<SDKResponse<Account>>;
 
 type UpdateAccountAddressAction = (
-	payload: UpdateAccountAddressPayload,
+	payload: UpdateAccountAddressPayload
 ) => Promise<SDKResponse<Account>>;
 
 type RemoveAccountAddressAction = (
-	payload: RemoveAccountAddressPayload,
+	payload: RemoveAccountAddressPayload
 ) => Promise<SDKResponse<Account>>;
 
 type SetDefaultAccountBillingAddressAction = (
-	payload: SetDefaultAccountBillingAddressPayload,
+	payload: SetDefaultAccountBillingAddressPayload
 ) => Promise<SDKResponse<Account>>;
 
 type SetDefaultAccountShippingAddressAction = (
-	payload: SetDefaultAccountShippingAddressPayload,
+	payload: SetDefaultAccountShippingAddressPayload
 ) => Promise<SDKResponse<Account>>;
 
 export {

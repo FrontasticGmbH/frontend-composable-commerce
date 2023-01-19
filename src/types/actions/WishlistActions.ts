@@ -9,15 +9,15 @@ import {
 type GetWishlistAction = () => Promise<SDKResponse<Wishlist>>;
 
 type AddToWishlistAction = (
-	payload: AddToWishlistPayload,
+	payload: AddToWishlistPayload
 ) => Promise<SDKResponse<Wishlist>>;
 
 type RemoveFromWishlistAction = (
-	payload: RemoveFromWishlistPayload,
+	payload: RemoveFromWishlistPayload
 ) => Promise<SDKResponse<Wishlist>>;
 
 type UpdateWishlistItemAction = (
-	payload: UpdateWishlistItemPayload,
+	payload: UpdateWishlistItemPayload
 ) => Promise<SDKResponse<Wishlist>>;
 
 export {

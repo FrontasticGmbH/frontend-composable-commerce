@@ -8,7 +8,7 @@ export type ProjectActions = {
 };
 
 export const getProjectActions = (
-	sdk: SDK<ComposableCommerceEvents>,
+	sdk: SDK<ComposableCommerceEvents>
 ): ProjectActions => {
 	return {
 		getSettings: async () => {
@@ -23,7 +23,7 @@ export const getProjectActions = (
 						data: {
 							projectSettings: response.data,
 						},
-					}),
+					})
 				);
 			}
 			return response;

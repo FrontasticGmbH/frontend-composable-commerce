@@ -16,23 +16,23 @@ import {
 type GetCartAction = () => Promise<SDKResponse<Cart>>;
 
 type AddCartItemAction = (
-	payload: AddCartItemPayload,
+	payload: AddCartItemPayload
 ) => Promise<SDKResponse<Cart>>;
 
 type RemoveCartItemAction = (
-	payload: RemoveCartItemPayload,
+	payload: RemoveCartItemPayload
 ) => Promise<SDKResponse<Cart>>;
 
 type UpdateCartItemAction = (
-	payload: UpdateCartItemPayload,
+	payload: UpdateCartItemPayload
 ) => Promise<SDKResponse<Cart>>;
 
 type UpdateCartAction = (
-	payload: UpdateCartPayload,
+	payload: UpdateCartPayload
 ) => Promise<SDKResponse<Cart>>;
 
 type GetCartShippingMethodsAction = (
-	payload: GetCartShippingMethodsPayload,
+	payload: GetCartShippingMethodsPayload
 ) => Promise<SDKResponse<ShippingMethod[]>>;
 
 type GetAvailableCartShippingMethodsAction = () => Promise<
@@ -40,15 +40,15 @@ type GetAvailableCartShippingMethodsAction = () => Promise<
 >;
 
 type SetCartShippingMethodAction = (
-	payload: SetCartShippingMethodPayload,
+	payload: SetCartShippingMethodPayload
 ) => Promise<SDKResponse<Cart>>;
 
 type RedeemDiscountCodeAction = (
-	payload: RedeemDiscountCodePayload,
+	payload: RedeemDiscountCodePayload
 ) => Promise<SDKResponse<Cart | string>>;
 
 type RemoveDiscountCodeAction = (
-	payload: RemoveDiscountCodePayload,
+	payload: RemoveDiscountCodePayload
 ) => Promise<SDKResponse<Cart>>;
 
 type CheckoutCartAction = () => Promise<SDKResponse<Cart>>;

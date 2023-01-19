@@ -23,7 +23,7 @@ export type ProductActions = {
 };
 
 export const getProductActions = (
-	sdk: SDK<ComposableCommerceEvents>,
+	sdk: SDK<ComposableCommerceEvents>
 ): ProductActions => {
 	return {
 		getProduct: async (payload: GetProductPayload) => {
@@ -39,7 +39,7 @@ export const getProductActions = (
 						data: {
 							product: response.data,
 						},
-					}),
+					})
 				);
 			}
 			return response;
@@ -58,7 +58,7 @@ export const getProductActions = (
 							query: payload.query,
 							result: response.data,
 						},
-					}),
+					})
 				);
 			}
 			return response;
@@ -77,7 +77,7 @@ export const getProductActions = (
 							query: payload.query,
 							result: response.data,
 						},
-					}),
+					})
 				);
 			}
 			return response;
@@ -94,7 +94,7 @@ export const getProductActions = (
 						data: {
 							filterFields: response.data,
 						},
-					}),
+					})
 				);
 			}
 			return response;

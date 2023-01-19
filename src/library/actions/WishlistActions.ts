@@ -21,7 +21,7 @@ export type WishlistActions = {
 };
 
 export const getWishlistActions = (
-	sdk: SDK<ComposableCommerceEvents>,
+	sdk: SDK<ComposableCommerceEvents>
 ): WishlistActions => {
 	return {
 		getWishlist: async () => {
@@ -36,7 +36,7 @@ export const getWishlistActions = (
 						data: {
 							wishlist: response.data,
 						},
-					}),
+					})
 				);
 			}
 			return response;
@@ -49,7 +49,7 @@ export const getWishlistActions = (
 
 			if (!response.isError) {
 				const lineItem = response.data.lineItems?.find(
-					(lineItem) => lineItem.variant?.sku === payload.variant.sku,
+					(lineItem) => lineItem.variant?.sku === payload.variant.sku
 				);
 				if (lineItem) {
 					sdk.trigger(
@@ -58,7 +58,7 @@ export const getWishlistActions = (
 							data: {
 								lineItem,
 							},
-						}),
+						})
 					);
 				}
 			}
@@ -73,7 +73,7 @@ export const getWishlistActions = (
 			if (
 				!response.isError &&
 				!response.data.lineItems?.find(
-					(item) => item.lineItemId === payload.lineItem.id,
+					(item) => item.lineItemId === payload.lineItem.id
 				)
 			) {
 				sdk.trigger(
@@ -82,7 +82,7 @@ export const getWishlistActions = (
 						data: {
 							lineItemId: payload.lineItem.id,
 						},
-					}),
+					})
 				);
 			}
 			return response;
@@ -95,7 +95,7 @@ export const getWishlistActions = (
 
 			if (!response.isError) {
 				const lineItem = response.data.lineItems?.find(
-					(item) => item.lineItemId === payload.lineItem.id,
+					(item) => item.lineItemId === payload.lineItem.id
 				);
 				if (lineItem?.count === payload.count) {
 					sdk.trigger(
@@ -104,7 +104,7 @@ export const getWishlistActions = (
 							data: {
 								lineItem: lineItem,
 							},
-						}),
+						})
 					);
 				}
 			}

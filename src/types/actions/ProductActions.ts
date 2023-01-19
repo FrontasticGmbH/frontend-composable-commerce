@@ -9,15 +9,15 @@ import { Result } from "@commercetools/frontend-domain-types/product/Result";
 import { SDKResponse } from "@commercetools/frontend-sdk";
 
 type GetProductAction = (
-	payload: GetProductPayload,
+	payload: GetProductPayload
 ) => Promise<SDKResponse<Product>>;
 
 type ProductQueryAction = (
-	payload: ProductQueryPayload,
+	payload: ProductQueryPayload
 ) => Promise<SDKResponse<Result>>;
 
 type QueryProductCategoriesAction = (
-	payload: QueryProductCategoriesPayload,
+	payload: QueryProductCategoriesPayload
 ) => Promise<SDKResponse<Result>>;
 
 type GetSearchableProductAttributesAction = () => Promise<
