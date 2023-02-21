@@ -7,18 +7,16 @@ type LoginAccountPayload = {
 };
 
 type RegisterAccountPayload = {
-	account: {
-		email: string;
-		password: string;
-		firstName?: string;
-		lastName?: string;
-		salutation?: string;
-		birthdayYear?: number;
-		birthdayMonth?: number;
-		birthdayDay?: number;
-		billingAddress?: Address;
-		shippingAddress?: Address;
-	};
+	email: string;
+	password: string;
+	firstName?: string;
+	lastName?: string;
+	salutation?: string;
+	birthdayYear?: number;
+	birthdayMonth?: number;
+	birthdayDay?: number;
+	billingAddress?: Address;
+	shippingAddress?: Address;
 };
 
 type ConfirmAccountPayload = {
