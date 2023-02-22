@@ -1,4 +1,10 @@
 
+## Version 1.1.0 (2023-02-22)
+
+
+
+* feat: updated @commercetools/frontend-sdk to latest to support multitenancy projects
+
 ## Version 1.0.3 (2023-01-19)
 
 
