@@ -1,12 +1,9 @@
 
 ## Version 1.1.1 (2023-02-22)
 
-
-
 * fix: updated @commercetools/frontend-sdk for multitenant env varaible fix
 
 ## Version 1.1.0 (2023-02-22)
-
 
 * feat: updated @commercetools/frontend-sdk to latest to support multitenancy projects
 
@@ -14,7 +11,6 @@
 
 * Updated perttier config and ran fix
 * Removed trailingComma:all
-
 * Added editorconfig for github to render tabs properly
 
 ## Version 1.0.1 (2023-01-18)
