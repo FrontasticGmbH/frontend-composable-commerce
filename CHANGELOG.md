@@ -1,4 +1,10 @@
 
+## Version 1.1.2 (2023-02-24)
+
+
+
+* Updated @commercetools/frontend-sdk dependency
+
 ## Version 1.1.1 (2023-02-22)
 
 * fix: updated @commercetools/frontend-sdk for multitenant env varaible fix
