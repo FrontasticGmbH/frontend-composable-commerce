@@ -1,9 +1,9 @@
 import { Event, SDK } from "@commercetools/frontend-sdk";
 import {
-	GetProductPayload,
-	ProductQueryPayload,
-	QueryProductCategoriesPayload,
-} from "../../types/payloads/ProductPayloads";
+	GetProductQuery,
+	ProductQueryQuery,
+	QueryProductCategoriesQuery,
+} from "../../types/queries/ProductQueries";
 import {
 	GetProductAction,
 	GetSearchableProductAttributesAction,
@@ -26,7 +26,7 @@ export const getProductActions = (
 	sdk: SDK<ComposableCommerceEvents>
 ): ProductActions => {
 	return {
-		getProduct: async (payload: GetProductPayload) => {
+		getProduct: async (query: GetProductQuery) => {
 			const response = await sdk.callAction<Product>({
 				actionName: "product/getProduct",
 				query: payload.query,
@@ -44,10 +44,10 @@ export const getProductActions = (
 			}
 			return response;
 		},
-		query: async (payload: ProductQueryPayload) => {
+		query: async (query: ProductQueryQuery) => {
 			const response = await sdk.callAction<Result>({
 				actionName: "product/query",
-				payload,
+				query,
 			});
 
 			if (!response.isError) {
@@ -55,7 +55,7 @@ export const getProductActions = (
 					new Event({
 						eventName: "productsQueried",
 						data: {
-							query: payload.query,
+							query: query,
 							result: response.data,
 						},
 					})
@@ -63,10 +63,10 @@ export const getProductActions = (
 			}
 			return response;
 		},
-		queryCategories: async (payload: QueryProductCategoriesPayload) => {
+		queryCategories: async (query: QueryProductCategoriesQuery) => {
 			const response = await sdk.callAction<Result>({
 				actionName: "product/queryCategories",
-				query: payload.query,
+				query: query,
 			});
 
 			if (!response.isError) {
@@ -74,7 +74,7 @@ export const getProductActions = (
 					new Event({
 						eventName: "productCategoriesQueried",
 						data: {
-							query: payload.query,
+							query: query,
 							result: response.data,
 						},
 					})
