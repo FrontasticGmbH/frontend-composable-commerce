@@ -7,11 +7,7 @@
 		"allowSyntheticDefaultImports": true,
 		"types": [],
 		"declaration": true,
-		"outDir": "lib",
-		"paths": {
-			"@commercetools/frontend-sdk/*": ["../../core/lib/*"],
-			"@commercetools/frontend-sdk": ["../../core/lib"]
-		}
+		"outDir": "lib"
 	},
 	"exclude": ["node_modules", "lib"]
 }
