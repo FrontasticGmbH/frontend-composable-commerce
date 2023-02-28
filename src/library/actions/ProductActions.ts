@@ -29,7 +29,7 @@ export const getProductActions = (
 		getProduct: async (query: GetProductQuery) => {
 			const response = await sdk.callAction<Product>({
 				actionName: "product/getProduct",
-				query: payload.query,
+				query,
 			});
 
 			if (!response.isError && response.data) {
@@ -66,7 +66,7 @@ export const getProductActions = (
 		queryCategories: async (query: QueryProductCategoriesQuery) => {
 			const response = await sdk.callAction<Result>({
 				actionName: "product/queryCategories",
-				query: query,
+				query,
 			});
 
 			if (!response.isError) {
