@@ -1,21 +1,13 @@
 
 ## Version 1.1.4 (2023-02-28)
 
-
-
-* Error in release
-
+* fix: error in previous release
 ## Version 1.1.3 (2023-02-28)
 
-
-
- fix: product.query action accept query instead of payload
-
+* fix: product.query action accept query instead of payload
 * refactor: product payloads moved to queries
 
 ## Version 1.1.2 (2023-02-24)
-
-
 
 * Updated @commercetools/frontend-sdk dependency
 
