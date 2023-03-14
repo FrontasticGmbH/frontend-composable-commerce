@@ -51,13 +51,9 @@ type UpdateAccountPayload = {
 	birthdayDay?: number;
 };
 
-type AddAccountAddressPayload = {
-	address: Omit<Address, "addressId">;
-};
+type AddAccountAddressPayload = Omit<Address, "addressId">;
 
-type UpdateAccountAddressPayload = {
-	address: Address;
-};
+type UpdateAccountAddressPayload = Address;
 
 type RemoveAccountAddressPayload = {
 	addressId: string;
@@ -84,5 +80,5 @@ export {
 	UpdateAccountAddressPayload,
 	RemoveAccountAddressPayload,
 	SetDefaultAccountBillingAddressPayload,
-	SetDefaultAccountShippingAddressPayload,
+	SetDefaultAccountShippingAddressPayload
 };
