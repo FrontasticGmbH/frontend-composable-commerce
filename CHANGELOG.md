@@ -2,6 +2,7 @@
 ## Version 1.1.4 (2023-02-28)
 
 * fix: error in previous release
+
 ## Version 1.1.3 (2023-02-28)
 
 * fix: product.query action accept query instead of payload
