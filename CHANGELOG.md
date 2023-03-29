@@ -1,4 +1,10 @@
 
+## Version 1.2.1 (2023-03-29)
+
+
+
+* fix: error in previous release process
+
 ## Version 1.2.0 (2023-03-29)
 
 
