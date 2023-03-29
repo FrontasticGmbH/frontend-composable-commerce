@@ -3,9 +3,11 @@ import {
 	ProductQueryQuery,
 	QueryProductCategoriesQuery,
 } from "../queries/ProductQueries";
-import { FilterField } from "@commercetools/frontend-domain-types/product/FilterField";
-import { Product } from "@commercetools/frontend-domain-types/product/Product";
-import { Result } from "@commercetools/frontend-domain-types/product/Result";
+import {
+	FilterField,
+	Product,
+	Result,
+} from "@commercetools/frontend-domain-types/product";
 import { SDKResponse } from "@commercetools/frontend-sdk";
 
 type GetProductAction = (

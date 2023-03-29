@@ -12,7 +12,7 @@ import {
 	SetDefaultAccountBillingAddressPayload,
 	SetDefaultAccountShippingAddressPayload,
 	UpdateAccountAddressPayload,
-	UpdateAccountPayload
+	UpdateAccountPayload,
 } from "../../types/payloads/AccountPayloads";
 import {
 	AddAccountAddressAction,
@@ -30,10 +30,9 @@ import {
 	SetDefaultAccountBillingAddressAction,
 	SetDefaultAccountShippingAddressAction,
 	UpdateAccountAction,
-	UpdateAccountAddressAction
+	UpdateAccountAddressAction,
 } from "../../types/actions/AccountActions";
-import { Account } from "@commercetools/frontend-domain-types/account/Account";
-import { Address } from "@commercetools/frontend-domain-types/account/Address";
+import { Account, Address } from "@commercetools/frontend-domain-types/account";
 import { ComposableCommerceEvents } from "../../types/types";
 
 export type AccountActions = {
@@ -54,7 +53,7 @@ export type AccountActions = {
 	setDefaultShippingAddress: SetDefaultAccountShippingAddressAction;
 };
 
-const addressesAreEqual = function(
+const addressesAreEqual = function (
 	firstAddress: Address,
 	secondAddress: Address,
 	compareIds: boolean
@@ -90,7 +89,7 @@ export const getAccountActions = (
 	return {
 		getAccount: async () => {
 			const response = await sdk.callAction<GetAccountActionReturn>({
-				actionName: "account/getAccount"
+				actionName: "account/getAccount",
 			});
 
 			if (!response.isError && response.data.account) {
@@ -98,8 +97,8 @@ export const getAccountActions = (
 					new Event({
 						eventName: "accountFetched",
 						data: {
-							account: response.data.account
-						}
+							account: response.data.account,
+						},
 					})
 				);
 			}
@@ -111,7 +110,7 @@ export const getAccountActions = (
 
 			const response = await sdk.callAction<Account>({
 				actionName: "account/login",
-				payload
+				payload,
 			});
 
 			if (!response.isError) {
@@ -122,8 +121,8 @@ export const getAccountActions = (
 					new Event({
 						eventName: "userLoggedIn",
 						data: {
-							account: response.data
-						}
+							account: response.data,
+						},
 					})
 				);
 			}
@@ -132,7 +131,7 @@ export const getAccountActions = (
 		},
 		logout: async () => {
 			const response = await sdk.callAction<void>({
-				actionName: "account/logout"
+				actionName: "account/logout",
 			});
 
 			if (!response.isError) {
@@ -140,7 +139,7 @@ export const getAccountActions = (
 				sdk.trigger(
 					new Event({
 						eventName: "userLoggedOut",
-						data: {}
+						data: {},
 					})
 				);
 			}
@@ -149,7 +148,7 @@ export const getAccountActions = (
 		register: async (payload: RegisterAccountPayload) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/register",
-				payload
+				payload,
 			});
 
 			if (!response.isError) {
@@ -157,8 +156,8 @@ export const getAccountActions = (
 					new Event({
 						eventName: "userRegistered",
 						data: {
-							account: response.data
-						}
+							account: response.data,
+						},
 					})
 				);
 			}
@@ -167,7 +166,7 @@ export const getAccountActions = (
 		confirm: async (payload: ConfirmAccountPayload) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/confirm",
-				payload
+				payload,
 			});
 
 			if (!response.isError) {
@@ -175,8 +174,8 @@ export const getAccountActions = (
 					new Event({
 						eventName: "accountConfirmed",
 						data: {
-							account: response.data
-						}
+							account: response.data,
+						},
 					})
 				);
 			}
@@ -187,7 +186,7 @@ export const getAccountActions = (
 		) => {
 			const response = await sdk.callAction<void>({
 				actionName: "account/requestConfirmationEmail",
-				payload
+				payload,
 			});
 
 			if (!response.isError) {
@@ -195,8 +194,8 @@ export const getAccountActions = (
 					new Event({
 						eventName: "accountConfirmationEmailRequested",
 						data: {
-							email: payload.email
-						}
+							email: payload.email,
+						},
 					})
 				);
 			}
@@ -205,14 +204,14 @@ export const getAccountActions = (
 		changePassword: async (payload: ChangeAccountPasswordPayload) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/password",
-				payload
+				payload,
 			});
 
 			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "passwordChanged",
-						data: {}
+						data: {},
 					})
 				);
 			}
@@ -223,14 +222,14 @@ export const getAccountActions = (
 		) => {
 			const response = await sdk.callAction<void>({
 				actionName: "account/requestReset",
-				payload
+				payload,
 			});
 
 			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "passwordResetRequested",
-						data: {}
+						data: {},
 					})
 				);
 			}
@@ -239,14 +238,14 @@ export const getAccountActions = (
 		resetPassword: async (payload: ResetAccountPasswordPayload) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/reset",
-				payload
+				payload,
 			});
 
 			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "passwordReset",
-						data: {}
+						data: {},
 					})
 				);
 			}
@@ -255,7 +254,7 @@ export const getAccountActions = (
 		updateAccount: async (payload: UpdateAccountPayload) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/update",
-				payload
+				payload,
 			});
 
 			if (!response.isError) {
@@ -263,8 +262,8 @@ export const getAccountActions = (
 					new Event({
 						eventName: "accountUpdated",
 						data: {
-							account: response.data
-						}
+							account: response.data,
+						},
 					})
 				);
 			}
@@ -273,11 +272,11 @@ export const getAccountActions = (
 		addAddress: async (payload: AddAccountAddressPayload) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/addAddress",
-				payload
+				payload,
 			});
 
 			if (!response.isError) {
-				const newAddress = response.data.addresses?.find(address =>
+				const newAddress = response.data.addresses?.find((address) =>
 					addressesAreEqual(address, payload, false)
 				);
 				if (newAddress) {
@@ -285,8 +284,8 @@ export const getAccountActions = (
 						new Event({
 							eventName: "accountAddressAdded",
 							data: {
-								address: newAddress
-							}
+								address: newAddress,
+							},
 						})
 					);
 				}
@@ -296,11 +295,11 @@ export const getAccountActions = (
 		updateAddress: async (payload: UpdateAccountAddressPayload) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/updateAddress",
-				payload
+				payload,
 			});
 
 			if (!response.isError) {
-				const newAddress = response.data.addresses?.find(address =>
+				const newAddress = response.data.addresses?.find((address) =>
 					addressesAreEqual(address, payload, true)
 				);
 				if (newAddress) {
@@ -308,8 +307,8 @@ export const getAccountActions = (
 						new Event({
 							eventName: "accountAddressUpdated",
 							data: {
-								address: newAddress
-							}
+								address: newAddress,
+							},
 						})
 					);
 				}
@@ -319,21 +318,21 @@ export const getAccountActions = (
 		removeAddress: async (payload: RemoveAccountAddressPayload) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/removeAddress",
-				payload
+				payload,
 			});
 
 			if (!response.isError) {
 				if (
 					!response.data.addresses?.find(
-						address => address.addressId === payload.addressId
+						(address) => address.addressId === payload.addressId
 					)
 				) {
 					sdk.trigger(
 						new Event({
 							eventName: "accountAddressRemoved",
 							data: {
-								addressId: payload.addressId
-							}
+								addressId: payload.addressId,
+							},
 						})
 					);
 				}
@@ -345,20 +344,20 @@ export const getAccountActions = (
 		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/setDefaultBillingAddress",
-				payload
+				payload,
 			});
 
 			if (!response.isError) {
 				const address = response.data.addresses?.find(
-					address => address.addressId === payload.addressId
+					(address) => address.addressId === payload.addressId
 				);
 				if (address?.isDefaultBillingAddress) {
 					sdk.trigger(
 						new Event({
 							eventName: "defaultBillingAddressSet",
 							data: {
-								address: address
-							}
+								address: address,
+							},
 						})
 					);
 				}
@@ -370,25 +369,25 @@ export const getAccountActions = (
 		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/setDefaultShippingAddress",
-				payload
+				payload,
 			});
 
 			if (!response.isError) {
 				const address = response.data.addresses?.find(
-					address => address.addressId === payload.addressId
+					(address) => address.addressId === payload.addressId
 				);
 				if (address?.isDefaultShippingAddress) {
 					sdk.trigger(
 						new Event({
 							eventName: "defaultShippingAddressSet",
 							data: {
-								address: address
-							}
+								address: address,
+							},
 						})
 					);
 				}
 			}
 			return response;
-		}
+		},
 	};
 };

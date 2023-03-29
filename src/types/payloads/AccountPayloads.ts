@@ -1,4 +1,4 @@
-import { Address } from "@commercetools/frontend-domain-types/account/Address";
+import { Address } from "@commercetools/frontend-domain-types/account";
 
 type LoginAccountPayload = {
 	email: string;
@@ -80,5 +80,5 @@ export {
 	UpdateAccountAddressPayload,
 	RemoveAccountAddressPayload,
 	SetDefaultAccountBillingAddressPayload,
-	SetDefaultAccountShippingAddressPayload
+	SetDefaultAccountShippingAddressPayload,
 };

@@ -1,4 +1,4 @@
-import { Account } from "@commercetools/frontend-domain-types/account/Account";
+import { Account } from "@commercetools/frontend-domain-types/account";
 import { SDKResponse } from "@commercetools/frontend-sdk";
 import {
 	LoginAccountPayload,

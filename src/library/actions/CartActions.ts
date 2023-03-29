@@ -23,9 +23,11 @@ import {
 	UpdateCartAction,
 	UpdateCartItemAction,
 } from "../../types/actions/CartActions";
-import { Cart } from "@commercetools/frontend-domain-types/cart/Cart";
-import { ShippingMethod } from "@commercetools/frontend-domain-types/cart/ShippingMethod";
-import { Order } from "@commercetools/frontend-domain-types/cart/Order";
+import {
+	Cart,
+	ShippingMethod,
+	Order,
+} from "@commercetools/frontend-domain-types/cart";
 import { ComposableCommerceEvents } from "../../types/types";
 
 export type CartActions = {

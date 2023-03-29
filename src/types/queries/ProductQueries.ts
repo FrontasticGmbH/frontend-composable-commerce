@@ -1,11 +1,14 @@
-import { ProductQuery } from "@commercetools/frontend-domain-types/query/ProductQuery";
+import { ProductQuery } from "@commercetools/frontend-domain-types/query";
 
 type GetProductQuery = {
 	id: string;
 	sku: string;
 };
 
-type ProductQueryQuery = Omit<ProductQuery, "filters" | "facets" | "sortAttributes">;
+type ProductQueryQuery = Omit<
+	ProductQuery,
+	"filters" | "facets" | "sortAttributes"
+>;
 
 type QueryProductCategoriesQuery = {
 	limit?: number;
@@ -13,8 +16,4 @@ type QueryProductCategoriesQuery = {
 	slug?: string;
 };
 
-export {
-	GetProductQuery,
-	ProductQueryQuery,
-	QueryProductCategoriesQuery
-}
+export { GetProductQuery, ProductQueryQuery, QueryProductCategoriesQuery };

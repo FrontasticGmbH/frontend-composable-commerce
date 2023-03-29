@@ -1,6 +1,8 @@
-import { Cart } from "@commercetools/frontend-domain-types/cart/Cart";
-import { Order } from "@commercetools/frontend-domain-types/cart/Order";
-import { ShippingMethod } from "@commercetools/frontend-domain-types/cart/ShippingMethod";
+import {
+	Cart,
+	Order,
+	ShippingMethod,
+} from "@commercetools/frontend-domain-types/cart";
 import { SDKResponse } from "@commercetools/frontend-sdk";
 import {
 	AddCartItemPayload,

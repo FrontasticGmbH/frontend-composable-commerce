@@ -10,9 +10,11 @@ import {
 	ProductQueryAction,
 	QueryProductCategoriesAction,
 } from "../../types/actions/ProductActions";
-import { Product } from "@commercetools/frontend-domain-types/product/Product";
-import { Result } from "@commercetools/frontend-domain-types/product/Result";
-import { FilterField } from "@commercetools/frontend-domain-types/product/FilterField";
+import {
+	Product,
+	Result,
+	FilterField,
+} from "@commercetools/frontend-domain-types/product";
 import { ComposableCommerceEvents } from "../../types/types";
 
 export type ProductActions = {

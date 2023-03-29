@@ -10,7 +10,7 @@ import {
 	RemoveFromWishlistAction,
 	UpdateWishlistItemAction,
 } from "../../types/actions/WishlistActions";
-import { Wishlist } from "@commercetools/frontend-domain-types/wishlist/Wishlist";
+import { Wishlist } from "@commercetools/frontend-domain-types/wishlist";
 import { ComposableCommerceEvents } from "../../types/types";
 
 export type WishlistActions = {
