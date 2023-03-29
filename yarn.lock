@@ -2,12 +2,10 @@
 # yarn lockfile v1
 
 
-"@commercetools/frontend-domain-types@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@commercetools/frontend-domain-types/-/frontend-domain-types-1.0.0.tgz#05a6bb0ba5cd7a7888f1e774737b15febf052764"
-  integrity sha512-1UuQJOTxj8UNgkmCNHdq/NolQuBcpzalK/JoJoEoBvwxVaL+S7swa4HKbhqFs24eNit3mMpCtML6GwSpbr2ERw==
-  dependencies:
-    typescript "4.8.3"
+"@commercetools/frontend-domain-types@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@commercetools/frontend-domain-types/-/frontend-domain-types-1.0.6.tgz#edd443dc1a6025e0de2937991470acd6c3134e97"
+  integrity sha512-gjUYwMnm+BB5nuacteIFWOLPwgqDA62QN2K7Dr1Pz4P23IjgmhZ5hXPBHRiu8a0gHEMGuzFSxnCGEne4bw+9bg==
 
 "@commercetools/frontend-sdk@^1.2.7":
   version "1.2.7"
@@ -331,11 +329,6 @@ tslib@^2.1.0:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.1.tgz#0d0bfbaac2880b91e22df0768e55be9753a5b17e"
   integrity sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==
-
-typescript@4.8.3:
-  version "4.8.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.3.tgz#d59344522c4bc464a65a730ac695007fdb66dd88"
-  integrity sha512-goMHfm00nWPa8UvR/CPSvykqf6dVV8x/dp0c5mFTMTIu0u0FlGWRioyy7Nn0PGAdHxpJZnuO/ut+PpQ8UiHAig==
 
 typescript@^4.9.3:
   version "4.9.4"
