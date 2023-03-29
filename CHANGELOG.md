@@ -1,4 +1,11 @@
 
+## Version 1.2.0 (2023-03-29)
+
+
+
+* Cleaned up @commercetools/frontend-domain-types type imports
+* Updated @commercetools/frontend-domain-types dependency
+
 ## Version 1.1.4 (2023-02-28)
 
 * fix: error in previous release
