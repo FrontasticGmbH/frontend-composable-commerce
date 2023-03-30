@@ -3,7 +3,7 @@
   <i></i>
 </p>
 <p align="center">
-  <a href="https://github.com/FrontasticGmbH/frontend-sdk/releases"><img src="https://badgen.net/github/release/FrontasticGmbH/frontend-sdk" alt="Latest release" /></a> <a href="https://github.com/FrontasticGmbH/frontend-sdk/blob/main/LICENSE"><img src="https://badgen.net/github/FrontasticGmbH/frontend-sdk" alt="GitHub license" /></a>
+  <a href="https://github.com/FrontasticGmbH/frontend-composable-commerce/releases"><img src="https://badgen.net/github/release/FrontasticGmbH/frontend-composable-commerce" alt="Latest release" /></a> <a href="https://github.com/FrontasticGmbH/frontend-composable-commerce/blob/main/LICENSE"><img src="https://badgen.net/github/FrontasticGmbH/frontend-composable-commerce" alt="GitHub license" /></a>
 </p>
 
 The `@commercetools/frontend-composable-commerce` extension is a library designed to be used with the `@commercetools/frontend-sdk` for building custom components and integrations in your commercetools Frontend project. It provides a set of tools and utilities for working with commercetools composable commerce.
