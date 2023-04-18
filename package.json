@@ -16,7 +16,7 @@
 		"prettier:fix": "prettier --write ."
 	},
 	"devDependencies": {
-		"@commercetools/frontend-domain-types": "^1.0.6",
+		"@commercetools/frontend-domain-types": "^1.0.7",
 		"@commercetools/frontend-sdk": "^1.2.7",
 		"@types/core-js": "2.5.5",
 		"concurrently": "^7.4.0",
@@ -24,7 +24,7 @@
 		"typescript": "^4.9.3"
 	},
 	"peerDependencies": {
-		"@commercetools/frontend-domain-types": "^1.0.6",
+		"@commercetools/frontend-domain-types": "^1.0.7",
 		"@commercetools/frontend-sdk": "^1.2.7"
 	}
 }
