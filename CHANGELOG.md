@@ -1,4 +1,10 @@
 
+## Version 1.2.3 (2023-04-18)
+
+
+
+* fix: updated @commercetools/frontend-domain-types dependency for product query fix
+
 ## Version 1.2.2 (2023-03-29)
 
 * fix: same error in previous release process
