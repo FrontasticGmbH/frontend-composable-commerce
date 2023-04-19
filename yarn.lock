@@ -7,12 +7,13 @@
   resolved "https://registry.yarnpkg.com/@commercetools/frontend-domain-types/-/frontend-domain-types-1.0.7.tgz#37b2a92f5111e04b6c30d21ee6670b3a28106feb"
   integrity sha512-FA6U1fHDcILB6B9reZU9PwoZUAEdpBB16W/7qfPkqsVNzKiPNsAhWGvVdzhpXmD/bI3VG9DIqF3kXDhDKVPqSw==
 
-"@commercetools/frontend-sdk@^1.2.7":
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/@commercetools/frontend-sdk/-/frontend-sdk-1.2.7.tgz#e38d319343a41434c5d09ecaf19c3fa7a9727ba2"
-  integrity sha512-bYmHGS/djvHoIROuVqEGgPa/L+uYfU4jUT57LpUc+ixiN0IWlp/x+cKpkkzM2aqJLi1wmVoUMyDd/xbBgLnpjQ==
+"@commercetools/frontend-sdk@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/frontend-sdk/-/frontend-sdk-1.7.0.tgz#4192d6e3932ba6c5009992c604b56ba760b63fd0"
+  integrity sha512-ijBGalCOoVSTwa6siMaLkHSok595jG+/djgXu/nz5P5HVGCj1tKgRmp/3yXL/PDgdrm3JtT58BsQ4WrKgfbXtA==
   dependencies:
     "@frontastic/extension-types" "^0.0.11"
+    cookies "^0.8.0"
     js-cookie "3.0.1"
 
 "@esbuild/android-arm64@0.17.17":
@@ -273,6 +274,14 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
 
+cookies@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/cookies/-/cookies-0.8.0.tgz#1293ce4b391740a8406e3c9870e828c4b54f3f90"
+  integrity sha512-8aPsApQfebXnuI+537McwYsDtjVxGm8gTIzQI3FDW6t5t/DAhERxtnbEPN/8RX+uZthoz4eCOgloXaE5cYyNow==
+  dependencies:
+    depd "~2.0.0"
+    keygrip "~1.1.0"
+
 cross-spawn@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
@@ -288,6 +297,11 @@ debug@^4.3.1:
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
   dependencies:
     ms "2.1.2"
+
+depd@~2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/depd/-/depd-2.0.0.tgz#b696163cc757560d09cf22cc8fad1571b79e76df"
+  integrity sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==
 
 dir-glob@^3.0.1:
   version "3.0.1"
@@ -476,6 +490,13 @@ js-cookie@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-3.0.1.tgz#9e39b4c6c2f56563708d7d31f6f5f21873a92414"
   integrity sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==
+
+keygrip@~1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/keygrip/-/keygrip-1.1.0.tgz#871b1681d5e159c62a445b0c74b615e0917e7226"
+  integrity sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ==
+  dependencies:
+    tsscmp "1.0.6"
 
 lilconfig@^2.0.5:
   version "2.1.0"
@@ -730,6 +751,11 @@ ts-interface-checker@^0.1.9:
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz#784fd3d679722bc103b1b4b8030bcddb5db2a699"
   integrity sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==
+
+tsscmp@1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/tsscmp/-/tsscmp-1.0.6.tgz#85b99583ac3589ec4bfef825b5000aa911d605eb"
+  integrity sha512-LxhtAkPDTkVCMQjt2h6eBVY28KCjikZqZfMcC15YBeNjkgUpdCfBu5HoiOTDu86v6smE8yOjyEktJ8hlbANHQA==
 
 tsup@^6.7.0:
   version "6.7.0"
