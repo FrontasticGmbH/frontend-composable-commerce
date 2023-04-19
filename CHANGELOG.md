@@ -1,4 +1,9 @@
 
+## Version 1.2.4 (2023-04-19)
+
+
+* fix: compatability with non-v8 browsers
+
 ## Version 1.2.3 (2023-04-18)
 
 
