@@ -4,9 +4,9 @@
 	"license": "UNLICENSED",
 	"main": "lib/index.js",
 	"scripts": {
-		"dev": "tsup src/index.ts -d lib --dts --env.ENV dev",
-		"build": "tsup src -d lib --dts",
-		"release": "tsup src -d lib --dts",
+		"dev": "tsup --env.NODE_ENV dev",
+		"build": "tsup",
+		"release": "tsup",
 		"prepublishOnly": "rm -rf lib && yarn install && yarn release",
 		"release:types": "tsc --emitDeclarationOnly --outDir lib",
 		"prettier:fix": "prettier --write ."
