@@ -21,5 +21,8 @@
 	"peerDependencies": {
 		"@commercetools/frontend-domain-types": "^1.0.7",
 		"@commercetools/frontend-sdk": "^1.2.7"
-	}
+	},
+  "resolutions": {
+    "tsup/rollup": "3.20.4"
+  }
 }
