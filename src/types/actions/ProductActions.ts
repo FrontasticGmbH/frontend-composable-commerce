@@ -19,7 +19,8 @@ type ProductQueryAction = (
 ) => Promise<SDKResponse<Result>>;
 
 type QueryProductCategoriesAction = (
-	query: QueryProductCategoriesQuery
+	query: QueryProductCategoriesQuery,
+	serverSession?: string
 ) => Promise<SDKResponse<Result>>;
 
 type GetSearchableProductAttributesAction = () => Promise<

@@ -65,10 +65,14 @@ export const getProductActions = (
 			}
 			return response;
 		},
-		queryCategories: async (query: QueryProductCategoriesQuery) => {
+		queryCategories: async (
+			query: QueryProductCategoriesQuery,
+			serverSession?: string
+		) => {
 			const response = await sdk.callAction<Result>({
 				actionName: "product/queryCategories",
 				query,
+				serverSession,
 			});
 
 			if (!response.isError) {
