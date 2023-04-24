@@ -16,6 +16,7 @@ import {
 	FilterField,
 } from "@commercetools/frontend-domain-types/product";
 import { ComposableCommerceEvents } from "../../types/types";
+import { OptionsType } from "@commercetools/frontend-sdk/cookieHandling/types";
 
 export type ProductActions = {
 	getProduct: GetProductAction;
@@ -67,12 +68,12 @@ export const getProductActions = (
 		},
 		queryCategories: async (
 			query: QueryProductCategoriesQuery,
-			serverSession?: string
+			optionsType?: OptionsType
 		) => {
 			const response = await sdk.callAction<Result>({
 				actionName: "product/queryCategories",
 				query,
-				serverSession,
+				optionsType,
 			});
 
 			if (!response.isError) {
