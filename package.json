@@ -13,14 +13,14 @@
 	},
 	"devDependencies": {
 		"@commercetools/frontend-domain-types": "^1.0.7",
-		"@commercetools/frontend-sdk": "^1.7.0",
+		"@commercetools/frontend-sdk": "^1.7.4",
 		"@types/core-js": "2.5.5",
 		"tsup": "^6.7.0",
 		"typescript": "^4.9.3"
 	},
 	"peerDependencies": {
 		"@commercetools/frontend-domain-types": "^1.0.7",
-		"@commercetools/frontend-sdk": "^1.7.0"
+		"@commercetools/frontend-sdk": "^1.7.4"
 	},
   "resolutions": {
     "tsup/rollup": "3.20.4"
