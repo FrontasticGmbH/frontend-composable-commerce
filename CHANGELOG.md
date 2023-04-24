@@ -1,4 +1,10 @@
 
+## Version 1.2.5 (2023-04-24)
+
+
+* Updated version
+* fix: support for server session handling on queryCategories
+
 ## Version 1.2.4 (2023-04-19)
 
 * Replaced esbuild and tsc for tsup build
