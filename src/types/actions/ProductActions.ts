@@ -8,8 +8,7 @@ import {
 	Product,
 	Result,
 } from "@commercetools/frontend-domain-types/product";
-import { SDKResponse } from "@commercetools/frontend-sdk";
-import { OptionsType } from "@commercetools/frontend-sdk/cookieHandling/types";
+import { SDKResponse, ServerOptions } from "@commercetools/frontend-sdk";
 
 type GetProductAction = (
 	query: GetProductQuery
@@ -21,7 +20,7 @@ type ProductQueryAction = (
 
 type QueryProductCategoriesAction = (
 	query: QueryProductCategoriesQuery,
-	optionsType?: OptionsType
+	serverOptions?: ServerOptions
 ) => Promise<SDKResponse<Result>>;
 
 type GetSearchableProductAttributesAction = () => Promise<
