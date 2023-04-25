@@ -1,8 +1,6 @@
 
 ## Version 1.2.6 (2023-04-25)
 
-
-* Updated version
 * Added serverOptions to all actions for SSR support
 
 ## Version 1.2.5 (2023-04-24)
