@@ -1,4 +1,9 @@
-import { rememberMeCookie, Event, SDK } from "@commercetools/frontend-sdk";
+import {
+	rememberMeCookie,
+	Event,
+	SDK,
+	ServerOptions,
+} from "@commercetools/frontend-sdk";
 import {
 	AddAccountAddressPayload,
 	ChangeAccountPasswordPayload,
@@ -87,9 +92,10 @@ export const getAccountActions = (
 	sdk: SDK<ComposableCommerceEvents>
 ): AccountActions => {
 	return {
-		getAccount: async () => {
+		getAccount: async (options: { serverOptions?: ServerOptions } = {}) => {
 			const response = await sdk.callAction<GetAccountActionReturn>({
 				actionName: "account/getAccount",
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError && response.data.account) {
@@ -104,13 +110,17 @@ export const getAccountActions = (
 			}
 			return response;
 		},
-		login: async (payload: LoginAccountPayload) => {
+		login: async (
+			payload: LoginAccountPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const remember = payload.remember;
 			payload.remember = undefined;
 
 			const response = await sdk.callAction<Account>({
 				actionName: "account/login",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -129,9 +139,10 @@ export const getAccountActions = (
 
 			return response;
 		},
-		logout: async () => {
+		logout: async (options: { serverOptions?: ServerOptions } = {}) => {
 			const response = await sdk.callAction<void>({
 				actionName: "account/logout",
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -145,10 +156,14 @@ export const getAccountActions = (
 			}
 			return response;
 		},
-		register: async (payload: RegisterAccountPayload) => {
+		register: async (
+			payload: RegisterAccountPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/register",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -163,10 +178,14 @@ export const getAccountActions = (
 			}
 			return response;
 		},
-		confirm: async (payload: ConfirmAccountPayload) => {
+		confirm: async (
+			payload: ConfirmAccountPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/confirm",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -182,11 +201,13 @@ export const getAccountActions = (
 			return response;
 		},
 		requestConfirmationEmail: async (
-			payload: RequestAccountConfirmationEmailPayload
+			payload: RequestAccountConfirmationEmailPayload,
+			options: { serverOptions?: ServerOptions } = {}
 		) => {
 			const response = await sdk.callAction<void>({
 				actionName: "account/requestConfirmationEmail",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -201,10 +222,14 @@ export const getAccountActions = (
 			}
 			return response;
 		},
-		changePassword: async (payload: ChangeAccountPasswordPayload) => {
+		changePassword: async (
+			payload: ChangeAccountPasswordPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/password",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -218,11 +243,13 @@ export const getAccountActions = (
 			return response;
 		},
 		requestResetPassword: async (
-			payload: RequestAccountPasswordResetPayload
+			payload: RequestAccountPasswordResetPayload,
+			options: { serverOptions?: ServerOptions } = {}
 		) => {
 			const response = await sdk.callAction<void>({
 				actionName: "account/requestReset",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -235,10 +262,14 @@ export const getAccountActions = (
 			}
 			return response;
 		},
-		resetPassword: async (payload: ResetAccountPasswordPayload) => {
+		resetPassword: async (
+			payload: ResetAccountPasswordPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/reset",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -251,10 +282,14 @@ export const getAccountActions = (
 			}
 			return response;
 		},
-		updateAccount: async (payload: UpdateAccountPayload) => {
+		updateAccount: async (
+			payload: UpdateAccountPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/update",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -269,10 +304,14 @@ export const getAccountActions = (
 			}
 			return response;
 		},
-		addAddress: async (payload: AddAccountAddressPayload) => {
+		addAddress: async (
+			payload: AddAccountAddressPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/addAddress",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -292,10 +331,14 @@ export const getAccountActions = (
 			}
 			return response;
 		},
-		updateAddress: async (payload: UpdateAccountAddressPayload) => {
+		updateAddress: async (
+			payload: UpdateAccountAddressPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/updateAddress",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -315,10 +358,14 @@ export const getAccountActions = (
 			}
 			return response;
 		},
-		removeAddress: async (payload: RemoveAccountAddressPayload) => {
+		removeAddress: async (
+			payload: RemoveAccountAddressPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/removeAddress",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -340,11 +387,13 @@ export const getAccountActions = (
 			return response;
 		},
 		setDefaultBillingAddress: async (
-			payload: SetDefaultAccountBillingAddressPayload
+			payload: SetDefaultAccountBillingAddressPayload,
+			options: { serverOptions?: ServerOptions } = {}
 		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/setDefaultBillingAddress",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -365,11 +414,13 @@ export const getAccountActions = (
 			return response;
 		},
 		setDefaultShippingAddress: async (
-			payload: SetDefaultAccountShippingAddressPayload
+			payload: SetDefaultAccountShippingAddressPayload,
+			options: { serverOptions?: ServerOptions } = {}
 		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/setDefaultShippingAddress",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {

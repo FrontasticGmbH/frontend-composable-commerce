@@ -1,4 +1,4 @@
-import { Event, SDK } from "@commercetools/frontend-sdk";
+import { Event, SDK, ServerOptions } from "@commercetools/frontend-sdk";
 import {
 	AddCartItemPayload,
 	GetCartShippingMethodsPayload,
@@ -49,9 +49,10 @@ export const getCartActions = (
 	sdk: SDK<ComposableCommerceEvents>
 ): CartActions => {
 	return {
-		getCart: async () => {
+		getCart: async (options: { serverOptions?: ServerOptions } = {}) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/getCart",
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -66,10 +67,14 @@ export const getCartActions = (
 			}
 			return response;
 		},
-		addItem: async (payload: AddCartItemPayload) => {
+		addItem: async (
+			payload: AddCartItemPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/addToCart",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -85,10 +90,14 @@ export const getCartActions = (
 			}
 			return response;
 		},
-		removeItem: async (payload: RemoveCartItemPayload) => {
+		removeItem: async (
+			payload: RemoveCartItemPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/removeLineItem",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -104,10 +113,14 @@ export const getCartActions = (
 			}
 			return response;
 		},
-		updateItem: async (payload: UpdateCartItemPayload) => {
+		updateItem: async (
+			payload: UpdateCartItemPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/updateLineItem",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -125,10 +138,14 @@ export const getCartActions = (
 			}
 			return response;
 		},
-		updateCart: async (payload: UpdateCartPayload) => {
+		updateCart: async (
+			payload: UpdateCartPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/updateCart",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -141,10 +158,14 @@ export const getCartActions = (
 			}
 			return response;
 		},
-		getShippingMethods: async (payload?: GetCartShippingMethodsPayload) => {
+		getShippingMethods: async (
+			payload?: GetCartShippingMethodsPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<ShippingMethod[]>({
 				actionName: "cart/getShippingMethods",
 				query: payload?.query ?? undefined,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -159,9 +180,12 @@ export const getCartActions = (
 			}
 			return response;
 		},
-		getAvailableShippingMethods: async () => {
+		getAvailableShippingMethods: async (
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<ShippingMethod[]>({
 				actionName: "cart/getAvailableShippingMethods",
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -176,10 +200,14 @@ export const getCartActions = (
 			}
 			return response;
 		},
-		setShippingMethod: async (payload: SetCartShippingMethodPayload) => {
+		setShippingMethod: async (
+			payload: SetCartShippingMethodPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/setShippingMethod",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -199,10 +227,14 @@ export const getCartActions = (
 			}
 			return response;
 		},
-		redeemDiscountCode: async (payload: RedeemDiscountCodePayload) => {
+		redeemDiscountCode: async (
+			payload: RedeemDiscountCodePayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Cart | string>({
 				actionName: "cart/redeemDiscount",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -224,10 +256,14 @@ export const getCartActions = (
 			}
 			return response;
 		},
-		removeDiscountCode: async (payload: RemoveDiscountCodePayload) => {
+		removeDiscountCode: async (
+			payload: RemoveDiscountCodePayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/removeDiscount",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -243,9 +279,10 @@ export const getCartActions = (
 			}
 			return response;
 		},
-		checkout: async () => {
+		checkout: async (options: { serverOptions?: ServerOptions } = {}) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/checkout",
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -258,9 +295,12 @@ export const getCartActions = (
 			}
 			return response;
 		},
-		getOrderHistory: async () => {
+		getOrderHistory: async (
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Order[]>({
 				actionName: "cart/getOrders",
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {

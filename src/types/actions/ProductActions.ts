@@ -11,21 +11,23 @@ import {
 import { SDKResponse, ServerOptions } from "@commercetools/frontend-sdk";
 
 type GetProductAction = (
-	query: GetProductQuery
+	query: GetProductQuery,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Product>>;
 
 type ProductQueryAction = (
-	query: ProductQueryQuery
+	query: ProductQueryQuery,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Result>>;
 
 type QueryProductCategoriesAction = (
 	query: QueryProductCategoriesQuery,
-	serverOptions?: ServerOptions
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Result>>;
 
-type GetSearchableProductAttributesAction = () => Promise<
-	SDKResponse<FilterField[]>
->;
+type GetSearchableProductAttributesAction = (options?: {
+	serverOptions?: ServerOptions;
+}) => Promise<SDKResponse<FilterField[]>>;
 
 export {
 	GetProductAction,

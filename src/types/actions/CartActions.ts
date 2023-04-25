@@ -3,7 +3,7 @@ import {
 	Order,
 	ShippingMethod,
 } from "@commercetools/frontend-domain-types/cart";
-import { SDKResponse } from "@commercetools/frontend-sdk";
+import { SDKResponse, ServerOptions } from "@commercetools/frontend-sdk";
 import {
 	AddCartItemPayload,
 	RemoveCartItemPayload,
@@ -15,47 +15,61 @@ import {
 	RemoveDiscountCodePayload,
 } from "../payloads/CartPayloads";
 
-type GetCartAction = () => Promise<SDKResponse<Cart>>;
+type GetCartAction = (options?: {
+	serverOptions?: ServerOptions;
+}) => Promise<SDKResponse<Cart>>;
 
 type AddCartItemAction = (
-	payload: AddCartItemPayload
+	payload: AddCartItemPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Cart>>;
 
 type RemoveCartItemAction = (
-	payload: RemoveCartItemPayload
+	payload: RemoveCartItemPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Cart>>;
 
 type UpdateCartItemAction = (
-	payload: UpdateCartItemPayload
+	payload: UpdateCartItemPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Cart>>;
 
 type UpdateCartAction = (
-	payload: UpdateCartPayload
+	payload: UpdateCartPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Cart>>;
 
 type GetCartShippingMethodsAction = (
-	payload: GetCartShippingMethodsPayload
+	payload: GetCartShippingMethodsPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<ShippingMethod[]>>;
 
-type GetAvailableCartShippingMethodsAction = () => Promise<
-	SDKResponse<ShippingMethod[]>
->;
+type GetAvailableCartShippingMethodsAction = (options?: {
+	serverOptions?: ServerOptions;
+}) => Promise<SDKResponse<ShippingMethod[]>>;
 
 type SetCartShippingMethodAction = (
-	payload: SetCartShippingMethodPayload
+	payload: SetCartShippingMethodPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Cart>>;
 
 type RedeemDiscountCodeAction = (
-	payload: RedeemDiscountCodePayload
+	payload: RedeemDiscountCodePayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Cart | string>>;
 
 type RemoveDiscountCodeAction = (
-	payload: RemoveDiscountCodePayload
+	payload: RemoveDiscountCodePayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Cart>>;
 
-type CheckoutCartAction = () => Promise<SDKResponse<Cart>>;
+type CheckoutCartAction = (options?: {
+	serverOptions?: ServerOptions;
+}) => Promise<SDKResponse<Cart>>;
 
-type GetOrderHistoryAction = () => Promise<SDKResponse<Order[]>>;
+type GetOrderHistoryAction = (options?: {
+	serverOptions?: ServerOptions;
+}) => Promise<SDKResponse<Order[]>>;
 
 export {
 	GetCartAction,
