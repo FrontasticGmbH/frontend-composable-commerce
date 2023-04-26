@@ -16,10 +16,14 @@ import {
 	SetDefaultAccountShippingAddressPayload,
 } from "../payloads/AccountPayloads";
 
-type GetAccountActionReturn = {
-	loggedIn: boolean;
-	account?: Account;
-};
+type GetAccountActionReturn =
+	| {
+			loggedIn: false;
+	  }
+	| {
+			loggedIn: true;
+			account: Account;
+	  };
 
 type GetAccountAction = (options?: {
 	serverOptions?: ServerOptions;
