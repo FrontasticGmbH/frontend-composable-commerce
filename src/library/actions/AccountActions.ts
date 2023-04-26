@@ -98,7 +98,11 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError && response.data.account) {
+			if (
+				!response.isError &&
+				response.data.loggedIn &&
+				response.data.account
+			) {
 				sdk.trigger(
 					new Event({
 						eventName: "accountFetched",
