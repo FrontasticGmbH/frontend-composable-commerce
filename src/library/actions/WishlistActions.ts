@@ -1,4 +1,4 @@
-import { Event, SDK } from "@commercetools/frontend-sdk";
+import { Event, SDK, ServerOptions } from "@commercetools/frontend-sdk";
 import {
 	AddToWishlistPayload,
 	RemoveFromWishlistPayload,
@@ -24,9 +24,12 @@ export const getWishlistActions = (
 	sdk: SDK<ComposableCommerceEvents>
 ): WishlistActions => {
 	return {
-		getWishlist: async () => {
+		getWishlist: async (
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Wishlist>({
 				actionName: "wishlist/getWishlist",
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -41,10 +44,14 @@ export const getWishlistActions = (
 			}
 			return response;
 		},
-		addItem: async (payload: AddToWishlistPayload) => {
+		addItem: async (
+			payload: AddToWishlistPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Wishlist>({
 				actionName: "wishlist/addToWishlist",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -64,10 +71,14 @@ export const getWishlistActions = (
 			}
 			return response;
 		},
-		removeItem: async (payload: RemoveFromWishlistPayload) => {
+		removeItem: async (
+			payload: RemoveFromWishlistPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Wishlist>({
 				actionName: "wishlist/removeLineItem",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (
@@ -87,10 +98,14 @@ export const getWishlistActions = (
 			}
 			return response;
 		},
-		updateItem: async (payload: UpdateWishlistItemPayload) => {
+		updateItem: async (
+			payload: UpdateWishlistItemPayload,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Wishlist>({
 				actionName: "wishlist/updateLineItemCount",
 				payload,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {

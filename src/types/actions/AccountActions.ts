@@ -1,5 +1,5 @@
 import { Account } from "@commercetools/frontend-domain-types/account";
-import { SDKResponse } from "@commercetools/frontend-sdk";
+import { SDKResponse, ServerOptions } from "@commercetools/frontend-sdk";
 import {
 	LoginAccountPayload,
 	RegisterAccountPayload,
@@ -16,65 +16,86 @@ import {
 	SetDefaultAccountShippingAddressPayload,
 } from "../payloads/AccountPayloads";
 
-type GetAccountActionReturn = {
-	loggedIn: boolean;
-	account?: Account;
-};
+type GetAccountActionReturn =
+	| {
+			loggedIn: false;
+	  }
+	| {
+			loggedIn: true;
+			account: Account;
+	  };
 
-type GetAccountAction = () => Promise<SDKResponse<GetAccountActionReturn>>;
+type GetAccountAction = (options?: {
+	serverOptions?: ServerOptions;
+}) => Promise<SDKResponse<GetAccountActionReturn>>;
 
 type LoginAccountAction = (
-	payload: LoginAccountPayload
+	payload: LoginAccountPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Account>>;
 
-type LogoutAccountAction = () => Promise<SDKResponse<void>>;
+type LogoutAccountAction = (options?: {
+	serverOptions?: ServerOptions;
+}) => Promise<SDKResponse<void>>;
 
 type RegisterAccountAction = (
-	payload: RegisterAccountPayload
+	payload: RegisterAccountPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Account>>;
 
 type ConfirmAccountAction = (
-	payload: ConfirmAccountPayload
+	payload: ConfirmAccountPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Account>>;
 
 type RequestAccountConfirmationEmailAction = (
-	payload: RequestAccountConfirmationEmailPayload
+	payload: RequestAccountConfirmationEmailPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<void>>;
 
 type ChangeAccountPasswordAction = (
-	payload: ChangeAccountPasswordPayload
+	payload: ChangeAccountPasswordPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Account>>;
 
 type RequestAccountPasswordResetAction = (
-	payload: RequestAccountPasswordResetPayload
+	payload: RequestAccountPasswordResetPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<void>>;
 
 type ResetAccountPasswordAction = (
-	payload: ResetAccountPasswordPayload
+	payload: ResetAccountPasswordPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Account>>;
 
 type UpdateAccountAction = (
-	payload: UpdateAccountPayload
+	payload: UpdateAccountPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Account>>;
 
 type AddAccountAddressAction = (
-	payload: AddAccountAddressPayload
+	payload: AddAccountAddressPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Account>>;
 
 type UpdateAccountAddressAction = (
-	payload: UpdateAccountAddressPayload
+	payload: UpdateAccountAddressPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Account>>;
 
 type RemoveAccountAddressAction = (
-	payload: RemoveAccountAddressPayload
+	payload: RemoveAccountAddressPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Account>>;
 
 type SetDefaultAccountBillingAddressAction = (
-	payload: SetDefaultAccountBillingAddressPayload
+	payload: SetDefaultAccountBillingAddressPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Account>>;
 
 type SetDefaultAccountShippingAddressAction = (
-	payload: SetDefaultAccountShippingAddressPayload
+	payload: SetDefaultAccountShippingAddressPayload,
+	options?: { serverOptions?: ServerOptions }
 ) => Promise<SDKResponse<Account>>;
 
 export {

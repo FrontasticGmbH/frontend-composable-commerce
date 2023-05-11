@@ -1,4 +1,8 @@
 
+## Version 1.2.6 (2023-04-25)
+
+* Added serverOptions to all actions for SSR support
+
 ## Version 1.2.5 (2023-04-24)
 
 * fix: support for server session handling on queryCategories

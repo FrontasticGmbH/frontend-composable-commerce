@@ -1,5 +1,5 @@
 import { ProjectSettings } from "@commercetools/frontend-domain-types/ProjectSettings";
-import { Event, SDK } from "@commercetools/frontend-sdk";
+import { Event, SDK, ServerOptions } from "@commercetools/frontend-sdk";
 import { GetProjectSettingsAction } from "../../types/actions/ProjectActions";
 import { ComposableCommerceEvents } from "../../types/types";
 
@@ -11,9 +11,12 @@ export const getProjectActions = (
 	sdk: SDK<ComposableCommerceEvents>
 ): ProjectActions => {
 	return {
-		getSettings: async () => {
+		getSettings: async (
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<ProjectSettings>({
 				actionName: "project/getProjectSettings",
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {

@@ -28,10 +28,14 @@ export const getProductActions = (
 	sdk: SDK<ComposableCommerceEvents>
 ): ProductActions => {
 	return {
-		getProduct: async (query: GetProductQuery) => {
+		getProduct: async (
+			query: GetProductQuery,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Product>({
 				actionName: "product/getProduct",
 				query,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError && response.data) {
@@ -46,10 +50,14 @@ export const getProductActions = (
 			}
 			return response;
 		},
-		query: async (query: ProductQueryQuery) => {
+		query: async (
+			query: ProductQueryQuery,
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<Result>({
 				actionName: "product/query",
 				query,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -67,12 +75,12 @@ export const getProductActions = (
 		},
 		queryCategories: async (
 			query: QueryProductCategoriesQuery,
-			serverOptions?: ServerOptions
+			options: { serverOptions?: ServerOptions } = {}
 		) => {
 			const response = await sdk.callAction<Result>({
 				actionName: "product/queryCategories",
 				query,
-				serverOptions,
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
@@ -88,9 +96,12 @@ export const getProductActions = (
 			}
 			return response;
 		},
-		getSearchableAttributes: async () => {
+		getSearchableAttributes: async (
+			options: { serverOptions?: ServerOptions } = {}
+		) => {
 			const response = await sdk.callAction<FilterField[]>({
 				actionName: "product/searchableAttributes",
+				serverOptions: options.serverOptions,
 			});
 
 			if (!response.isError) {
