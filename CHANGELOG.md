@@ -1,4 +1,10 @@
 
+## Version 1.3.0 (2023-06-22)
+
+
+* Updated account login and logout methods to support remember me cookie on SSR
+* Updated @commercetools/frontend-sdk dependency
+
 ## Version 1.2.6 (2023-04-25)
 
 * Added serverOptions to all actions for SSR support
