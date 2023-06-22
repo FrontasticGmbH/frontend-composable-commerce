@@ -129,7 +129,7 @@ export const getAccountActions = (
 
 			if (!response.isError) {
 				if (remember) {
-					rememberMeCookie.set(true);
+					rememberMeCookie.set(true, options.serverOptions);
 				}
 				sdk.trigger(
 					new Event({
@@ -150,7 +150,7 @@ export const getAccountActions = (
 			});
 
 			if (!response.isError) {
-				rememberMeCookie.remove();
+				rememberMeCookie.remove(options.serverOptions);
 				sdk.trigger(
 					new Event({
 						eventName: "userLoggedOut",
