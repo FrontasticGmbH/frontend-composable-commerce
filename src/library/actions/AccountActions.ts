@@ -1,5 +1,5 @@
 import {
-	rememberMeCookie,
+	rememberMeCookieAsync,
 	Event,
 	SDK,
 	ServerOptions,
@@ -37,8 +37,8 @@ import {
 	UpdateAccountAction,
 	UpdateAccountAddressAction,
 } from "../../types/actions/AccountActions";
-import { Account, Address } from "@commercetools/frontend-domain-types/account";
-import { ComposableCommerceEvents } from "../../types/types";
+import { Account, Address } from "shared/types/account";
+import { ComposableCommerceEvents } from "../../types/events/ComposableCommerceEvents";
 
 export type AccountActions = {
 	getAccount: GetAccountAction;
@@ -99,7 +99,7 @@ export const getAccountActions = (
 			});
 
 			if (
-				!response.isError &&
+				response.isError === false &&
 				response.data.loggedIn &&
 				response.data.account
 			) {
@@ -127,9 +127,12 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				if (remember) {
-					rememberMeCookie.set(true, options.serverOptions);
+					await rememberMeCookieAsync.set(
+						true,
+						options.serverOptions
+					);
 				}
 				sdk.trigger(
 					new Event({
@@ -149,8 +152,8 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
-				rememberMeCookie.remove(options.serverOptions);
+			if (response.isError === false) {
+				await rememberMeCookieAsync.remove(options.serverOptions);
 				sdk.trigger(
 					new Event({
 						eventName: "userLoggedOut",
@@ -170,7 +173,7 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "userRegistered",
@@ -192,7 +195,7 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "accountConfirmed",
@@ -214,7 +217,7 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "accountConfirmationEmailRequested",
@@ -236,7 +239,7 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "passwordChanged",
@@ -256,7 +259,7 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "passwordResetRequested",
@@ -276,7 +279,7 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "passwordReset",
@@ -296,7 +299,7 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "accountUpdated",
@@ -318,7 +321,7 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				const newAddress = response.data.addresses?.find((address) =>
 					addressesAreEqual(address, payload, false)
 				);
@@ -345,7 +348,7 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				const newAddress = response.data.addresses?.find((address) =>
 					addressesAreEqual(address, payload, true)
 				);
@@ -372,7 +375,7 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				if (
 					!response.data.addresses?.find(
 						(address) => address.addressId === payload.addressId
@@ -400,7 +403,7 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				const address = response.data.addresses?.find(
 					(address) => address.addressId === payload.addressId
 				);
@@ -427,7 +430,7 @@ export const getAccountActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				const address = response.data.addresses?.find(
 					(address) => address.addressId === payload.addressId
 				);

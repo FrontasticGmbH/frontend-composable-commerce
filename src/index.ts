@@ -1,4 +1,4 @@
-import { ComposableCommerce } from "./library/Extension";
-import { ComposableCommerceEvents } from "./types/types";
+import { ComposableCommerce } from "./library/Integration";
+import { ComposableCommerceEvents } from "./types/events/ComposableCommerceEvents";
 
-export { ComposableCommerce, ComposableCommerceEvents };
+export { ComposableCommerce, type ComposableCommerceEvents };

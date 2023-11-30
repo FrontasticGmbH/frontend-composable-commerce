@@ -2,15 +2,10 @@
 # yarn lockfile v1
 
 
-"@commercetools/frontend-domain-types@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@commercetools/frontend-domain-types/-/frontend-domain-types-1.0.7.tgz#37b2a92f5111e04b6c30d21ee6670b3a28106feb"
-  integrity sha512-FA6U1fHDcILB6B9reZU9PwoZUAEdpBB16W/7qfPkqsVNzKiPNsAhWGvVdzhpXmD/bI3VG9DIqF3kXDhDKVPqSw==
-
-"@commercetools/frontend-sdk@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@commercetools/frontend-sdk/-/frontend-sdk-1.8.0.tgz#aafd624423dc66e5bacea8fc1b8b0a1a5490ba57"
-  integrity sha512-q9gniqgO5FgDuw9gks6hk01EbmE2oz8CJoj/CSuuYSrEQjkIohw2vOAcyGlVGlTf5d+JDSHKSvpDechnvnsTHw==
+"@commercetools/frontend-sdk@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/frontend-sdk/-/frontend-sdk-1.9.0.tgz#82b7463afb8f9913518724bd7cbe4634ac7de5e0"
+  integrity sha512-58G9RE5p13/oUrD14q/qjSPo0h//Ddghoolq7eAbQR5AnSGrD42ZyE+D0Id8y0TZJJvRhFStI+8Lv7RxO9hhRA==
   dependencies:
     "@frontastic/extension-types" "^0.0.11"
     cookie "^0.5.0"

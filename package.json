@@ -1,28 +1,27 @@
 {
 	"name": "@commercetools/frontend-composable-commerce",
-	"version": "1.3.0",
+	"version": "1.4.0",
 	"license": "UNLICENSED",
 	"main": "lib/index.js",
 	"scripts": {
 		"dev": "tsup --env.NODE_ENV dev",
 		"build": "tsup",
+		"build:non-strict": "tsup --env.NON_STRICT true",
 		"release": "tsup",
 		"prepublishOnly": "rm -rf lib && yarn install && yarn release",
 		"release:types": "tsc --emitDeclarationOnly --outDir lib",
 		"prettier:fix": "prettier --write ."
 	},
 	"devDependencies": {
-		"@commercetools/frontend-domain-types": "^1.0.7",
-		"@commercetools/frontend-sdk": "^1.8.0",
+		"@commercetools/frontend-sdk": "^1.9.0",
 		"@types/core-js": "2.5.5",
 		"tsup": "^6.7.0",
 		"typescript": "^4.9.3"
 	},
 	"peerDependencies": {
-		"@commercetools/frontend-domain-types": "^1.0.7",
-		"@commercetools/frontend-sdk": "^1.8.0"
+		"@commercetools/frontend-sdk": "^1.9.0"
 	},
-  "resolutions": {
-    "tsup/rollup": "3.20.4"
-  }
+	"resolutions": {
+		"tsup/rollup": "3.20.4"
+	}
 }

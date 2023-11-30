@@ -1,4 +1,4 @@
-import { Wishlist } from "@commercetools/frontend-domain-types/wishlist";
+import { Wishlist } from "shared/types/wishlist";
 import { SDKResponse, ServerOptions } from "@commercetools/frontend-sdk";
 import {
 	AddToWishlistPayload,
@@ -26,8 +26,8 @@ type UpdateWishlistItemAction = (
 ) => Promise<SDKResponse<Wishlist>>;
 
 export {
-	GetWishlistAction,
-	AddToWishlistAction,
-	RemoveFromWishlistAction,
-	UpdateWishlistItemAction,
+	type GetWishlistAction,
+	type AddToWishlistAction,
+	type RemoveFromWishlistAction,
+	type UpdateWishlistItemAction,
 };

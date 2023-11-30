@@ -10,8 +10,8 @@ import {
 	RemoveFromWishlistAction,
 	UpdateWishlistItemAction,
 } from "../../types/actions/WishlistActions";
-import { Wishlist } from "@commercetools/frontend-domain-types/wishlist";
-import { ComposableCommerceEvents } from "../../types/types";
+import { Wishlist } from "shared/types/wishlist";
+import { ComposableCommerceEvents } from "../../types/events/ComposableCommerceEvents";
 
 export type WishlistActions = {
 	getWishlist: GetWishlistAction;
@@ -32,7 +32,7 @@ export const getWishlistActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "wishlistFetched",
@@ -54,7 +54,7 @@ export const getWishlistActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				const lineItem = response.data.lineItems?.find(
 					(lineItem) => lineItem.variant?.sku === payload.variant.sku
 				);
@@ -82,7 +82,7 @@ export const getWishlistActions = (
 			});
 
 			if (
-				!response.isError &&
+				response.isError === false &&
 				!response.data.lineItems?.find(
 					(item) => item.lineItemId === payload.lineItem.id
 				)
@@ -108,7 +108,7 @@ export const getWishlistActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				const lineItem = response.data.lineItems?.find(
 					(item) => item.lineItemId === payload.lineItem.id
 				);

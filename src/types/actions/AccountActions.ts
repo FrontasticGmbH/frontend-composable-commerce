@@ -1,4 +1,4 @@
-import { Account } from "@commercetools/frontend-domain-types/account";
+import { Account } from "shared/types/account";
 import { SDKResponse, ServerOptions } from "@commercetools/frontend-sdk";
 import {
 	LoginAccountPayload,
@@ -99,20 +99,20 @@ type SetDefaultAccountShippingAddressAction = (
 ) => Promise<SDKResponse<Account>>;
 
 export {
-	GetAccountActionReturn,
-	GetAccountAction,
-	LoginAccountAction,
-	LogoutAccountAction,
-	RegisterAccountAction,
-	ConfirmAccountAction,
-	RequestAccountConfirmationEmailAction,
-	ChangeAccountPasswordAction,
-	RequestAccountPasswordResetAction,
-	ResetAccountPasswordAction,
-	UpdateAccountAction,
-	AddAccountAddressAction,
-	UpdateAccountAddressAction,
-	RemoveAccountAddressAction,
-	SetDefaultAccountBillingAddressAction,
-	SetDefaultAccountShippingAddressAction,
+	type GetAccountActionReturn,
+	type GetAccountAction,
+	type LoginAccountAction,
+	type LogoutAccountAction,
+	type RegisterAccountAction,
+	type ConfirmAccountAction,
+	type RequestAccountConfirmationEmailAction,
+	type ChangeAccountPasswordAction,
+	type RequestAccountPasswordResetAction,
+	type ResetAccountPasswordAction,
+	type UpdateAccountAction,
+	type AddAccountAddressAction,
+	type UpdateAccountAddressAction,
+	type RemoveAccountAddressAction,
+	type SetDefaultAccountBillingAddressAction,
+	type SetDefaultAccountShippingAddressAction,
 };

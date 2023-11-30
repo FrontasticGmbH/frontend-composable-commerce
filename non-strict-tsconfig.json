@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"target": "ES2022",
 		"moduleResolution": "node",
-		"strict": true,
+		"strict": false,
 		"keyofStringsOnly": true,
 		"allowSyntheticDefaultImports": true,
 		"types": [],

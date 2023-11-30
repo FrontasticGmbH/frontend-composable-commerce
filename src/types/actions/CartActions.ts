@@ -1,8 +1,4 @@
-import {
-	Cart,
-	Order,
-	ShippingMethod,
-} from "@commercetools/frontend-domain-types/cart";
+import { Cart, Order, ShippingMethod } from "shared/types/cart";
 import { SDKResponse, ServerOptions } from "@commercetools/frontend-sdk";
 import {
 	AddCartItemPayload,
@@ -14,6 +10,8 @@ import {
 	RedeemDiscountCodePayload,
 	RemoveDiscountCodePayload,
 } from "../payloads/CartPayloads";
+import { QueryOrdersQuery } from "../queries/CartQueries";
+import { PaginatedResult } from "shared/types/result";
 
 type GetCartAction = (options?: {
 	serverOptions?: ServerOptions;
@@ -67,21 +65,24 @@ type CheckoutCartAction = (options?: {
 	serverOptions?: ServerOptions;
 }) => Promise<SDKResponse<Cart>>;
 
-type GetOrderHistoryAction = (options?: {
-	serverOptions?: ServerOptions;
-}) => Promise<SDKResponse<Order[]>>;
+type QueryOrdersAction = (
+	query?: QueryOrdersQuery,
+	options?: {
+		serverOptions?: ServerOptions;
+	}
+) => Promise<SDKResponse<PaginatedResult<Order>>>;
 
 export {
-	GetCartAction,
-	AddCartItemAction,
-	RemoveCartItemAction,
-	UpdateCartItemAction,
-	UpdateCartAction,
-	GetCartShippingMethodsAction,
-	GetAvailableCartShippingMethodsAction,
-	SetCartShippingMethodAction,
-	RedeemDiscountCodeAction,
-	RemoveDiscountCodeAction,
-	CheckoutCartAction,
-	GetOrderHistoryAction,
+	type GetCartAction,
+	type AddCartItemAction,
+	type RemoveCartItemAction,
+	type UpdateCartItemAction,
+	type UpdateCartAction,
+	type GetCartShippingMethodsAction,
+	type GetAvailableCartShippingMethodsAction,
+	type SetCartShippingMethodAction,
+	type RedeemDiscountCodeAction,
+	type RemoveDiscountCodeAction,
+	type CheckoutCartAction,
+	type QueryOrdersAction,
 };

@@ -1,4 +1,4 @@
-import { Address } from "@commercetools/frontend-domain-types/account";
+import { Address } from "shared/types/account";
 
 type AddCartItemPayload = {
 	variant: {
@@ -49,12 +49,12 @@ type RemoveDiscountCodePayload = {
 };
 
 export {
-	AddCartItemPayload,
-	RemoveCartItemPayload,
-	UpdateCartItemPayload,
-	UpdateCartPayload,
-	GetCartShippingMethodsPayload,
-	SetCartShippingMethodPayload,
-	RedeemDiscountCodePayload,
-	RemoveDiscountCodePayload,
+	type AddCartItemPayload,
+	type RemoveCartItemPayload,
+	type UpdateCartItemPayload,
+	type UpdateCartPayload,
+	type GetCartShippingMethodsPayload,
+	type SetCartShippingMethodPayload,
+	type RedeemDiscountCodePayload,
+	type RemoveDiscountCodePayload,
 };

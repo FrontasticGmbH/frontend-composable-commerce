@@ -1,9 +1,21 @@
 
+## Version 1.4.0 (2023-11-30)
+
+* Removed botched release
+* misc: Tagged release 1.4.0 for composable-commerce
+* Replaced Extension terminology with Integration
+* misc: Tagged release 1.4.0 for composable-commerce
+* Updated version
+* Export types as type
+* Updated README.md
+* Replaced extension with integration
+* Updated @commercetools/frontend-sdk dev and peerDependency
+* feat(FP-4882): rename extensions to integrations
+
 ## Version 1.3.0 (2023-06-22)
 
-
 * Updated account login and logout methods to support remember me cookie on SSR
-* Updated @commercetools/frontend-sdk dependency
+* Updated @commercetools/frontend-sdk peer dependency to 1.8.0
 
 ## Version 1.2.6 (2023-04-25)
 
