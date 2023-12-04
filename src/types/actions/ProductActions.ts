@@ -3,11 +3,7 @@ import {
 	ProductQueryQuery,
 	QueryProductCategoriesQuery,
 } from "../queries/ProductQueries";
-import {
-	FilterField,
-	Product,
-	Result,
-} from "@commercetools/frontend-domain-types/product";
+import { FilterField, Product, Result } from "shared/types/product";
 import { SDKResponse, ServerOptions } from "@commercetools/frontend-sdk";
 
 type GetProductAction = (
@@ -30,8 +26,8 @@ type GetSearchableProductAttributesAction = (options?: {
 }) => Promise<SDKResponse<FilterField[]>>;
 
 export {
-	GetProductAction,
-	ProductQueryAction,
-	QueryProductCategoriesAction,
-	GetSearchableProductAttributesAction,
+	type GetProductAction,
+	type ProductQueryAction,
+	type QueryProductCategoriesAction,
+	type GetSearchableProductAttributesAction,
 };

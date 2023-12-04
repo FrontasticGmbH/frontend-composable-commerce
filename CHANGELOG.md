@@ -1,9 +1,19 @@
 
+## Version 1.4.1 (2023-12-04)
+
+
+* Renamed types import, added order query action
+* Added CI test for building in non-strict mode
+* Added support for non-strict mode
+* Replaced Extension terminology with Integration
+* Updated version
+* Export types as type
+* Replaced extension with integration
+
 ## Version 1.3.0 (2023-06-22)
 
-
 * Updated account login and logout methods to support remember me cookie on SSR
-* Updated @commercetools/frontend-sdk dependency
+* Updated @commercetools/frontend-sdk peer dependency to 1.8.0
 
 ## Version 1.2.6 (2023-04-25)
 

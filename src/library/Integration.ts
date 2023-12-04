@@ -1,12 +1,12 @@
-import { Extension, SDK } from "@commercetools/frontend-sdk";
+import { Integration, SDK } from "@commercetools/frontend-sdk";
 import { getProjectActions, ProjectActions } from "./actions/ProjectActions";
 import { getProductActions, ProductActions } from "./actions/ProductActions";
 import { getCartActions, CartActions } from "./actions/CartActions";
 import { getWishlistActions, WishlistActions } from "./actions/WishlistActions";
 import { AccountActions, getAccountActions } from "./actions/AccountActions";
-import { ComposableCommerceEvents } from "../types/types";
+import { ComposableCommerceEvents } from "../types/events/ComposableCommerceEvents";
 
-class ComposableCommerce extends Extension<ComposableCommerceEvents> {
+class ComposableCommerce extends Integration<ComposableCommerceEvents> {
 	constructor(sdk: SDK<ComposableCommerceEvents>) {
 		super(sdk);
 

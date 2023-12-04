@@ -1,4 +1,4 @@
-import { ProductQuery } from "@commercetools/frontend-domain-types/query";
+import { ProductQuery } from "shared/types/query";
 
 type GetProductQuery = {
 	id: string;
@@ -16,4 +16,8 @@ type QueryProductCategoriesQuery = {
 	slug?: string;
 };
 
-export { GetProductQuery, ProductQueryQuery, QueryProductCategoriesQuery };
+export {
+	type GetProductQuery,
+	type ProductQueryQuery,
+	type QueryProductCategoriesQuery,
+};

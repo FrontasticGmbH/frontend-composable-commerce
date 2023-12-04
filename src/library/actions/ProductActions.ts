@@ -10,12 +10,8 @@ import {
 	ProductQueryAction,
 	QueryProductCategoriesAction,
 } from "../../types/actions/ProductActions";
-import {
-	Product,
-	Result,
-	FilterField,
-} from "@commercetools/frontend-domain-types/product";
-import { ComposableCommerceEvents } from "../../types/types";
+import { Product, Result, FilterField } from "shared/types/product";
+import { ComposableCommerceEvents } from "../../types/events/ComposableCommerceEvents";
 
 export type ProductActions = {
 	getProduct: GetProductAction;
@@ -38,7 +34,7 @@ export const getProductActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError && response.data) {
+			if (response.isError === false && response.data) {
 				sdk.trigger(
 					new Event({
 						eventName: "productFetched",
@@ -60,7 +56,7 @@ export const getProductActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "productsQueried",
@@ -83,7 +79,7 @@ export const getProductActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "productCategoriesQueried",
@@ -104,7 +100,7 @@ export const getProductActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "searchableProductAttributesFetched",

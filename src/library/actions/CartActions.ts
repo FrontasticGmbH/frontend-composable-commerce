@@ -15,7 +15,7 @@ import {
 	GetAvailableCartShippingMethodsAction,
 	GetCartAction,
 	GetCartShippingMethodsAction,
-	GetOrderHistoryAction,
+	QueryOrdersAction,
 	RedeemDiscountCodeAction,
 	RemoveCartItemAction,
 	RemoveDiscountCodeAction,
@@ -23,12 +23,10 @@ import {
 	UpdateCartAction,
 	UpdateCartItemAction,
 } from "../../types/actions/CartActions";
-import {
-	Cart,
-	ShippingMethod,
-	Order,
-} from "@commercetools/frontend-domain-types/cart";
-import { ComposableCommerceEvents } from "../../types/types";
+import { Cart, ShippingMethod, Order } from "shared/types/cart";
+import { ComposableCommerceEvents } from "../../types/events/ComposableCommerceEvents";
+import { QueryOrdersQuery } from "../../types/queries/CartQueries";
+import { PaginatedResult } from "shared/types/result";
 
 export type CartActions = {
 	getCart: GetCartAction;
@@ -42,7 +40,7 @@ export type CartActions = {
 	redeemDiscountCode: RedeemDiscountCodeAction;
 	removeDiscountCode: RemoveDiscountCodeAction;
 	checkout: CheckoutCartAction;
-	getOrderHistory: GetOrderHistoryAction;
+	queryOrders: QueryOrdersAction;
 };
 
 export const getCartActions = (
@@ -55,7 +53,7 @@ export const getCartActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "cartFetched",
@@ -77,7 +75,7 @@ export const getCartActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "productAddedToCart",
@@ -100,7 +98,7 @@ export const getCartActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "productRemovedFromCart",
@@ -123,7 +121,7 @@ export const getCartActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "productUpdatedInCart",
@@ -148,7 +146,7 @@ export const getCartActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "cartUpdated",
@@ -168,7 +166,7 @@ export const getCartActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "shippingMethodsFetched",
@@ -188,7 +186,7 @@ export const getCartActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "availableShippingMethodsFetched",
@@ -210,7 +208,7 @@ export const getCartActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "shippingMethodUpdated",
@@ -237,7 +235,7 @@ export const getCartActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "discountCodeRedeemed",
@@ -266,7 +264,7 @@ export const getCartActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "discountCodeRemoved",
@@ -285,7 +283,7 @@ export const getCartActions = (
 				serverOptions: options.serverOptions,
 			});
 
-			if (!response.isError) {
+			if (response.isError === false) {
 				sdk.trigger(
 					new Event({
 						eventName: "cartCheckedOut",
@@ -295,24 +293,17 @@ export const getCartActions = (
 			}
 			return response;
 		},
-		getOrderHistory: async (
-			options: { serverOptions?: ServerOptions } = {}
+		queryOrders: async (
+			query?: QueryOrdersQuery,
+			options: {
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
-			const response = await sdk.callAction<Order[]>({
-				actionName: "cart/getOrders",
+			const response = await sdk.callAction<PaginatedResult<Order>>({
+				actionName: "cart/queryOrders",
+				query,
 				serverOptions: options.serverOptions,
 			});
-
-			if (!response.isError) {
-				sdk.trigger(
-					new Event({
-						eventName: "orderHistoryFetched",
-						data: {
-							orders: response.data,
-						},
-					})
-				);
-			}
 			return response;
 		},
 	};
