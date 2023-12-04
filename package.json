@@ -1,6 +1,6 @@
 {
 	"name": "@commercetools/frontend-composable-commerce",
-	"version": "1.4.1",
+	"version": "1.4.2",
 	"license": "UNLICENSED",
 	"main": "lib/index.js",
 	"scripts": {
