@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/types/events/ComposableCommerceEvents.ts"],"sourcesContent":["export type ComposableCommerceEvents = {};\n"],"mappings":";;;;;;;;;;;;;;;;AAAA;AAAA;","names":[]}
