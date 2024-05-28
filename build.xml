@@ -64,17 +64,4 @@
 			<arg value="build" />
 		</exec>
 	</target>
-
-	<!--
-        Build in non-strict TypeScript mode to test compatability
-    -->
-	<target name="SDK composable-commerce non stict:package" depends="initialize"
-		extensionOf="-package:before~hook">
-		<tool-exists executable="yarn" />
-
-		<exec executable="yarn" dir="${basedir}" failonerror="true">
-			<arg value="run" />
-			<arg value="build:non-strict" />
-		</exec>
-	</target>
 </project>

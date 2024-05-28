@@ -18,6 +18,7 @@ import {
 	SetDefaultAccountShippingAddressPayload,
 	UpdateAccountAddressPayload,
 	UpdateAccountPayload,
+	DeleteAccountPayload,
 } from "../../types/payloads/AccountPayloads";
 import {
 	AddAccountAddressAction,
@@ -36,6 +37,7 @@ import {
 	SetDefaultAccountShippingAddressAction,
 	UpdateAccountAction,
 	UpdateAccountAddressAction,
+	DeleteAccountAction,
 } from "../../types/actions/AccountActions";
 import { Account, Address } from "shared/types/account";
 import { ComposableCommerceEvents } from "../../types/events/ComposableCommerceEvents";
@@ -56,6 +58,7 @@ export type AccountActions = {
 	removeAddress: RemoveAccountAddressAction;
 	setDefaultBillingAddress: SetDefaultAccountBillingAddressAction;
 	setDefaultShippingAddress: SetDefaultAccountShippingAddressAction;
+	deleteAccount: DeleteAccountAction;
 };
 
 const addressesAreEqual = function (
@@ -92,14 +95,22 @@ export const getAccountActions = (
 	sdk: SDK<ComposableCommerceEvents>
 ): AccountActions => {
 	return {
-		getAccount: async (options: { serverOptions?: ServerOptions } = {}) => {
+		getAccount: async (
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
+		) => {
 			const response = await sdk.callAction<GetAccountActionReturn>({
 				actionName: "account/getAccount",
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
 			if (
-				response.isError === false &&
+				!response.isError &&
 				response.data.loggedIn &&
 				response.data.account
 			) {
@@ -116,7 +127,11 @@ export const getAccountActions = (
 		},
 		login: async (
 			payload: LoginAccountPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const remember = payload.remember;
 			payload.remember = undefined;
@@ -124,10 +139,12 @@ export const getAccountActions = (
 			const response = await sdk.callAction<Account>({
 				actionName: "account/login",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				if (remember) {
 					await rememberMeCookieAsync.set(
 						true,
@@ -146,13 +163,21 @@ export const getAccountActions = (
 
 			return response;
 		},
-		logout: async (options: { serverOptions?: ServerOptions } = {}) => {
+		logout: async (
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
+		) => {
 			const response = await sdk.callAction<void>({
 				actionName: "account/logout",
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				await rememberMeCookieAsync.remove(options.serverOptions);
 				sdk.trigger(
 					new Event({
@@ -165,15 +190,21 @@ export const getAccountActions = (
 		},
 		register: async (
 			payload: RegisterAccountPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/register",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "userRegistered",
@@ -187,15 +218,21 @@ export const getAccountActions = (
 		},
 		confirm: async (
 			payload: ConfirmAccountPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/confirm",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "accountConfirmed",
@@ -209,15 +246,21 @@ export const getAccountActions = (
 		},
 		requestConfirmationEmail: async (
 			payload: RequestAccountConfirmationEmailPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<void>({
 				actionName: "account/requestConfirmationEmail",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "accountConfirmationEmailRequested",
@@ -231,15 +274,21 @@ export const getAccountActions = (
 		},
 		changePassword: async (
 			payload: ChangeAccountPasswordPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/password",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "passwordChanged",
@@ -251,15 +300,21 @@ export const getAccountActions = (
 		},
 		requestResetPassword: async (
 			payload: RequestAccountPasswordResetPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<void>({
 				actionName: "account/requestReset",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "passwordResetRequested",
@@ -271,15 +326,21 @@ export const getAccountActions = (
 		},
 		resetPassword: async (
 			payload: ResetAccountPasswordPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/reset",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "passwordReset",
@@ -291,15 +352,21 @@ export const getAccountActions = (
 		},
 		updateAccount: async (
 			payload: UpdateAccountPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/update",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "accountUpdated",
@@ -313,15 +380,21 @@ export const getAccountActions = (
 		},
 		addAddress: async (
 			payload: AddAccountAddressPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/addAddress",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				const newAddress = response.data.addresses?.find((address) =>
 					addressesAreEqual(address, payload, false)
 				);
@@ -340,15 +413,21 @@ export const getAccountActions = (
 		},
 		updateAddress: async (
 			payload: UpdateAccountAddressPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/updateAddress",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				const newAddress = response.data.addresses?.find((address) =>
 					addressesAreEqual(address, payload, true)
 				);
@@ -367,15 +446,21 @@ export const getAccountActions = (
 		},
 		removeAddress: async (
 			payload: RemoveAccountAddressPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/removeAddress",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				if (
 					!response.data.addresses?.find(
 						(address) => address.addressId === payload.addressId
@@ -395,15 +480,21 @@ export const getAccountActions = (
 		},
 		setDefaultBillingAddress: async (
 			payload: SetDefaultAccountBillingAddressPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/setDefaultBillingAddress",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				const address = response.data.addresses?.find(
 					(address) => address.addressId === payload.addressId
 				);
@@ -422,15 +513,21 @@ export const getAccountActions = (
 		},
 		setDefaultShippingAddress: async (
 			payload: SetDefaultAccountShippingAddressPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Account>({
 				actionName: "account/setDefaultShippingAddress",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				const address = response.data.addresses?.find(
 					(address) => address.addressId === payload.addressId
 				);
@@ -445,6 +542,23 @@ export const getAccountActions = (
 					);
 				}
 			}
+			return response;
+		},
+		deleteAccount: async (
+			payload: DeleteAccountPayload,
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
+		) => {
+			const response = await sdk.callAction<void>({
+				actionName: "account/deleteAccount",
+				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
+				serverOptions: options?.serverOptions,
+			});
 			return response;
 		},
 	};

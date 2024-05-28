@@ -10,8 +10,9 @@ import {
 	ProductQueryAction,
 	QueryProductCategoriesAction,
 } from "../../types/actions/ProductActions";
-import { Product, Result, FilterField } from "shared/types/product";
+import { Product, FilterField, Category } from "shared/types/product";
 import { ComposableCommerceEvents } from "../../types/events/ComposableCommerceEvents";
+import { PaginatedResult, ProductPaginatedResult } from "shared/types/result";
 
 export type ProductActions = {
 	getProduct: GetProductAction;
@@ -26,15 +27,21 @@ export const getProductActions = (
 	return {
 		getProduct: async (
 			query: GetProductQuery,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Product>({
 				actionName: "product/getProduct",
 				query,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false && response.data) {
+			if (!response.isError && response.data) {
 				sdk.trigger(
 					new Event({
 						eventName: "productFetched",
@@ -48,15 +55,21 @@ export const getProductActions = (
 		},
 		query: async (
 			query: ProductQueryQuery,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
-			const response = await sdk.callAction<Result>({
+			const response = await sdk.callAction<ProductPaginatedResult>({
 				actionName: "product/query",
 				query,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "productsQueried",
@@ -71,15 +84,21 @@ export const getProductActions = (
 		},
 		queryCategories: async (
 			query: QueryProductCategoriesQuery,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
-			const response = await sdk.callAction<Result>({
+			const response = await sdk.callAction<PaginatedResult<Category>>({
 				actionName: "product/queryCategories",
 				query,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "productCategoriesQueried",
@@ -93,14 +112,20 @@ export const getProductActions = (
 			return response;
 		},
 		getSearchableAttributes: async (
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<FilterField[]>({
 				actionName: "product/searchableAttributes",
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "searchableProductAttributesFetched",

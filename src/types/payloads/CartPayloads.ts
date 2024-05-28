@@ -48,6 +48,10 @@ type RemoveDiscountCodePayload = {
 	discountId: string;
 };
 
+type CheckoutCartPayload = {
+	purchaseOrderNumber?: string;
+};
+
 export {
 	type AddCartItemPayload,
 	type RemoveCartItemPayload,
@@ -57,4 +61,5 @@ export {
 	type SetCartShippingMethodPayload,
 	type RedeemDiscountCodePayload,
 	type RemoveDiscountCodePayload,
+	type CheckoutCartPayload,
 };

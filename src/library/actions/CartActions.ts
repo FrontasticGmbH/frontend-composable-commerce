@@ -1,6 +1,7 @@
 import { Event, SDK, ServerOptions } from "@commercetools/frontend-sdk";
 import {
 	AddCartItemPayload,
+	CheckoutCartPayload,
 	GetCartShippingMethodsPayload,
 	RedeemDiscountCodePayload,
 	RemoveCartItemPayload,
@@ -15,6 +16,8 @@ import {
 	GetAvailableCartShippingMethodsAction,
 	GetCartAction,
 	GetCartShippingMethodsAction,
+	GetCheckoutSessionTokenAction,
+	GetOrderAction,
 	QueryOrdersAction,
 	RedeemDiscountCodeAction,
 	RemoveCartItemAction,
@@ -25,8 +28,12 @@ import {
 } from "../../types/actions/CartActions";
 import { Cart, ShippingMethod, Order } from "shared/types/cart";
 import { ComposableCommerceEvents } from "../../types/events/ComposableCommerceEvents";
-import { QueryOrdersQuery } from "../../types/queries/CartQueries";
+import {
+	QueryOrdersQuery,
+	GetOrderQuery,
+} from "../../types/queries/CartQueries";
 import { PaginatedResult } from "shared/types/result";
+import { Token } from "shared/types/Token";
 
 export type CartActions = {
 	getCart: GetCartAction;
@@ -41,19 +48,29 @@ export type CartActions = {
 	removeDiscountCode: RemoveDiscountCodeAction;
 	checkout: CheckoutCartAction;
 	queryOrders: QueryOrdersAction;
+	getOrder: GetOrderAction;
+	getCheckoutSessionToken: GetCheckoutSessionTokenAction;
 };
 
 export const getCartActions = (
 	sdk: SDK<ComposableCommerceEvents>
 ): CartActions => {
 	return {
-		getCart: async (options: { serverOptions?: ServerOptions } = {}) => {
+		getCart: async (
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
+		) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/getCart",
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "cartFetched",
@@ -67,15 +84,21 @@ export const getCartActions = (
 		},
 		addItem: async (
 			payload: AddCartItemPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/addToCart",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "productAddedToCart",
@@ -90,15 +113,21 @@ export const getCartActions = (
 		},
 		removeItem: async (
 			payload: RemoveCartItemPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/removeLineItem",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "productRemovedFromCart",
@@ -113,15 +142,21 @@ export const getCartActions = (
 		},
 		updateItem: async (
 			payload: UpdateCartItemPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/updateLineItem",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "productUpdatedInCart",
@@ -138,15 +173,21 @@ export const getCartActions = (
 		},
 		updateCart: async (
 			payload: UpdateCartPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/updateCart",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "cartUpdated",
@@ -158,15 +199,21 @@ export const getCartActions = (
 		},
 		getShippingMethods: async (
 			payload?: GetCartShippingMethodsPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<ShippingMethod[]>({
 				actionName: "cart/getShippingMethods",
 				query: payload?.query ?? undefined,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "shippingMethodsFetched",
@@ -179,14 +226,20 @@ export const getCartActions = (
 			return response;
 		},
 		getAvailableShippingMethods: async (
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<ShippingMethod[]>({
 				actionName: "cart/getAvailableShippingMethods",
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "availableShippingMethodsFetched",
@@ -200,15 +253,21 @@ export const getCartActions = (
 		},
 		setShippingMethod: async (
 			payload: SetCartShippingMethodPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/setShippingMethod",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "shippingMethodUpdated",
@@ -227,15 +286,21 @@ export const getCartActions = (
 		},
 		redeemDiscountCode: async (
 			payload: RedeemDiscountCodePayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Cart | string>({
 				actionName: "cart/redeemDiscount",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "discountCodeRedeemed",
@@ -256,15 +321,21 @@ export const getCartActions = (
 		},
 		removeDiscountCode: async (
 			payload: RemoveDiscountCodePayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/removeDiscount",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "discountCodeRemoved",
@@ -277,13 +348,23 @@ export const getCartActions = (
 			}
 			return response;
 		},
-		checkout: async (options: { serverOptions?: ServerOptions } = {}) => {
+		checkout: async (
+			payload: CheckoutCartPayload,
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
+		) => {
 			const response = await sdk.callAction<Cart>({
 				actionName: "cart/checkout",
+				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "cartCheckedOut",
@@ -296,12 +377,48 @@ export const getCartActions = (
 		queryOrders: async (
 			query?: QueryOrdersQuery,
 			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
 				serverOptions?: ServerOptions;
 			} = {}
 		) => {
 			const response = await sdk.callAction<PaginatedResult<Order>>({
 				actionName: "cart/queryOrders",
 				query,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
+				serverOptions: options.serverOptions,
+			});
+			return response;
+		},
+		getOrder: async (
+			query: GetOrderQuery,
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
+		) => {
+			const response = await sdk.callAction<Order>({
+				actionName: "cart/getOrder",
+				query,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
+				serverOptions: options.serverOptions,
+			});
+			return response;
+		},
+		getCheckoutSessionToken: async (
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
+		) => {
+			const response = await sdk.callAction<Token>({
+				actionName: "cart/getCheckoutSessionToken",
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 			return response;

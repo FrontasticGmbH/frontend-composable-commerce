@@ -14,6 +14,7 @@ import {
 	RemoveAccountAddressPayload,
 	SetDefaultAccountBillingAddressPayload,
 	SetDefaultAccountShippingAddressPayload,
+	DeleteAccountPayload,
 } from "../payloads/AccountPayloads";
 
 type GetAccountActionReturn =
@@ -26,77 +27,286 @@ type GetAccountActionReturn =
 	  };
 
 type GetAccountAction = (options?: {
+	/**
+	 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+	 */
+	skipQueue?: boolean;
+	/**
+	 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+	 */
+	customHeaderValue?: string;
+	/**
+	 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+	 */
 	serverOptions?: ServerOptions;
 }) => Promise<SDKResponse<GetAccountActionReturn>>;
 
 type LoginAccountAction = (
 	payload: LoginAccountPayload,
-	options?: { serverOptions?: ServerOptions }
+	options?: {
+		/**
+		 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+		 */
+		skipQueue?: boolean;
+		/**
+		 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+		 */
+		customHeaderValue?: string;
+		/**
+		 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+		 */
+		serverOptions?: ServerOptions;
+	}
 ) => Promise<SDKResponse<Account>>;
 
 type LogoutAccountAction = (options?: {
+	/**
+	 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+	 */
+	skipQueue?: boolean;
+	/**
+	 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+	 */
+	customHeaderValue?: string;
+	/**
+	 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+	 */
 	serverOptions?: ServerOptions;
 }) => Promise<SDKResponse<void>>;
 
 type RegisterAccountAction = (
 	payload: RegisterAccountPayload,
-	options?: { serverOptions?: ServerOptions }
+	options?: {
+		/**
+		 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+		 */
+		skipQueue?: boolean;
+		/**
+		 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+		 */
+		customHeaderValue?: string;
+		/**
+		 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+		 */
+		serverOptions?: ServerOptions;
+	}
 ) => Promise<SDKResponse<Account>>;
 
 type ConfirmAccountAction = (
 	payload: ConfirmAccountPayload,
-	options?: { serverOptions?: ServerOptions }
+	options?: {
+		/**
+		 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+		 */
+		skipQueue?: boolean;
+		/**
+		 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+		 */
+		customHeaderValue?: string;
+		/**
+		 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+		 */
+		serverOptions?: ServerOptions;
+	}
 ) => Promise<SDKResponse<Account>>;
 
 type RequestAccountConfirmationEmailAction = (
 	payload: RequestAccountConfirmationEmailPayload,
-	options?: { serverOptions?: ServerOptions }
+	options?: {
+		/**
+		 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+		 */
+		skipQueue?: boolean;
+		/**
+		 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+		 */
+		customHeaderValue?: string;
+		/**
+		 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+		 */
+		serverOptions?: ServerOptions;
+	}
 ) => Promise<SDKResponse<void>>;
 
 type ChangeAccountPasswordAction = (
 	payload: ChangeAccountPasswordPayload,
-	options?: { serverOptions?: ServerOptions }
+	options?: {
+		/**
+		 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+		 */
+		skipQueue?: boolean;
+		/**
+		 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+		 */
+		customHeaderValue?: string;
+		/**
+		 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+		 */
+		serverOptions?: ServerOptions;
+	}
 ) => Promise<SDKResponse<Account>>;
 
 type RequestAccountPasswordResetAction = (
 	payload: RequestAccountPasswordResetPayload,
-	options?: { serverOptions?: ServerOptions }
+	options?: {
+		/**
+		 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+		 */
+		skipQueue?: boolean;
+		/**
+		 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+		 */
+		customHeaderValue?: string;
+		/**
+		 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+		 */
+		serverOptions?: ServerOptions;
+	}
 ) => Promise<SDKResponse<void>>;
 
 type ResetAccountPasswordAction = (
 	payload: ResetAccountPasswordPayload,
-	options?: { serverOptions?: ServerOptions }
+	options?: {
+		/**
+		 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+		 */
+		skipQueue?: boolean;
+		/**
+		 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+		 */
+		customHeaderValue?: string;
+		/**
+		 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+		 */
+		serverOptions?: ServerOptions;
+	}
 ) => Promise<SDKResponse<Account>>;
 
 type UpdateAccountAction = (
 	payload: UpdateAccountPayload,
-	options?: { serverOptions?: ServerOptions }
+	options?: {
+		/**
+		 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+		 */
+		skipQueue?: boolean;
+		/**
+		 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+		 */
+		customHeaderValue?: string;
+		/**
+		 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+		 */
+		serverOptions?: ServerOptions;
+	}
 ) => Promise<SDKResponse<Account>>;
 
 type AddAccountAddressAction = (
 	payload: AddAccountAddressPayload,
-	options?: { serverOptions?: ServerOptions }
+	options?: {
+		/**
+		 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+		 */
+		skipQueue?: boolean;
+		/**
+		 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+		 */
+		customHeaderValue?: string;
+		/**
+		 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+		 */
+		serverOptions?: ServerOptions;
+	}
 ) => Promise<SDKResponse<Account>>;
 
 type UpdateAccountAddressAction = (
 	payload: UpdateAccountAddressPayload,
-	options?: { serverOptions?: ServerOptions }
+	options?: {
+		/**
+		 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+		 */
+		skipQueue?: boolean;
+		/**
+		 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+		 */
+		customHeaderValue?: string;
+		/**
+		 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+		 */
+		serverOptions?: ServerOptions;
+	}
 ) => Promise<SDKResponse<Account>>;
 
 type RemoveAccountAddressAction = (
 	payload: RemoveAccountAddressPayload,
-	options?: { serverOptions?: ServerOptions }
+	options?: {
+		/**
+		 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+		 */
+		skipQueue?: boolean;
+		/**
+		 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+		 */
+		customHeaderValue?: string;
+		/**
+		 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+		 */
+		serverOptions?: ServerOptions;
+	}
 ) => Promise<SDKResponse<Account>>;
 
 type SetDefaultAccountBillingAddressAction = (
 	payload: SetDefaultAccountBillingAddressPayload,
-	options?: { serverOptions?: ServerOptions }
+	options?: {
+		/**
+		 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+		 */
+		skipQueue?: boolean;
+		/**
+		 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+		 */
+		customHeaderValue?: string;
+		/**
+		 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+		 */
+		serverOptions?: ServerOptions;
+	}
 ) => Promise<SDKResponse<Account>>;
 
 type SetDefaultAccountShippingAddressAction = (
 	payload: SetDefaultAccountShippingAddressPayload,
-	options?: { serverOptions?: ServerOptions }
+	options?: {
+		/**
+		 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+		 */
+		skipQueue?: boolean;
+		/**
+		 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+		 */
+		customHeaderValue?: string;
+		/**
+		 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+		 */
+		serverOptions?: ServerOptions;
+	}
 ) => Promise<SDKResponse<Account>>;
+
+type DeleteAccountAction = (
+	payload: DeleteAccountPayload,
+	options?: {
+		/**
+		 * @param {boolean} [options.skipQueue] - An optional boolean, default false. Indicates whether or not to skip the action queue on the coFE base SDK and execute fully asyncronously. May cause race conditions if used incorrectly.
+		 */
+		skipQueue?: boolean;
+		/**
+		 * @param {boolean} [options.customHeaderValue] - An optional string, the value to assign to a "coFE-Custom-Configuration" header value. Overrides customHeaderValue passed in coFE base SDK configure.
+		 */
+		customHeaderValue?: string;
+		/**
+		 * @param {Object} [options.serverOptions] - An optional object containing the res and req objects for ServerResponse and IncomingMessage with cookies respectively. Required for server-side rendering session management.
+		 */
+		serverOptions?: ServerOptions;
+	}
+) => Promise<SDKResponse<void>>;
 
 export {
 	type GetAccountActionReturn,
@@ -115,4 +325,5 @@ export {
 	type RemoveAccountAddressAction,
 	type SetDefaultAccountBillingAddressAction,
 	type SetDefaultAccountShippingAddressAction,
+	type DeleteAccountAction,
 };

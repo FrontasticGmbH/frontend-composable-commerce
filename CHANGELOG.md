@@ -1,4 +1,16 @@
 
+## Version 2.0.0 (2024-05-28)
+
+
+* refactor: fixed formatting with prettier
+* feat: Added skipQueue and customHeaderValue options to SDK integration actions
+* feat: Updated @commercetools/frontend-sdk dependency to 1.12.1
+* fix: align getOrder action by passing orderId as query parameter
+* fix: query return types
+* refactor: modify project library paths on missing files
+* Added project level .gitignore files
+* Updated @commercetools/frontend-sdk dependency and replaced newly deprecated methods
+
 ## Version 1.4.3 (2023-12-04)
 
 

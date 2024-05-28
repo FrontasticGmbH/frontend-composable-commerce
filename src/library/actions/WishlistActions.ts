@@ -25,14 +25,20 @@ export const getWishlistActions = (
 ): WishlistActions => {
 	return {
 		getWishlist: async (
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Wishlist>({
 				actionName: "wishlist/getWishlist",
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				sdk.trigger(
 					new Event({
 						eventName: "wishlistFetched",
@@ -46,15 +52,21 @@ export const getWishlistActions = (
 		},
 		addItem: async (
 			payload: AddToWishlistPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Wishlist>({
 				actionName: "wishlist/addToWishlist",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				const lineItem = response.data.lineItems?.find(
 					(lineItem) => lineItem.variant?.sku === payload.variant.sku
 				);
@@ -73,16 +85,22 @@ export const getWishlistActions = (
 		},
 		removeItem: async (
 			payload: RemoveFromWishlistPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Wishlist>({
 				actionName: "wishlist/removeLineItem",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
 			if (
-				response.isError === false &&
+				!response.isError &&
 				!response.data.lineItems?.find(
 					(item) => item.lineItemId === payload.lineItem.id
 				)
@@ -100,15 +118,21 @@ export const getWishlistActions = (
 		},
 		updateItem: async (
 			payload: UpdateWishlistItemPayload,
-			options: { serverOptions?: ServerOptions } = {}
+			options: {
+				skipQueue?: boolean;
+				customHeaderValue?: string;
+				serverOptions?: ServerOptions;
+			} = {}
 		) => {
 			const response = await sdk.callAction<Wishlist>({
 				actionName: "wishlist/updateLineItemCount",
 				payload,
+				skipQueue: options.skipQueue,
+				customHeaderValue: options.customHeaderValue,
 				serverOptions: options.serverOptions,
 			});
 
-			if (response.isError === false) {
+			if (!response.isError) {
 				const lineItem = response.data.lineItems?.find(
 					(item) => item.lineItemId === payload.lineItem.id
 				);
