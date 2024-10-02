@@ -1,4 +1,11 @@
 
+## Version 3.0.0 (2024-10-02)
+
+
+* Updated @commercetools/frontend-sdk dependency to 1.13.1
+* Added skipQueue and customHeaderValue options to SDK integration actions
+* Aligned getOrder action by passing orderId as query parameter
+
 ## Version 2.0.0 (2024-05-28)
 
 

@@ -1,6 +1,6 @@
 {
 	"name": "@commercetools/frontend-composable-commerce",
-	"version": "2.0.0",
+	"version": "3.0.0",
 	"license": "UNLICENSED",
 	"main": "lib/index.js",
 	"scripts": {
@@ -12,13 +12,13 @@
 		"prettier:fix": "prettier --write ."
 	},
 	"devDependencies": {
-		"@commercetools/frontend-sdk": "^1.12.1",
+		"@commercetools/frontend-sdk": "^1.13.1",
 		"@types/core-js": "2.5.5",
 		"tsup": "^6.7.0",
 		"typescript": "^4.9.3"
 	},
 	"peerDependencies": {
-		"@commercetools/frontend-sdk": "^1.12.1"
+		"@commercetools/frontend-sdk": "^1.13.1"
 	},
 	"resolutions": {
 		"tsup/rollup": "3.20.4"
